@@ -8,7 +8,7 @@
 ## Install the apworld
 
 1. Use [`dist/HardspaceShipbreaker.apworld`](../../../dist/HardspaceShipbreaker.apworld) — drop on the Launcher or copy into `custom_worlds/`.
-2. Restart the Launcher / generator. **Regenerate** after upgrading from 0.5.x (RC is **0.6.0**).
+2. Restart the Launcher / generator. **Regenerate** after upgrading from 0.5.x.
 
 ## Generate
 
@@ -21,7 +21,7 @@ python MultiServer.py
 
 ## Client
 
-Build `client/HardspaceShipbreaker.Archipelago` (**0.6.0**) and install by putting DLLs into BepinEx/plugins folder
+Build `client/HardspaceShipbreaker.Archipelago` and install by putting DLLs into BepinEx/plugins folder
 
 | Key | Action |
 |-----|--------|
