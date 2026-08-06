@@ -11,7 +11,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PLUGIN_GUID = "hardspace.shipbreaker.archipelago";
     public const string PLUGIN_NAME = "Hardspace Shipbreaker Archipelago";
-    public const string PLUGIN_VERSION = "0.6.0";
+    public const string PLUGIN_VERSION = "0.6.3";
 
     internal static Plugin Instance { get; private set; } = null!;
     internal static ManualLogSource Log { get; private set; } = null!;
@@ -28,6 +28,10 @@ public class Plugin : BaseUnityPlugin
     internal ConfigEntry<int> CurrencyGrantCount = null!;
     /// <summary>Comma-separated location IDs checked while offline; flushed on reconnect.</summary>
     internal ConfigEntry<string> PendingOfflineChecks = null!;
+    /// <summary>server:port|slot — Hab shop-sanity paid purchases are tracked per room/slot.</summary>
+    internal ConfigEntry<string> HabShopPaidKey = null!;
+    /// <summary>Comma-separated Hab shop location IDs paid in Hab (not AP release/F9).</summary>
+    internal ConfigEntry<string> HabShopPaidLocationIds = null!;
 
     private ArchipelagoClient? _client;
     private ConnectionDialog? _connectionDialog;
@@ -69,8 +73,19 @@ public class Plugin : BaseUnityPlugin
             "PendingOfflineChecks",
             "",
             "Internal: location IDs checked while disconnected (flushed on reconnect)");
+        HabShopPaidKey = Config.Bind(
+            "Progress",
+            "HabShopPaidKey",
+            "",
+            "Internal: room/slot key for Hab shop paid-location tracking");
+        HabShopPaidLocationIds = Config.Bind(
+            "Progress",
+            "HabShopPaidLocationIds",
+            "",
+            "Internal: Hab shop location IDs purchased in Hab (shop-sanity yellow)");
 
         OfflineCheckStore.EnsureLoaded();
+        HabShopPaidStore.EnsureLoaded();
         _client = new ArchipelagoClient();
         _connectionDialog = new ConnectionDialog(this);
         Log.LogInfo(

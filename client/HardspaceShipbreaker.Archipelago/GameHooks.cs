@@ -1980,6 +1980,7 @@ public static class GameHookSink
 
     public static void UpgradeScreenEnablePrefix()
     {
+        ItemApplicator.EnsureHabShopPaidState();
         ItemApplicator.StripUnpaidShopRowsFromHabOwned();
     }
 

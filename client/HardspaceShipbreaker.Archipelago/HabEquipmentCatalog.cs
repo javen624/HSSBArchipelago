@@ -163,16 +163,32 @@ internal static class HabEquipmentCatalog
             new("Cutter Cooldown 1", Id(247), "Hab: Cutter Cooldown 1", n => Has(n, "Cutter") && Has(n, "Cooldown") && nameEndsWithTier(n, 1)),
             new("Cutter Cooldown 2", Id(248), "Hab: Cutter Cooldown 2", n => Has(n, "Cutter") && Has(n, "Cooldown") && nameEndsWithTier(n, 2)),
             new("Cutter Cooldown 3", Id(249), "Hab: Cutter Cooldown 3", n => Has(n, "Cutter") && Has(n, "Cooldown") && nameEndsWithTier(n, 3)),
-            new("Stinger Range 1", Id(250), "Hab: Stinger Range 1", n => Has(n, "Stinger") && Has(n, "Range") && nameEndsWithTier(n, 1)),
-            new("Stinger Range 2", Id(251), "Hab: Stinger Range 2", n => Has(n, "Stinger") && Has(n, "Range") && nameEndsWithTier(n, 2)),
-            new("Stinger Range 3", Id(252), "Hab: Stinger Range 3", n => Has(n, "Stinger") && Has(n, "Range") && nameEndsWithTier(n, 3)),
-            new("Stinger Range 4", Id(253), "Hab: Stinger Range 4", n => Has(n, "Stinger") && Has(n, "Range") && nameEndsWithTier(n, 4)),
-            new("Stinger Range 5", Id(254), "Hab: Stinger Range 5", n => Has(n, "Stinger") && Has(n, "Range") && nameEndsWithTier(n, 5)),
-            new("Splitsaw Range 1", Id(255), "Hab: Splitsaw Range 1", n => Has(n, "Splitsaw") && Has(n, "Range") && nameEndsWithTier(n, 1)),
-            new("Splitsaw Range 2", Id(256), "Hab: Splitsaw Range 2", n => Has(n, "Splitsaw") && Has(n, "Range") && nameEndsWithTier(n, 2)),
-            new("Splitsaw Range 3", Id(257), "Hab: Splitsaw Range 3", n => Has(n, "Splitsaw") && Has(n, "Range") && nameEndsWithTier(n, 3)),
-            new("Splitsaw Range 4", Id(258), "Hab: Splitsaw Range 4", n => Has(n, "Splitsaw") && Has(n, "Range") && nameEndsWithTier(n, 4)),
-            new("Splitsaw Range 5", Id(259), "Hab: Splitsaw Range 5", n => Has(n, "Splitsaw") && Has(n, "Range") && nameEndsWithTier(n, 5)),
+            // In-game display: Stinger / Splitsaw. Unity assets: Scalpel_* / BoneSaw_*.
+            new("Stinger Range 1", Id(250), "Hab: Stinger Range 1",
+                n => (Has(n, "Stinger") || Has(n, "Scalpel")) && Has(n, "Range") && nameEndsWithTier(n, 1)
+                     && !Has(n, "CutGrade")),
+            new("Stinger Range 2", Id(251), "Hab: Stinger Range 2",
+                n => (Has(n, "Stinger") || Has(n, "Scalpel")) && Has(n, "Range") && nameEndsWithTier(n, 2)
+                     && !Has(n, "CutGrade")),
+            new("Stinger Range 3", Id(252), "Hab: Stinger Range 3",
+                n => (Has(n, "Stinger") || Has(n, "Scalpel")) && Has(n, "Range") && nameEndsWithTier(n, 3)
+                     && !Has(n, "CutGrade")),
+            new("Stinger Range 4", Id(253), "Hab: Stinger Range 4",
+                n => (Has(n, "Stinger") || Has(n, "Scalpel")) && Has(n, "Range") && nameEndsWithTier(n, 4)
+                     && !Has(n, "CutGrade")),
+            new("Stinger Range 5", Id(254), "Hab: Stinger Range 5",
+                n => (Has(n, "Stinger") || Has(n, "Scalpel")) && Has(n, "Range") && nameEndsWithTier(n, 5)
+                     && !Has(n, "CutGrade")),
+            new("Splitsaw Range 1", Id(255), "Hab: Splitsaw Range 1",
+                n => (Has(n, "Splitsaw") || Has(n, "BoneSaw")) && Has(n, "Range") && nameEndsWithTier(n, 1)),
+            new("Splitsaw Range 2", Id(256), "Hab: Splitsaw Range 2",
+                n => (Has(n, "Splitsaw") || Has(n, "BoneSaw")) && Has(n, "Range") && nameEndsWithTier(n, 2)),
+            new("Splitsaw Range 3", Id(257), "Hab: Splitsaw Range 3",
+                n => (Has(n, "Splitsaw") || Has(n, "BoneSaw")) && Has(n, "Range") && nameEndsWithTier(n, 3)),
+            new("Splitsaw Range 4", Id(258), "Hab: Splitsaw Range 4",
+                n => (Has(n, "Splitsaw") || Has(n, "BoneSaw")) && Has(n, "Range") && nameEndsWithTier(n, 4)),
+            new("Splitsaw Range 5", Id(259), "Hab: Splitsaw Range 5",
+                n => (Has(n, "Splitsaw") || Has(n, "BoneSaw")) && Has(n, "Range") && nameEndsWithTier(n, 5)),
             new("Grapple Range 1", Id(260), "Hab: Grapple Range 1", n => Has(n, "Grapple") && Has(n, "Range") && nameEndsWithTier(n, 1) && !Has(n, "Strength")),
             new("Grapple Range 2", Id(261), "Hab: Grapple Range 2", n => Has(n, "Grapple") && Has(n, "Range") && nameEndsWithTier(n, 2) && !Has(n, "Strength")),
             new("Grapple Range 3", Id(262), "Hab: Grapple Range 3", n => Has(n, "Grapple") && Has(n, "Range") && nameEndsWithTier(n, 3) && !Has(n, "Strength")),
@@ -242,52 +258,53 @@ internal static class HabEquipmentCatalog
             // Rentals (*Purchase*) + durability drains — shop-sanity
             new("Thruster Rental", Id(320), "Hab: Thruster Rental",
                 n => Has(n, "Thruster") && Has(n, "Purchase") && !Has(n, "Durability")),
+            // DurabilityDrain* and legacy Durability* (no Drain) both map to the same Hab locs.
             new("Thruster Durability 1", Id(321), "Hab: Thruster Durability 1",
-                n => Has(n, "Thruster") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 1)),
+                n => Has(n, "Thruster") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase")),
             new("Thruster Durability 2", Id(322), "Hab: Thruster Durability 2",
-                n => Has(n, "Thruster") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 2)),
+                n => Has(n, "Thruster") && Has(n, "Durability") && nameEndsWithTier(n, 2) && !Has(n, "Purchase")),
             new("Thruster Durability 3", Id(323), "Hab: Thruster Durability 3",
-                n => Has(n, "Thruster") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 3)),
+                n => Has(n, "Thruster") && Has(n, "Durability") && nameEndsWithTier(n, 3) && !Has(n, "Purchase")),
             new("Thruster Durability 4", Id(324), "Hab: Thruster Durability 4",
-                n => Has(n, "Thruster") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 4)),
+                n => Has(n, "Thruster") && Has(n, "Durability") && nameEndsWithTier(n, 4) && !Has(n, "Purchase")),
             new("Thruster Durability 5", Id(325), "Hab: Thruster Durability 5",
-                n => Has(n, "Thruster") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 5)),
+                n => Has(n, "Thruster") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase")),
             new("Cutter Rental", Id(326), "Hab: Cutter Rental",
                 n => Has(n, "Cutter") && (Has(n, "Purchase") || (Has(n, "Rental") && Has(n, "Upgrade"))) && !Has(n, "Durability") && !Has(n, "Cost")),
             new("Cutter Durability 1", Id(327), "Hab: Cutter Durability 1",
-                n => Has(n, "Cutter") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 1)),
+                n => Has(n, "Cutter") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase") && !Has(n, "Rental")),
             new("Cutter Durability 2", Id(328), "Hab: Cutter Durability 2",
-                n => Has(n, "Cutter") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 2)),
+                n => Has(n, "Cutter") && Has(n, "Durability") && nameEndsWithTier(n, 2) && !Has(n, "Purchase") && !Has(n, "Rental")),
             new("Cutter Durability 3", Id(329), "Hab: Cutter Durability 3",
-                n => Has(n, "Cutter") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 3)),
+                n => Has(n, "Cutter") && Has(n, "Durability") && nameEndsWithTier(n, 3) && !Has(n, "Purchase") && !Has(n, "Rental")),
             new("Cutter Durability 4", Id(330), "Hab: Cutter Durability 4",
-                n => Has(n, "Cutter") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 4)),
+                n => Has(n, "Cutter") && Has(n, "Durability") && nameEndsWithTier(n, 4) && !Has(n, "Purchase") && !Has(n, "Rental")),
             new("Cutter Durability 5", Id(331), "Hab: Cutter Durability 5",
-                n => Has(n, "Cutter") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 5)),
+                n => Has(n, "Cutter") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase") && !Has(n, "Rental")),
             new("Grapple Rental", Id(332), "Hab: Grapple Rental",
                 n => Has(n, "Grapple") && Has(n, "Purchase") && !Has(n, "Durability")),
             new("Grapple Durability 1", Id(333), "Hab: Grapple Durability 1",
-                n => Has(n, "Grapple") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 1)),
+                n => Has(n, "Grapple") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase")),
             new("Grapple Durability 2", Id(334), "Hab: Grapple Durability 2",
-                n => Has(n, "Grapple") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 2)),
+                n => Has(n, "Grapple") && Has(n, "Durability") && nameEndsWithTier(n, 2) && !Has(n, "Purchase")),
             new("Grapple Durability 3", Id(335), "Hab: Grapple Durability 3",
-                n => Has(n, "Grapple") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 3)),
+                n => Has(n, "Grapple") && Has(n, "Durability") && nameEndsWithTier(n, 3) && !Has(n, "Purchase")),
             new("Grapple Durability 4", Id(336), "Hab: Grapple Durability 4",
-                n => Has(n, "Grapple") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 4)),
+                n => Has(n, "Grapple") && Has(n, "Durability") && nameEndsWithTier(n, 4) && !Has(n, "Purchase")),
             new("Grapple Durability 5", Id(337), "Hab: Grapple Durability 5",
-                n => Has(n, "Grapple") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 5)),
+                n => Has(n, "Grapple") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase")),
             new("Scanner Rental", Id(338), "Hab: Scanner Rental",
                 n => Has(n, "Scanner") && Has(n, "Purchase") && !Has(n, "Durability")),
             new("Scanner Durability 1", Id(339), "Hab: Scanner Durability 1",
-                n => Has(n, "Scanner") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 1)),
+                n => Has(n, "Scanner") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase") && !Has(n, "Detail")),
             new("Scanner Durability 2", Id(340), "Hab: Scanner Durability 2",
-                n => Has(n, "Scanner") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 2)),
+                n => Has(n, "Scanner") && Has(n, "Durability") && nameEndsWithTier(n, 2) && !Has(n, "Purchase") && !Has(n, "Detail")),
             new("Scanner Durability 3", Id(341), "Hab: Scanner Durability 3",
-                n => Has(n, "Scanner") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 3)),
+                n => Has(n, "Scanner") && Has(n, "Durability") && nameEndsWithTier(n, 3) && !Has(n, "Purchase") && !Has(n, "Detail")),
             new("Scanner Durability 4", Id(342), "Hab: Scanner Durability 4",
-                n => Has(n, "Scanner") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 4)),
+                n => Has(n, "Scanner") && Has(n, "Durability") && nameEndsWithTier(n, 4) && !Has(n, "Purchase") && !Has(n, "Detail")),
             new("Scanner Durability 5", Id(343), "Hab: Scanner Durability 5",
-                n => Has(n, "Scanner") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 5)),
+                n => Has(n, "Scanner") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase") && !Has(n, "Detail")),
             new("Helmet Rental", Id(344), "Hab: Helmet Rental",
                 n => Has(n, "Helmet") && Has(n, "Purchase") && !Has(n, "Tank") && !Has(n, "Recharge")),
             new("Suit Rental", Id(345), "Hab: Suit Rental",
@@ -301,15 +318,46 @@ internal static class HabEquipmentCatalog
             new("Demo Charge Rental", Id(349), "Hab: Demo Charge Rental",
                 n => Has(n, "Demo") && Has(n, "Purchase") && !Has(n, "Durability") && !Has(n, "Capacity")),
             new("Demo Durability 1", Id(350), "Hab: Demo Durability 1",
-                n => Has(n, "Demo") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 1)),
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase") && !Has(n, "Capacity")),
             new("Demo Durability 2", Id(351), "Hab: Demo Durability 2",
-                n => Has(n, "Demo") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 2)),
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 2) && !Has(n, "Purchase") && !Has(n, "Capacity")),
             new("Demo Durability 3", Id(352), "Hab: Demo Durability 3",
-                n => Has(n, "Demo") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 3)),
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 3) && !Has(n, "Purchase") && !Has(n, "Capacity")),
             new("Demo Durability 4", Id(353), "Hab: Demo Durability 4",
-                n => Has(n, "Demo") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 4)),
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 4) && !Has(n, "Purchase") && !Has(n, "Capacity")),
             new("Demo Durability 5", Id(354), "Hab: Demo Durability 5",
-                n => Has(n, "Demo") && Has(n, "DurabilityDrain") && nameEndsWithTier(n, 5)),
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase") && !Has(n, "Capacity")),
+            // Previously unmapped Hab rows (IDs 430+)
+            new("Stinger Cut Grade", Id(430), "Hab: Stinger Cut Grade",
+                n => (Has(n, "Scalpel") || Has(n, "Stinger")) && Has(n, "CutGrade")),
+            new("Unlock Launcher", Id(431), "Hab: Unlock Launcher",
+                n => Has(n, "UnlockLauncher")
+                     || (Has(n, "Launcher") && Has(n, "Unlock") && !Has(n, "Range")
+                         && !Has(n, "Cryo") && !Has(n, "Explosive") && !Has(n, "Magnetic"))),
+            new("Launcher Range 1", Id(432), "Hab: Launcher Range 1",
+                n => Has(n, "Launcher") && Has(n, "Range") && nameEndsWithTier(n, 1)),
+            new("Launcher Range 2", Id(433), "Hab: Launcher Range 2",
+                n => Has(n, "Launcher") && Has(n, "Range") && nameEndsWithTier(n, 2)),
+            new("Launcher Range 3", Id(434), "Hab: Launcher Range 3",
+                n => Has(n, "Launcher") && Has(n, "Range") && nameEndsWithTier(n, 3)),
+            new("Launcher Range 4", Id(435), "Hab: Launcher Range 4",
+                n => Has(n, "Launcher") && Has(n, "Range") && nameEndsWithTier(n, 4)),
+            new("Launcher Range 5", Id(436), "Hab: Launcher Range 5",
+                n => Has(n, "Launcher") && Has(n, "Range") && nameEndsWithTier(n, 5)),
+            new("Launcher Cryo", Id(437), "Hab: Launcher Cryo",
+                n => Has(n, "Launcher") && Has(n, "Cryo")),
+            new("Launcher Explosive", Id(438), "Hab: Launcher Explosive",
+                n => Has(n, "Launcher") && Has(n, "Explosive")),
+            new("Launcher Magnetic", Id(439), "Hab: Launcher Magnetic",
+                n => Has(n, "Launcher") && Has(n, "Magnetic")),
+            new("Scanner Detail Category", Id(440), "Hab: Scanner Detail Category",
+                n => Has(n, "ScannerDetail") && Has(n, "Category")),
+            new("Scanner Detail Condition", Id(441), "Hab: Scanner Detail Condition",
+                n => Has(n, "ScannerDetail") && Has(n, "Condition")),
+            new("Scanner Detail Hazards", Id(442), "Hab: Scanner Detail Hazards",
+                n => Has(n, "ScannerDetail") && Has(n, "Hazard")),
+            new("Scanner Detail Materials", Id(443), "Hab: Scanner Detail Materials",
+                n => Has(n, "ScannerDetail") && Has(n, "Material")),
         };
         return list;
     }
@@ -440,12 +488,25 @@ internal static class HabEquipmentCatalog
             "Demo Durability 1", "Demo Durability 2", "Demo Durability 3",
             "Demo Durability 4", "Demo Durability 5"
         },
+        ["Progressive Launcher Range"] = new[]
+        {
+            "Launcher Range 1", "Launcher Range 2", "Launcher Range 3",
+            "Launcher Range 4", "Launcher Range 5"
+        },
+        ["Progressive Scanner Detail"] = new[]
+        {
+            "Scanner Detail Category", "Scanner Detail Condition",
+            "Scanner Detail Hazards", "Scanner Detail Materials"
+        },
     };
 
-    /// <summary>Hab shop location IDs are BaseId+200 … BaseId+349 (equipment.py / HabEquipmentCatalog).</summary>
+    /// <summary>
+    /// Hab shop location IDs from equipment.py (200–299, 320–354, 430–443).
+    /// Excludes salvage-tier bands 300–319 / 355–429.
+    /// </summary>
     public static bool IsHabShopLocationId(long locationId)
     {
         var offset = locationId - ArchipelagoClient.BaseId;
-        return offset is >= 200 and <= 349;
+        return offset is (>= 200 and <= 299) or (>= 320 and <= 354) or (>= 430 and <= 443);
     }
 }

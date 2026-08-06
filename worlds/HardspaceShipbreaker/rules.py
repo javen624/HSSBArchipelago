@@ -66,6 +66,10 @@ def _has_charged_push(state, player: int) -> bool:
     return state.has("Charged Push", player) or state.has("Progressive Charged Push Force", player)
 
 
+def _has_launcher(state, player: int) -> bool:
+    return state.has("Unlock Launcher", player) or state.has("Progressive Launcher Range", player)
+
+
 def _has_license_item(state, player: int, lic: str | None) -> bool:
     if lic is None:
         return True
@@ -77,6 +81,8 @@ def _has_license_item(state, player: int, lic: str | None) -> bool:
         return _has_demo(state, player)
     if lic == "Charged Push":
         return _has_charged_push(state, player)
+    if lic == "Unlock Launcher":
+        return _has_launcher(state, player)
     return state.has(lic, player)
 
 

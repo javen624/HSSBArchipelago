@@ -55,8 +55,12 @@ internal static class ItemApplicator
     private static bool _demoLicense;
     private static bool _chargedPush;
     private static bool _o2RechargeModule;
+    private static bool _launcherUnlocked;
     private static bool _pendingDemoAutoDeploy;
     private static bool _pendingDemoRental;
+    private static bool _pendingLauncherCryo;
+    private static bool _pendingLauncherExplosive;
+    private static bool _pendingLauncherMagnetic;
     private static int _certRankProgress;
     private static MethodInfo? _trySetCertification;
     private static MethodInfo? _getCertificationRank;
@@ -170,6 +174,7 @@ internal static class ItemApplicator
         RepairInflatedWorkPermit();
         HealStaleJobBoardRefreshCounter();
         RepairNegativeMasteryPoints();
+        EnsureHabShopPaidState();
         StripUnpaidShopRowsFromHabOwned();
         EnsureFreeStarterUpgradesOwned();
         AutoCheckFreeStarterHabLocations();
@@ -187,6 +192,7 @@ internal static class ItemApplicator
         RepairInflatedWorkPermit();
         HealStaleJobBoardRefreshCounter();
         RepairNegativeMasteryPoints();
+        EnsureHabShopPaidState();
         StripUnpaidShopRowsFromHabOwned();
         EnsureFreeStarterUpgradesOwned();
         AutoCheckFreeStarterHabLocations();
@@ -1178,6 +1184,41 @@ internal static class ItemApplicator
                 TryApplyEquipmentTier("O2 Recharge Module");
                 FlushItemsGatedBy("O2 Recharge Module");
                 break;
+            case "Unlock Launcher":
+                _launcherUnlocked = true;
+                TryApplyEquipmentTier("Unlock Launcher");
+                FlushItemsGatedBy("Unlock Launcher");
+                break;
+            case "Launcher Cryo":
+                if (!_launcherUnlocked)
+                {
+                    _pendingLauncherCryo = true;
+                    Plugin.Log.LogInfo("[HS-AP] Launcher Cryo queued until Unlock Launcher is owned.");
+                    break;
+                }
+
+                TryApplyEquipmentTier("Launcher Cryo");
+                break;
+            case "Launcher Explosive":
+                if (!_launcherUnlocked)
+                {
+                    _pendingLauncherExplosive = true;
+                    Plugin.Log.LogInfo("[HS-AP] Launcher Explosive queued until Unlock Launcher is owned.");
+                    break;
+                }
+
+                TryApplyEquipmentTier("Launcher Explosive");
+                break;
+            case "Launcher Magnetic":
+                if (!_launcherUnlocked)
+                {
+                    _pendingLauncherMagnetic = true;
+                    Plugin.Log.LogInfo("[HS-AP] Launcher Magnetic queued until Unlock Launcher is owned.");
+                    break;
+                }
+
+                TryApplyEquipmentTier("Launcher Magnetic");
+                break;
             case "Progressive Ship Unlock":
             case "Unlock Atlas":
             case "Unlock Javelin":
@@ -1306,6 +1347,14 @@ internal static class ItemApplicator
                 }
 
                 break;
+            case "Progressive Launcher Range":
+                if (!_launcherUnlocked)
+                {
+                    Plugin.Log.LogInfo("[HS-AP] Progressive Launcher Range ×1 grants Unlock Launcher.");
+                    Apply("Unlock Launcher", 0);
+                }
+
+                break;
         }
     }
 
@@ -1319,6 +1368,8 @@ internal static class ItemApplicator
                 => "Demo Charge License",
             "Progressive Charged Push Force" => "Charged Push",
             "Progressive O2 Recharge" => "O2 Recharge Module",
+            "Progressive Launcher Range" or "Launcher Cryo" or "Launcher Explosive" or "Launcher Magnetic"
+                => "Unlock Launcher",
             _ => null
         };
 
@@ -1329,6 +1380,7 @@ internal static class ItemApplicator
             "Demo Charge License" => _demoLicense,
             "Charged Push" => _chargedPush,
             "O2 Recharge Module" => _o2RechargeModule,
+            "Unlock Launcher" => _launcherUnlocked,
             _ => true
         };
 
@@ -1368,6 +1420,24 @@ internal static class ItemApplicator
             _pendingDemoRental = false;
             TryApplyEquipmentTier("Demo Charge Rental");
         }
+
+        if (license == "Unlock Launcher" && _pendingLauncherCryo)
+        {
+            _pendingLauncherCryo = false;
+            TryApplyEquipmentTier("Launcher Cryo");
+        }
+
+        if (license == "Unlock Launcher" && _pendingLauncherExplosive)
+        {
+            _pendingLauncherExplosive = false;
+            TryApplyEquipmentTier("Launcher Explosive");
+        }
+
+        if (license == "Unlock Launcher" && _pendingLauncherMagnetic)
+        {
+            _pendingLauncherMagnetic = false;
+            TryApplyEquipmentTier("Launcher Magnetic");
+        }
     }
 
     private static bool TryApplyEquipmentTier(string tierItemName)
@@ -1393,6 +1463,11 @@ internal static class ItemApplicator
             if (string.Equals(tierItemName, "Charged Push", StringComparison.Ordinal))
             {
                 _chargedPush = true;
+            }
+
+            if (string.Equals(tierItemName, "Unlock Launcher", StringComparison.Ordinal))
+            {
+                _launcherUnlocked = true;
             }
 
             TryApplyUpgradeKey($"equip:{tierItemName}", entry.AssetMatch);
@@ -1572,7 +1647,7 @@ internal static class ItemApplicator
         // GrappleStrength1_, HelmetTankCapacity2_, DurabilityDrain3_, Capacity1_
         if (System.Text.RegularExpressions.Regex.IsMatch(
                 n,
-                $@"(?:Strength|Capacity|Drain|Rate|Range|Amount|Lifetime|Integrity|Defence|Defense|Shield|Speed|Fuel|Heat|Cooldown|Disarm|Cleanup|Force|Brak\w*|Resist\w*|Resynth|TankCapacity|RechargeRate|Durability(?:Drain)?)[_\s\-]*{tier}(?![0-9])",
+                $@"(?:Strength|Capacity|Drain|Rate|Range|Amount|Lifetime|Integrity|Defence|Defense|Shield|Speed|Fuel|Heat|Cap|Cooldown|Disarm|Cleanup|Force|Brak\w*|Resist\w*|Resynth|TankCapacity|RechargeRate|Durability(?:Drain)?)[_\s\-]*{tier}(?![0-9])",
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase))
         {
             return true;
@@ -2126,6 +2201,7 @@ internal static class ItemApplicator
         {
             TryChargeUpgradePrice(upgradeAsset);
             HabShopPaidLocationIds.Add(locationId);
+            HabShopPaidStore.Remember(locationId);
         }
 
         MarkHabOwnedYellowOnly(upgradeAsset);
@@ -2134,6 +2210,207 @@ internal static class ItemApplicator
         // First paid Hab equipment purchase also clears the milestone location.
         NotifyFirstEquipmentPurchase();
         return true;
+    }
+
+    /// <summary>
+    /// Reload persisted Hab buys, seed from profile Upgrades (migration), restore yellow rows,
+    /// then callers may Strip unpaid AP-only rows safely.
+    /// </summary>
+    public static void EnsureHabShopPaidState() => EnsureHabShopPaidState(habCheckedOnServer: -1);
+
+    /// <param name="habCheckedOnServer">
+    /// Count of Hab shop locations checked on the AP server. 0 means a fresh multiworld —
+    /// do not restore ghost Hab-yellow from a previous seed. Pass -1 when unknown.
+    /// </param>
+    public static void EnsureHabShopPaidState(int habCheckedOnServer)
+    {
+        if (!_habShopSanity)
+        {
+            return;
+        }
+
+        try
+        {
+            HabShopPaidStore.EnsureLoaded();
+
+            if (habCheckedOnServer == 0)
+            {
+                var clearedYellow = ClearHabShopYellowExceptFreeStarters();
+                HabShopPaidStore.ClearPaid();
+                HabShopPaidLocationIds.Clear();
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Fresh AP room (0 Hab checks) — cleared paid store + {clearedYellow} yellow row(s).");
+                return;
+            }
+
+            // Rebuild from persisted store so a room/slot key switch cannot leave stale IDs.
+            HabShopPaidLocationIds.Clear();
+            HabShopPaidStore.CopyInto(HabShopPaidLocationIds);
+
+            // Only migrate profile→paid when this room already has Hab checks (real progress).
+            if (habCheckedOnServer > 0 || HabShopPaidLocationIds.Count > 0)
+            {
+                var seeded = SeedHabShopPaidFromProfileUpgrades();
+                if (seeded > 0)
+                {
+                    HabShopPaidStore.RememberMany(HabShopPaidLocationIds);
+                }
+            }
+
+            RestoreHabPaidYellowRows();
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] EnsureHabShopPaidState failed: {ex.Message}");
+        }
+    }
+
+    private static int SeedHabShopPaidFromProfileUpgrades()
+    {
+        var profile = FindPlayerProfile();
+        if (profile == null || _playerProfileType == null)
+        {
+            return 0;
+        }
+
+        var upgradesProp = _playerProfileType.GetProperty(
+            "Upgrades",
+            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        if (upgradesProp?.GetValue(profile) is not IEnumerable enumerable)
+        {
+            return 0;
+        }
+
+        var added = 0;
+        foreach (var entry in enumerable)
+        {
+            if (entry == null || IsFreeStarterUpgrade(entry))
+            {
+                continue;
+            }
+
+            if (!TryMapHabShopLocation(entry, out var id, out _))
+            {
+                continue;
+            }
+
+            if (HabShopPaidLocationIds.Add(id))
+            {
+                added++;
+            }
+        }
+
+        return added;
+    }
+
+    /// <summary>
+    /// Remove Hab shop-mapped rows from PlayerProfile.Upgrades (keep free starters).
+    /// Used when switching AP seed so a prior multiworld's yellow rows do not leak.
+    /// </summary>
+    public static int ClearHabShopYellowExceptFreeStarters()
+    {
+        try
+        {
+            var profile = FindPlayerProfile();
+            if (profile == null || _playerProfileType == null)
+            {
+                return 0;
+            }
+
+            var upgradesProp = _playerProfileType.GetProperty(
+                "Upgrades",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var upgrades = upgradesProp?.GetValue(profile);
+            if (upgrades is not IEnumerable enumerable)
+            {
+                return 0;
+            }
+
+            var toRemove = new List<object>();
+            foreach (var entry in enumerable)
+            {
+                if (entry == null || IsFreeStarterUpgrade(entry))
+                {
+                    continue;
+                }
+
+                if (TryMapHabShopLocation(entry, out _, out _))
+                {
+                    toRemove.Add(entry);
+                }
+            }
+
+            if (toRemove.Count == 0)
+            {
+                return 0;
+            }
+
+            var remove = upgrades.GetType().GetMethod("Remove", new[] { toRemove[0].GetType() })
+                         ?? upgrades.GetType().GetMethods()
+                             .FirstOrDefault(m => m.Name == "Remove" && m.GetParameters().Length == 1);
+            foreach (var asset in toRemove)
+            {
+                remove?.Invoke(upgrades, new[] { asset });
+                ShopOwnedPendingGrant.Remove(asset);
+            }
+
+            HabShopPaidLocationIds.Clear();
+            Plugin.Log.LogInfo(
+                $"[HS-AP] Cleared {toRemove.Count} Hab shop yellow row(s) after AP room/seed change.");
+            return toRemove.Count;
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] ClearHabShopYellowExceptFreeStarters failed: {ex.Message}");
+            return 0;
+        }
+    }
+
+    private static int RestoreHabPaidYellowRows()
+    {
+        if (HabShopPaidLocationIds.Count == 0)
+        {
+            return 0;
+        }
+
+        var assets = FindUpgradeAssets();
+        if (assets.Count == 0)
+        {
+            return 0;
+        }
+
+        var byLoc = new Dictionary<long, object>();
+        foreach (var asset in assets)
+        {
+            if (!TryMapHabShopLocation(asset, out var id, out _))
+            {
+                continue;
+            }
+
+            if (!byLoc.ContainsKey(id))
+            {
+                byLoc[id] = asset;
+            }
+        }
+
+        var restored = 0;
+        foreach (var id in HabShopPaidLocationIds.ToList())
+        {
+            if (!byLoc.TryGetValue(id, out var asset))
+            {
+                continue;
+            }
+
+            if (IsInHabOwnedUpgrades(asset))
+            {
+                continue;
+            }
+
+            MarkHabOwnedYellowOnly(asset);
+            restored++;
+        }
+
+        return restored;
     }
 
     private static bool _firstEquipmentPurchaseChecked;
@@ -2274,6 +2551,10 @@ internal static class ItemApplicator
             {
                 Plugin.Log.LogWarning($"[HS-AP] UpgradePurchasedEvent post failed: {ex.Message}");
             }
+
+            // Vanilla PurchaseUpgrade also posts UpgradePurchasedPAT — bay vending
+            // (tether/demo refill) gates on that PAT history entry.
+            EnsureUpgradePurchasedPatRecorded(upgradeAsset);
         }
         catch (Exception ex)
         {
@@ -2350,7 +2631,18 @@ internal static class ItemApplicator
                 }
 
                 var currencyAsset = currencyProp.GetValue(price)!;
+                var currencyName = GetUnityName(currencyAsset);
                 var currencyId = ExtractAssetTypeId(currencyAsset) ?? currencyAsset;
+
+                // Vanilla PurchaseUpgrade posts CurrencyChangedEvent.Subtract so Hab LT HUD refreshes.
+                // ChangeCurrency alone updates the balance but leaves the equipment-screen total stale.
+                if (TryPostCurrencyChangedSubtract(currencyId, amount))
+                {
+                    Plugin.Log.LogInfo(
+                        $"[HS-AP] Charged Hab shop price {amount} ({currencyName}) via CurrencyChangedEvent.");
+                    continue;
+                }
+
                 var controller = ResolveController();
                 if (controller == null || _changeCurrency == null)
                 {
@@ -2359,9 +2651,10 @@ internal static class ItemApplicator
                     continue;
                 }
 
-                // Debit: negative ChangeCurrency.
                 _changeCurrency.Invoke(controller, new[] { currencyId, -amount, true });
-                Plugin.Log.LogInfo($"[HS-AP] Charged Hab shop price {amount} ({GetUnityName(currencyAsset)}).");
+                TryRefreshCurrencyUi();
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Charged Hab shop price {amount} ({currencyName}) via ChangeCurrency + UI refresh.");
             }
         }
         catch (Exception ex)
@@ -2440,6 +2733,9 @@ internal static class ItemApplicator
             AddToAppliedUpgrades(asset);
             // Undo any prior UnlockUpgrade (0.5.8) so Hab stays buyable until shop check.
             RemoveFromHabOwnedIfUnpaidShopRow(asset);
+            // UnlockUpgrade also records UpgradePurchasedPAT + Pending*Refill; ApplyUpgrade
+            // does not. Without the PAT, bay vending disables tether/demo restock.
+            ApplyUnlockSideEffectsWithoutHabOwnership(asset);
             Plugin.Log.LogInfo($"[HS-AP] Applied upgrade '{displayName}' (AP grant; Hab shop stays buyable)");
             return true;
         }
@@ -2480,6 +2776,7 @@ internal static class ItemApplicator
 
                 _applyUpgrade.Invoke(asset, null);
                 AddToAppliedUpgrades(asset);
+                ApplyUnlockSideEffectsWithoutHabOwnership(asset);
                 n++;
             }
 
@@ -2496,6 +2793,170 @@ internal static class ItemApplicator
         {
             _suppressHabShopChecks = prior;
             _reapplyingApGrants = false;
+        }
+    }
+
+    /// <summary>
+    /// Side effects from vanilla <c>UnlockUpgrade</c> / <c>PurchaseUpgrade</c> that we must
+    /// keep without adding the asset to Hab <c>PlayerProfile.Upgrades</c> (shop-sanity).
+    /// Bay vending disables tether/demo buys until <c>UpgradePurchasedPAT</c> is in history;
+    /// shift auto-restock uses <c>PendingTetherRefill</c> / <c>PendingDemoChargeRefill</c>.
+    /// </summary>
+    private static void ApplyUnlockSideEffectsWithoutHabOwnership(object upgradeAsset)
+    {
+        EnsureUpgradePurchasedPatRecorded(upgradeAsset);
+        ApplyConsumableRefillFlags(upgradeAsset);
+    }
+
+    private static void EnsureUpgradePurchasedPatRecorded(object upgradeAsset)
+    {
+        try
+        {
+            var patProp = upgradeAsset.GetType().GetProperty(
+                "UpgradePurchasedPAT",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var pat = patProp?.GetValue(upgradeAsset);
+            if (pat == null)
+            {
+                return;
+            }
+
+            if (IsPatInHistory(pat))
+            {
+                return;
+            }
+
+            var gameAsm = _gameAsm ?? FindGameAssemblyFallback();
+            var evType = gameAsm?.GetType("BBI.Unity.Game.PlayerActionTrackerEvent");
+            if (evType == null)
+            {
+                return;
+            }
+
+            // GetEvent(trackingAsset, operationType = Add, operationValue = 1)
+            var getEvent = evType.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                .FirstOrDefault(m =>
+                    m.Name == "GetEvent"
+                    && m.GetParameters().Length >= 1
+                    && m.GetParameters()[0].ParameterType.IsInstanceOfType(pat));
+            if (getEvent == null)
+            {
+                return;
+            }
+
+            var ev = getEvent.Invoke(null, BuildPatEventArgs(getEvent, pat));
+            if (ev != null)
+            {
+                PostEvent(ev);
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Recorded UpgradePurchasedPAT for '{GetUnityName(upgradeAsset)}' (bay refill unlock).");
+            }
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] EnsureUpgradePurchasedPatRecorded failed: {ex.Message}");
+        }
+    }
+
+    private static object?[] BuildPatEventArgs(MethodInfo getEvent, object pat)
+    {
+        var ps = getEvent.GetParameters();
+        var args = new object?[ps.Length];
+        args[0] = pat;
+        for (var i = 1; i < ps.Length; i++)
+        {
+            if (ps[i].HasDefaultValue)
+            {
+                args[i] = ps[i].DefaultValue;
+            }
+            else if (ps[i].ParameterType.IsEnum)
+            {
+                // MathUtility.OperationType.Add == 1 on this build.
+                args[i] = Enum.ToObject(ps[i].ParameterType, 1);
+            }
+            else if (ps[i].ParameterType == typeof(int))
+            {
+                args[i] = 1;
+            }
+            else
+            {
+                args[i] = ps[i].ParameterType.IsValueType
+                    ? Activator.CreateInstance(ps[i].ParameterType)
+                    : null;
+            }
+        }
+
+        return args;
+    }
+
+    private static bool IsPatInHistory(object patAsset)
+    {
+        try
+        {
+            var profile = FindPlayerProfile();
+            if (profile == null || _playerProfileType == null)
+            {
+                return false;
+            }
+
+            var histProp = _playerProfileType.GetProperty(
+                "PlayerActionTrackerHistory",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (histProp?.GetValue(profile) is not IDictionary history)
+            {
+                return false;
+            }
+
+            return history.Contains(patAsset);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Mirror <c>UpgradeAsset.UnlockUpgrade</c> consumable-refill flags without Hab ownership.
+    /// </summary>
+    private static void ApplyConsumableRefillFlags(object upgradeAsset)
+    {
+        try
+        {
+            var t = upgradeAsset.GetType();
+            var refills = t.GetField("m_RefillsConsumables", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            if (refills?.GetValue(upgradeAsset) is not true)
+            {
+                return;
+            }
+
+            var profile = FindPlayerProfile();
+            var profileType = _playerProfileType;
+            if (profile == null || profileType == null)
+            {
+                return;
+            }
+
+            void SetPending(string propName, string fieldName)
+            {
+                var flagField = t.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                if (flagField?.GetValue(upgradeAsset) is not true)
+                {
+                    return;
+                }
+
+                var prop = profileType.GetProperty(
+                    propName,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                prop?.SetValue(profile, true);
+            }
+
+            SetPending("PendingFuelRefill", "m_RefillFuel");
+            SetPending("PendingTetherRefill", "m_RefillTethers");
+            SetPending("PendingDemoChargeRefill", "m_RefillDemoCharges");
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] ApplyConsumableRefillFlags failed: {ex.Message}");
         }
     }
 
@@ -3861,16 +4322,25 @@ internal static class ItemApplicator
     /// <summary>
     /// Posts CurrencyChangedEvent.Add so PlayerProfileService applies the change and UI listeners refresh.
     /// </summary>
-    private static bool TryPostCurrencyChangedAdd(object currencyId, float amount)
+    private static bool TryPostCurrencyChangedAdd(object currencyId, float amount) =>
+        TryPostCurrencyChanged("Add", currencyId, amount);
+
+    /// <summary>
+    /// Posts CurrencyChangedEvent.Subtract (vanilla Hab purchase path) so LT HUD updates live.
+    /// </summary>
+    private static bool TryPostCurrencyChangedSubtract(object currencyId, float amount) =>
+        TryPostCurrencyChanged("Subtract", currencyId, amount);
+
+    private static bool TryPostCurrencyChanged(string methodName, object currencyId, float amount)
     {
         try
         {
             var gameAsm = _gameAsm ?? FindGameAssemblyFallback();
             var eventType = gameAsm?.GetType("BBI.Unity.Game.CurrencyChangedEvent");
-            var add = eventType?.GetMethods(BindingFlags.Public | BindingFlags.Static)
+            var method = eventType?.GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .FirstOrDefault(m =>
                 {
-                    if (m.Name != "Add")
+                    if (m.Name != methodName)
                     {
                         return false;
                     }
@@ -3878,12 +4348,12 @@ internal static class ItemApplicator
                     var ps = m.GetParameters();
                     return ps.Length == 2 && ps[1].ParameterType == typeof(float);
                 });
-            if (add == null)
+            if (method == null)
             {
                 return false;
             }
 
-            var ev = add.Invoke(null, new[] { currencyId, amount });
+            var ev = method.Invoke(null, new[] { currencyId, amount });
             if (ev == null)
             {
                 return false;
@@ -3894,7 +4364,7 @@ internal static class ItemApplicator
         }
         catch (Exception ex)
         {
-            Plugin.Log.LogWarning($"[HS-AP] CurrencyChangedEvent.Add failed: {ex.Message}");
+            Plugin.Log.LogWarning($"[HS-AP] CurrencyChangedEvent.{methodName} failed: {ex.Message}");
             return false;
         }
     }

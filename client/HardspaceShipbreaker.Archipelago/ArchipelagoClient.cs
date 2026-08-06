@@ -185,7 +185,6 @@ public sealed class ArchipelagoClient
             TeardownSession();
             _connectSyncActive = true;
             _receiveOrdinal = 0;
-            BeginCurrencyGrantTracking($"{server}:{port}|{slot}");
             _session = ArchipelagoSessionFactory.CreateSession(server, port);
             _session.MessageLog.OnMessageReceived += OnMessage;
             _session.Items.ItemReceived += OnItemReceived;
@@ -228,8 +227,19 @@ public sealed class ArchipelagoClient
             _reconnectAt = -1f;
             _reconnectStatus = null;
             ParseSlotData(success.SlotData);
+            // Scope progress persistence to AP seed so a fresh multiworld on the same
+            // host/port/slot does not inherit Hab-yellow / currency watermarks.
+            var seed = ResolveRoomSeed();
+            // Always use a 3-part key (host:port|slot|seed). Legacy 2-part keys are cleared.
+            var roomKey = $"{server}:{port}|{slot}|{(string.IsNullOrEmpty(seed) ? "unknown" : seed)}";
+            Plugin.Log.LogInfo($"[HS-AP] v{Plugin.PLUGIN_VERSION} roomKey='{roomKey}' seed='{seed}'");
+            BeginCurrencyGrantTracking(roomKey);
             FinishCurrencyGrantTrackingAfterLogin();
+            HabShopPaidStore.SetRoomKey(roomKey);
+
             SyncCheckedLocationsFromServer();
+            // Fresh AP rooms have no Hab checks — drop any ghost paid/yellow from prior seeds.
+            ItemApplicator.EnsureHabShopPaidState(CountCheckedHabShopLocations());
             PullAndMergeDataStorageOfflineChecks();
             FlushOfflineCheckQueue();
             PushOfflineQueueToDataStorage();
@@ -553,6 +563,38 @@ public sealed class ArchipelagoClient
     }
 
     public bool IsLocationChecked(long locationId) => _checkedLocations.Contains(locationId);
+
+    private string ResolveRoomSeed()
+    {
+        try
+        {
+            var seed = _session?.RoomState?.Seed;
+            if (!string.IsNullOrWhiteSpace(seed))
+            {
+                return seed.Trim();
+            }
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] RoomState.Seed read failed: {ex.Message}");
+        }
+
+        return "";
+    }
+
+    private int CountCheckedHabShopLocations()
+    {
+        var n = 0;
+        foreach (var id in _checkedLocations)
+        {
+            if (HabEquipmentCatalog.IsHabShopLocationId(id))
+            {
+                n++;
+            }
+        }
+
+        return n;
+    }
 
     private void ParseSlotData(Dictionary<string, object>? slotData)
     {

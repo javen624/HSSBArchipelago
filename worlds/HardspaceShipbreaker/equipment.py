@@ -145,6 +145,21 @@ HAB_SHOP_LOCATIONS: list[tuple[str, int]] = [
     ("Hab: Demo Durability 3", 352),
     ("Hab: Demo Durability 4", 353),
     ("Hab: Demo Durability 5", 354),
+    # Previously unmapped Hab rows — IDs 430+ (avoid salvage-tier 300–429).
+    ("Hab: Stinger Cut Grade", 430),
+    ("Hab: Unlock Launcher", 431),
+    ("Hab: Launcher Range 1", 432),
+    ("Hab: Launcher Range 2", 433),
+    ("Hab: Launcher Range 3", 434),
+    ("Hab: Launcher Range 4", 435),
+    ("Hab: Launcher Range 5", 436),
+    ("Hab: Launcher Cryo", 437),
+    ("Hab: Launcher Explosive", 438),
+    ("Hab: Launcher Magnetic", 439),
+    ("Hab: Scanner Detail Category", 440),
+    ("Hab: Scanner Detail Condition", 441),
+    ("Hab: Scanner Detail Hazards", 442),
+    ("Hab: Scanner Detail Materials", 443),
 ]
 
 # Progressive AP items: (name, item_offset, count, classification, tier_label_prefix)
@@ -181,6 +196,8 @@ PROGRESSIVE_EQUIPMENT: list[tuple[str, int, int, ItemClassification, str]] = [
     ("Progressive Scanner Durability", 127, 5, ItemClassification.useful, "Scanner Durability"),
     ("Progressive Suit Durability", 130, 3, ItemClassification.useful, "Suit Durability"),
     ("Progressive Demo Durability", 132, 5, ItemClassification.useful, "Demo Durability"),
+    ("Progressive Launcher Range", 133, 5, ItemClassification.useful, "Launcher Range"),
+    ("Progressive Scanner Detail", 139, 4, ItemClassification.useful, "Scanner Detail"),
 ]
 
 # Single (non-progressive) equipment unlocks / licenses.
@@ -198,6 +215,11 @@ SINGLE_EQUIPMENT: list[tuple[str, int, ItemClassification]] = [
     ("Helmet Rental", 128, ItemClassification.useful),
     ("Suit Rental", 129, ItemClassification.useful),
     ("Demo Charge Rental", 131, ItemClassification.useful),
+    ("Unlock Launcher", 134, ItemClassification.progression),
+    ("Launcher Cryo", 135, ItemClassification.useful),
+    ("Launcher Explosive", 136, ItemClassification.useful),
+    ("Launcher Magnetic", 137, ItemClassification.useful),
+    ("Stinger Cut Grade", 138, ItemClassification.useful),
 ]
 
 # Hab shop location → license/unlock item that must be owned first.
@@ -217,6 +239,10 @@ for _loc, _ in HAB_SHOP_LOCATIONS:
     elif _loc == "Hab: Scanner Systems":
         # Mode unlock order: Objects before Systems (Progressive Scanner ×1).
         HAB_LICENSE_GATES[_loc] = "Progressive Scanner"
+    elif _loc.startswith("Hab: Launcher"):
+        HAB_LICENSE_GATES[_loc] = "Unlock Launcher"
+    elif _loc.startswith("Hab: Scanner Detail"):
+        HAB_LICENSE_GATES[_loc] = "Progressive Scanner"
 
 # Progressive / single AP items that must not apply until their license is owned.
 ITEM_LICENSE_GATES: dict[str, str] = {
@@ -231,6 +257,11 @@ ITEM_LICENSE_GATES: dict[str, str] = {
     "Demo Charge Rental": "Demo Charge License",
     "Progressive Charged Push Force": "Charged Push",
     "Progressive O2 Recharge": "O2 Recharge Module",
+    "Progressive Launcher Range": "Unlock Launcher",
+    "Launcher Cryo": "Unlock Launcher",
+    "Launcher Explosive": "Unlock Launcher",
+    "Launcher Magnetic": "Unlock Launcher",
+    "Progressive Scanner Detail": "Progressive Scanner",
 }
 
 # Hab locations that ARE the license purchases (no prior license item required).
@@ -240,6 +271,7 @@ LICENSE_HAB_LOCATIONS = {
     "Hab: Charged Push",
     "Hab: O2 Recharge Module",
     "Hab: Scanner Objects",
+    "Hab: Unlock Launcher",
 }
 
 # Legacy alias kept in ID map for old seeds (not placed in new pools).
