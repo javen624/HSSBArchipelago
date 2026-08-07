@@ -270,7 +270,9 @@ internal static class HabEquipmentCatalog
             new("Thruster Durability 5", Id(325), "Hab: Thruster Durability 5",
                 n => Has(n, "Thruster") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase")),
             new("Cutter Rental", Id(326), "Hab: Cutter Rental",
-                n => Has(n, "Cutter") && (Has(n, "Purchase") || (Has(n, "Rental") && Has(n, "Upgrade"))) && !Has(n, "Durability") && !Has(n, "Cost")),
+                n => Has(n, "CutterRental") || (Has(n, "Cutter") && Has(n, "Rental") && !Has(n, "Purchase") && !Has(n, "Durability") && !Has(n, "Cost"))),
+            new("Cutter Purchase", Id(449), "Hab: Cutter Purchase",
+                n => Has(n, "CutterPurchase") || (Has(n, "Cutter") && Has(n, "Purchase") && !Has(n, "Rental") && !Has(n, "Durability"))),
             new("Cutter Durability 1", Id(327), "Hab: Cutter Durability 1",
                 n => Has(n, "Cutter") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase") && !Has(n, "Rental")),
             new("Cutter Durability 2", Id(328), "Hab: Cutter Durability 2",
@@ -317,17 +319,7 @@ internal static class HabEquipmentCatalog
                 n => Has(n, "SuitDurability") && nameEndsWithTier(n, 3)),
             new("Demo Charge Rental", Id(349), "Hab: Demo Charge Rental",
                 n => Has(n, "Demo") && Has(n, "Purchase") && !Has(n, "Durability") && !Has(n, "Capacity")),
-            new("Demo Durability 1", Id(350), "Hab: Demo Durability 1",
-                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase") && !Has(n, "Capacity")),
-            new("Demo Durability 2", Id(351), "Hab: Demo Durability 2",
-                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 2) && !Has(n, "Purchase") && !Has(n, "Capacity")),
-            new("Demo Durability 3", Id(352), "Hab: Demo Durability 3",
-                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 3) && !Has(n, "Purchase") && !Has(n, "Capacity")),
-            new("Demo Durability 4", Id(353), "Hab: Demo Durability 4",
-                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 4) && !Has(n, "Purchase") && !Has(n, "Capacity")),
-            new("Demo Durability 5", Id(354), "Hab: Demo Durability 5",
-                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase") && !Has(n, "Capacity")),
-            // Previously unmapped Hab rows (IDs 430+)
+            // Hab rows 430+ (salvage family 300–319, variant tiers 350–429).
             new("Stinger Cut Grade", Id(430), "Hab: Stinger Cut Grade",
                 n => (Has(n, "Scalpel") || Has(n, "Stinger")) && Has(n, "CutGrade")),
             new("Unlock Launcher", Id(431), "Hab: Unlock Launcher",
@@ -358,6 +350,17 @@ internal static class HabEquipmentCatalog
                 n => Has(n, "ScannerDetail") && Has(n, "Hazard")),
             new("Scanner Detail Materials", Id(443), "Hab: Scanner Detail Materials",
                 n => Has(n, "ScannerDetail") && Has(n, "Material")),
+            // Was 350–354 (collided with variant salvage tiers).
+            new("Demo Durability 1", Id(444), "Hab: Demo Durability 1",
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 1) && !Has(n, "Purchase") && !Has(n, "Capacity")),
+            new("Demo Durability 2", Id(445), "Hab: Demo Durability 2",
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 2) && !Has(n, "Purchase") && !Has(n, "Capacity")),
+            new("Demo Durability 3", Id(446), "Hab: Demo Durability 3",
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 3) && !Has(n, "Purchase") && !Has(n, "Capacity")),
+            new("Demo Durability 4", Id(447), "Hab: Demo Durability 4",
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 4) && !Has(n, "Purchase") && !Has(n, "Capacity")),
+            new("Demo Durability 5", Id(448), "Hab: Demo Durability 5",
+                n => Has(n, "Demo") && Has(n, "Durability") && nameEndsWithTier(n, 5) && !Has(n, "Purchase") && !Has(n, "Capacity")),
         };
         return list;
     }
@@ -501,12 +504,12 @@ internal static class HabEquipmentCatalog
     };
 
     /// <summary>
-    /// Hab shop location IDs from equipment.py (200–299, 320–354, 430–443).
-    /// Excludes salvage-tier bands 300–319 / 355–429.
+    /// Hab shop location IDs from equipment.py (200–299, 320–349, 430–449).
+    /// Excludes salvage-tier bands 300–319 / 350–429 / 455+.
     /// </summary>
     public static bool IsHabShopLocationId(long locationId)
     {
         var offset = locationId - ArchipelagoClient.BaseId;
-        return offset is (>= 200 and <= 299) or (>= 320 and <= 354) or (>= 430 and <= 443);
+        return offset is (>= 200 and <= 299) or (>= 320 and <= 349) or (>= 430 and <= 449);
     }
 }

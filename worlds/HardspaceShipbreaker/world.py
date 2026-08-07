@@ -41,9 +41,14 @@ class HardspaceShipbreakerWorld(World):
         return items.get_filler_item_name(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
+        small, medium, large = hs_options.credit_pack_amounts_for(self.options.credit_pack_value.value)
         return {
             "goal": int(self.options.goal.value),
             "death_link": bool(self.options.death_link.value),
             "hab_shop_sanity": bool(self.options.hab_shop_sanity.value),
             "location_density": int(self.options.location_density.value),
+            "credit_pack_value": int(self.options.credit_pack_value.value),
+            "credit_pack_small": small,
+            "credit_pack_medium": medium,
+            "credit_pack_large": large,
         }

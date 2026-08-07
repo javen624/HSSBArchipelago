@@ -132,6 +132,26 @@ internal static class HabShopPaidStore
         }
     }
 
+    /// <summary>
+    /// Drop persisted IDs that are not Hab shop locations (e.g. old Demo Durability
+    /// +350–354 that collided with salvage tiers).
+    /// </summary>
+    public static int PurgeNonHabLocationIds()
+    {
+        EnsureLoaded();
+        lock (Gate)
+        {
+            var removed = Paid.RemoveWhere(id => !HabEquipmentCatalog.IsHabShopLocationId(id));
+            if (removed > 0)
+            {
+                PersistUnlocked();
+                Plugin.Log.LogInfo($"[HS-AP] Purged {removed} stale non-Hab ID(s) from paid store.");
+            }
+
+            return removed;
+        }
+    }
+
     private static void PersistUnlocked()
     {
         Plugin.Instance.HabShopPaidLocationIds.Value = ToCsvUnlocked();

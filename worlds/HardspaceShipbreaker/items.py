@@ -71,7 +71,7 @@ class HardspaceShipbreakerItem(Item):
 
 
 def get_filler_item_name(world: HardspaceShipbreakerWorld) -> str:
-    # Credits: Small 100k, Medium 500k, Large 1M (client grants).
+    # Credit pack debt amounts come from options.credit_pack_value (default 1M / 3M / 8M).
     weights = [
         ("LYNX Token Pack (Small)", 3),
         ("LYNX Token Pack (Medium)", 1),

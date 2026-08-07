@@ -6,7 +6,7 @@
     <RootNamespace>HardspaceShipbreaker.Archipelago</RootNamespace>
     <AssemblyName>HardspaceShipbreaker.Archipelago</AssemblyName>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <Version>0.6.3</Version>
+    <Version>0.6.5</Version>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 

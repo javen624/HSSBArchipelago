@@ -10,6 +10,7 @@ SHIP_FAMILIES = ("Mackerel", "Atlas", "Javelin", "Gecko")
 # Type variants (role / hull config). These are the ship-progress checks (Clear-* hull
 # clears were removed; use Salvage Tier 1–5 per family/variant instead).
 # (family, variant_label) — variant_label is used in location names and client matching.
+# First 16 keep stable IDs at BASE+350…429. Later entries use BASE+455… (after Hab 430–449).
 SHIP_VARIANTS: tuple[tuple[str, str], ...] = (
     ("Mackerel", "Light Cargo"),
     ("Mackerel", "Station Hopper"),
@@ -27,14 +28,24 @@ SHIP_VARIANTS: tuple[tuple[str, str], ...] = (
     ("Gecko", "Heavy Cargo"),
     ("Gecko", "Stargazer"),
     ("Gecko", "Salvage Runner"),
+    ("Javelin", "Large Heavy Cargo"),
 )
 
 # Family location IDs: BASE_ID + 300 … 319 (20 locs). Do not renumber.
 # Mackerel 300-304, Atlas 305-309, Javelin 310-314, Gecko 315-319.
 _FAMILY_TIER_BASE = 300
 
-# Variant location IDs: BASE_ID + 350 … 349+80 (16×5). Do not renumber.
+# Original 16 variants: BASE_ID + 350 … 429. Do not renumber.
 _VARIANT_TIER_BASE = 350
+_LEGACY_VARIANT_COUNT = 16
+# Extra variants (index >= 16): BASE_ID + 455 … (after Hab shop 430–449).
+_VARIANT_EXTRA_BASE = 455
+
+
+def variant_tier_offset(variant_index: int, tier: int) -> int:
+    if variant_index < _LEGACY_VARIANT_COUNT:
+        return _VARIANT_TIER_BASE + variant_index * 5 + (tier - 1)
+    return _VARIANT_EXTRA_BASE + (variant_index - _LEGACY_VARIANT_COUNT) * 5 + (tier - 1)
 
 
 def salvage_tier_location_name(family: str, tier: int) -> str:
@@ -54,8 +65,9 @@ def salvage_tier_location_name_to_id() -> dict[str, int]:
 
     for vi, (family, variant) in enumerate(SHIP_VARIANTS):
         for tier in range(1, 6):
-            offset = _VARIANT_TIER_BASE + vi * 5 + (tier - 1)
-            out[variant_salvage_tier_location_name(family, variant, tier)] = BASE_ID + offset
+            out[variant_salvage_tier_location_name(family, variant, tier)] = (
+                BASE_ID + variant_tier_offset(vi, tier)
+            )
     return out
 
 
@@ -101,4 +113,4 @@ def variant_index(family: str, variant: str) -> int:
 
 
 def variant_location_id(family: str, variant: str, tier: int) -> int:
-    return BASE_ID + _VARIANT_TIER_BASE + variant_index(family, variant) * 5 + (tier - 1)
+    return BASE_ID + variant_tier_offset(variant_index(family, variant), tier)

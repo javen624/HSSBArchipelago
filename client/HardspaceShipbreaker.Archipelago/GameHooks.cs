@@ -1107,7 +1107,17 @@ internal static class GameHooks
             "Industrial_Salvage", "IndustrialSalvage", "Salvage Runner", "SalvageRunner",
             "Salvage_Runner", "Runner"
         }),
+        // Index 16+ → BASE+455… (after Hab 430–449); must match salvage_tiers.SHIP_VARIANTS.
+        ("Javelin", "Large Heavy Cargo", new[]
+        {
+            "Cargo_Lrg", "CargoLrg", "Industrial_Cargo_Lrg", "Industrial_Cargo_LRG",
+            "Large Heavy", "LargeHeavy", "Large_Heavy", "Lrg_Cargo", "LrgCargo"
+        }),
     };
+
+    private const int LegacyVariantCount = 16;
+    private const int VariantTierBase = 350;
+    private const int VariantExtraBase = 455;
 
     private static int FamilyIndex(string family) =>
         family switch
@@ -1137,7 +1147,10 @@ internal static class GameHooks
             }
 
             locationName = $"{family} {variant} Salvage Tier {tier}";
-            locationId = ArchipelagoClient.BaseId + 350 + i * 5 + (tier - 1);
+            var offset = i < LegacyVariantCount
+                ? VariantTierBase + i * 5 + (tier - 1)
+                : VariantExtraBase + (i - LegacyVariantCount) * 5 + (tier - 1);
+            locationId = ArchipelagoClient.BaseId + offset;
             return true;
         }
 
@@ -1198,6 +1211,11 @@ internal static class GameHooks
 
                 if (cargo)
                 {
+                    if (large)
+                    {
+                        return "Large Heavy Cargo";
+                    }
+
                     if (medium)
                     {
                         return "Medium Heavy Cargo";
@@ -1207,8 +1225,6 @@ internal static class GameHooks
                     {
                         return "Small Heavy Cargo";
                     }
-
-                    // Cargo_Lrg has no AP variant yet — leave unknown.
                 }
                 else if (refuel)
                 {

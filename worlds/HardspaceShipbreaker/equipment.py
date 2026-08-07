@@ -140,12 +140,7 @@ HAB_SHOP_LOCATIONS: list[tuple[str, int]] = [
     ("Hab: Suit Durability 2", 347),
     ("Hab: Suit Durability 3", 348),
     ("Hab: Demo Charge Rental", 349),
-    ("Hab: Demo Durability 1", 350),
-    ("Hab: Demo Durability 2", 351),
-    ("Hab: Demo Durability 3", 352),
-    ("Hab: Demo Durability 4", 353),
-    ("Hab: Demo Durability 5", 354),
-    # Previously unmapped Hab rows — IDs 430+ (avoid salvage-tier 300–429).
+    # Hab rows 430+ (salvage family 300–319, variant tiers 350–429).
     ("Hab: Stinger Cut Grade", 430),
     ("Hab: Unlock Launcher", 431),
     ("Hab: Launcher Range 1", 432),
@@ -160,7 +155,37 @@ HAB_SHOP_LOCATIONS: list[tuple[str, int]] = [
     ("Hab: Scanner Detail Condition", 441),
     ("Hab: Scanner Detail Hazards", 442),
     ("Hab: Scanner Detail Materials", 443),
+    # Was 350–354 (collided with Mackerel Light Cargo Salvage Tier 1–5).
+    ("Hab: Demo Durability 1", 444),
+    ("Hab: Demo Durability 2", 445),
+    ("Hab: Demo Durability 3", 446),
+    ("Hab: Demo Durability 4", 447),
+    ("Hab: Demo Durability 5", 448),
+    ("Hab: Cutter Purchase", 449),
 ]
+
+
+def hab_shop_offset(name: str) -> int | None:
+    for loc, off in HAB_SHOP_LOCATIONS:
+        if loc == name:
+            return off
+    return None
+
+
+def hab_core_shop_location_names() -> list[str]:
+    """Gear unlocks / upgrades — excludes rental-fee and durability rows."""
+    return [
+        name for name, off in HAB_SHOP_LOCATIONS
+        if off < 320 or 430 <= off <= 443 or off == 449
+    ]
+
+
+def hab_rental_durability_location_names() -> list[str]:
+    """Rental-fee + durability Hab rows (full density when shop-sanity on)."""
+    return [
+        name for name, off in HAB_SHOP_LOCATIONS
+        if 320 <= off <= 349 or 444 <= off <= 448
+    ]
 
 # Progressive AP items: (name, item_offset, count, classification, tier_label_prefix)
 # Receiving copy N unlocks in-game tier N matching Hab catalog / client needles.
@@ -188,16 +213,17 @@ PROGRESSIVE_EQUIPMENT: list[tuple[str, int, int, ItemClassification, str]] = [
     ("Progressive O2 Recharge", 102, 3, ItemClassification.useful, "O2 Recharge"),
     ("Progressive Thruster Top Speed", 105, 3, ItemClassification.useful, "Thruster Top Speed"),
     ("Progressive Thruster Braking", 108, 3, ItemClassification.useful, "Thruster Braking"),
-    ("Progressive Thruster Fuel", 111, 3, ItemClassification.useful, "Thruster Fuel Capacity"),
-    ("Progressive Audio Resynth", 114, 3, ItemClassification.useful, "Audio Resynth"),
-    ("Progressive Thruster Durability", 121, 5, ItemClassification.useful, "Thruster Durability"),
-    ("Progressive Cutter Durability", 123, 5, ItemClassification.useful, "Cutter Durability"),
-    ("Progressive Grapple Durability", 125, 5, ItemClassification.useful, "Grapple Durability"),
-    ("Progressive Scanner Durability", 127, 5, ItemClassification.useful, "Scanner Durability"),
-    ("Progressive Suit Durability", 130, 3, ItemClassification.useful, "Suit Durability"),
-    ("Progressive Demo Durability", 132, 5, ItemClassification.useful, "Demo Durability"),
-    ("Progressive Launcher Range", 133, 5, ItemClassification.useful, "Launcher Range"),
-    ("Progressive Scanner Detail", 139, 4, ItemClassification.useful, "Scanner Detail"),
+    # Item offsets 500+ avoid overlapping active location IDs (bay/cert/salvage).
+    ("Progressive Thruster Fuel", 511, 3, ItemClassification.useful, "Thruster Fuel Capacity"),
+    ("Progressive Audio Resynth", 514, 3, ItemClassification.useful, "Audio Resynth"),
+    ("Progressive Thruster Durability", 521, 5, ItemClassification.useful, "Thruster Durability"),
+    ("Progressive Cutter Durability", 523, 5, ItemClassification.useful, "Cutter Durability"),
+    ("Progressive Grapple Durability", 525, 5, ItemClassification.useful, "Grapple Durability"),
+    ("Progressive Scanner Durability", 527, 5, ItemClassification.useful, "Scanner Durability"),
+    ("Progressive Suit Durability", 530, 3, ItemClassification.useful, "Suit Durability"),
+    ("Progressive Demo Durability", 532, 5, ItemClassification.useful, "Demo Durability"),
+    ("Progressive Launcher Range", 533, 5, ItemClassification.useful, "Launcher Range"),
+    ("Progressive Scanner Detail", 539, 4, ItemClassification.useful, "Scanner Detail"),
 ]
 
 # Single (non-progressive) equipment unlocks / licenses.
@@ -207,19 +233,20 @@ SINGLE_EQUIPMENT: list[tuple[str, int, ItemClassification]] = [
     ("Demo Charge License", 7, ItemClassification.progression),
     ("Charged Push", 18, ItemClassification.progression),
     ("Demo Auto-Deploy", 95, ItemClassification.useful),
-    ("O2 Recharge Module", 101, ItemClassification.progression),
-    ("Thruster Rental", 120, ItemClassification.useful),
-    ("Cutter Rental", 122, ItemClassification.useful),
-    ("Grapple Rental", 124, ItemClassification.useful),
-    ("Scanner Rental", 126, ItemClassification.useful),
-    ("Helmet Rental", 128, ItemClassification.useful),
-    ("Suit Rental", 129, ItemClassification.useful),
-    ("Demo Charge Rental", 131, ItemClassification.useful),
-    ("Unlock Launcher", 134, ItemClassification.progression),
-    ("Launcher Cryo", 135, ItemClassification.useful),
-    ("Launcher Explosive", 136, ItemClassification.useful),
-    ("Launcher Magnetic", 137, ItemClassification.useful),
-    ("Stinger Cut Grade", 138, ItemClassification.useful),
+    ("O2 Recharge Module", 501, ItemClassification.progression),
+    ("Thruster Rental", 520, ItemClassification.useful),
+    ("Cutter Rental", 522, ItemClassification.useful),
+    ("Cutter Purchase", 540, ItemClassification.useful),
+    ("Grapple Rental", 524, ItemClassification.useful),
+    ("Scanner Rental", 526, ItemClassification.useful),
+    ("Helmet Rental", 528, ItemClassification.useful),
+    ("Suit Rental", 529, ItemClassification.useful),
+    ("Demo Charge Rental", 531, ItemClassification.useful),
+    ("Unlock Launcher", 534, ItemClassification.progression),
+    ("Launcher Cryo", 535, ItemClassification.useful),
+    ("Launcher Explosive", 536, ItemClassification.useful),
+    ("Launcher Magnetic", 537, ItemClassification.useful),
+    ("Stinger Cut Grade", 538, ItemClassification.useful),
 ]
 
 # Hab shop location → license/unlock item that must be owned first.

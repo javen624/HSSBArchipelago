@@ -12,22 +12,9 @@ from .options import Goal, LocationDensity
 if TYPE_CHECKING:
     from .world import HardspaceShipbreakerWorld
 
-# Stable IDs — never renumber existing offsets.
-# Reserved (dropped; do not reuse):
-#   +120/158–160 Clear Mackerel Light Cargo / Station Hopper / Exolab / Heavy Cargo
-#   +126/127/177 Clear Atlas Scout / Nomad / Roustabout
-#   +128/179/180 Clear Javelin Small Refueling / Small Heavy Cargo / Medium Refueling
-#   +129/181/182 Clear Gecko Station Hopper / Heavy Cargo / Stargazer
-#   +150/151 Reduce Debt Below 50%/25%
-#   +153/154 Earn 100/500 LYNX Tokens Lifetime
-#   +155 Furnace Aluminum Panel
-#   +161–166 Clear Ship Grade 2/3/5/6/8/10
-#   +167–173 Class II Reactor, Thruster II, Atmosphere Regulator, Sensor Array,
-#            Power Generator, Shipping Crate, Nacelle
-#   +174–176 Flush a Fuel Line, Disarm/Cut with Demo Charge
-#   +178 Stabilize Class II Reactor
-#   +184 Clear Hazard Level 7 Ship
-# Ship progress uses family/variant Salvage Tier 1–5 instead of Clear-* hull clears.
+# Stable IDs — never renumber existing offsets once shipped.
+# Ship progress: family (+300) / variant (+350) Salvage Tier 1–5.
+# Hab shop: +200–299, rentals/durability +320–349, extended Hab +430–448.
 LOCATION_NAME_TO_ID = {
     # Hab / meta
     "Finish Basic Training": BASE_ID + 100,
@@ -103,6 +90,7 @@ SPARSE_LOCATIONS = {
     salvage_tiers.salvage_tier_names_for_variant("Javelin", "Small Refueling")
 ) | set(salvage_tiers.salvage_tier_names_for_variant("Gecko", "Station Hopper"))
 
+# Standard adds meta milestones + per-family salvage tiers (not every hull variant).
 STANDARD_EXTRA = {
     "Reach Certification Rank 15",
     "Reach Certification Rank 20",
@@ -110,9 +98,11 @@ STANDARD_EXTRA = {
     "Recover 5 Data Drives",
     "Survive First Clone",
     "Clear a Ghost Ship",
-} | set(salvage_tiers.all_salvage_tier_location_names())
+} | set(salvage_tiers.family_salvage_tier_location_names())
 
 SHOP_LOCATIONS = set(equipment.all_hab_equipment_location_names())
+HAB_CORE_SHOP = set(equipment.hab_core_shop_location_names())
+HAB_RENTAL_DURABILITY_SHOP = set(equipment.hab_rental_durability_location_names())
 
 HAB_LOCS = {
     "Finish Basic Training",
@@ -189,6 +179,7 @@ def active_location_names(world: HardspaceShipbreakerWorld) -> set[str]:
     elif density == LocationDensity.option_full:
         names = set(LOCATION_NAME_TO_ID.keys())
     else:
+        # Standard: sparse + family salvage tiers + meta — not every variant hull.
         names = set(SPARSE_LOCATIONS) | set(STANDARD_EXTRA)
 
     if bool(world.options.hab_shop_sanity):
@@ -203,8 +194,12 @@ def active_location_names(world: HardspaceShipbreakerWorld) -> set[str]:
                 "Hab: Tethers Amount 1",
                 "Hab: Tethers Amount 2",
             }
-        else:
+        elif density == LocationDensity.option_full:
             names |= set(SHOP_LOCATIONS)
+        else:
+            # Standard shop-sanity: gear unlocks only (no rental/durability rows).
+            names |= set(HAB_CORE_SHOP)
+            names -= set(HAB_RENTAL_DURABILITY_SHOP)
     else:
         names -= set(SHOP_LOCATIONS)
 

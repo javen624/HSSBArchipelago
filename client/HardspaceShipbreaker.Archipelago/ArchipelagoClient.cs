@@ -601,30 +601,76 @@ public sealed class ArchipelagoClient
         _goalMode = GoalDebtPayoff;
         _deathLink = false;
         _habShopSanity = true;
-        if (slotData == null)
+        var creditSmall = 1_000_000f;
+        var creditMedium = 3_000_000f;
+        var creditLarge = 8_000_000f;
+        var hasExplicitCreditAmounts = false;
+        int? creditPackValue = null;
+
+        if (slotData != null)
         {
-            return;
+            foreach (var kv in slotData)
+            {
+                Plugin.Log.LogInfo($"[HS-AP] SlotData {kv.Key}={kv.Value}");
+                if (kv.Key.Equals("goal", StringComparison.OrdinalIgnoreCase))
+                {
+                    _goalMode = Convert.ToInt32(kv.Value);
+                }
+                else if (kv.Key.Equals("death_link", StringComparison.OrdinalIgnoreCase))
+                {
+                    _deathLink = kv.Value is bool b ? b : Convert.ToInt32(kv.Value) != 0;
+                }
+                else if (kv.Key.Equals("hab_shop_sanity", StringComparison.OrdinalIgnoreCase))
+                {
+                    _habShopSanity = kv.Value is bool hb ? hb : Convert.ToInt32(kv.Value) != 0;
+                }
+                else if (kv.Key.Equals("credit_pack_small", StringComparison.OrdinalIgnoreCase))
+                {
+                    creditSmall = Convert.ToSingle(kv.Value);
+                    hasExplicitCreditAmounts = true;
+                }
+                else if (kv.Key.Equals("credit_pack_medium", StringComparison.OrdinalIgnoreCase))
+                {
+                    creditMedium = Convert.ToSingle(kv.Value);
+                    hasExplicitCreditAmounts = true;
+                }
+                else if (kv.Key.Equals("credit_pack_large", StringComparison.OrdinalIgnoreCase))
+                {
+                    creditLarge = Convert.ToSingle(kv.Value);
+                    hasExplicitCreditAmounts = true;
+                }
+                else if (kv.Key.Equals("credit_pack_value", StringComparison.OrdinalIgnoreCase))
+                {
+                    creditPackValue = Convert.ToInt32(kv.Value);
+                }
+            }
         }
 
-        foreach (var kv in slotData)
+        if (!hasExplicitCreditAmounts && creditPackValue is int cpv)
         {
-            Plugin.Log.LogInfo($"[HS-AP] SlotData {kv.Key}={kv.Value}");
-            if (kv.Key.Equals("goal", StringComparison.OrdinalIgnoreCase))
+            switch (cpv)
             {
-                _goalMode = Convert.ToInt32(kv.Value);
-            }
-            else if (kv.Key.Equals("death_link", StringComparison.OrdinalIgnoreCase))
-            {
-                _deathLink = kv.Value is bool b ? b : Convert.ToInt32(kv.Value) != 0;
-            }
-            else if (kv.Key.Equals("hab_shop_sanity", StringComparison.OrdinalIgnoreCase))
-            {
-                _habShopSanity = kv.Value is bool hb ? hb : Convert.ToInt32(kv.Value) != 0;
+                case 0: // low
+                    creditSmall = 250_000f;
+                    creditMedium = 1_000_000f;
+                    creditLarge = 2_500_000f;
+                    break;
+                case 2: // high
+                    creditSmall = 5_000_000f;
+                    creditMedium = 20_000_000f;
+                    creditLarge = 40_000_000f;
+                    break;
+                default: // normal
+                    creditSmall = 1_000_000f;
+                    creditMedium = 3_000_000f;
+                    creditLarge = 8_000_000f;
+                    break;
             }
         }
 
         Plugin.Log.LogInfo($"[HS-AP] GoalMode={_goalMode} DeathLink={_deathLink} HabShopSanity={_habShopSanity}");
         ItemApplicator.SetHabShopSanity(_habShopSanity);
+        ItemApplicator.SetCreditPackAmounts(creditSmall, creditMedium, creditLarge);
     }
 
     private void OnMessage(LogMessage message) => Plugin.Log.LogInfo($"[HS-AP] {message}");

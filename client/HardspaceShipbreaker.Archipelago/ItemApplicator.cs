@@ -33,6 +33,10 @@ internal static class ItemApplicator
     private static readonly Dictionary<string, object> CachedShipClasses = new(StringComparer.OrdinalIgnoreCase);
     private static bool _suppressHabShopChecks;
     private static bool _habShopSanity = true;
+    // Defaults match APWorld credit_pack_value=normal (1M / 3M / 8M).
+    private static float _creditPackSmall = 1_000_000f;
+    private static float _creditPackMedium = 3_000_000f;
+    private static float _creditPackLarge = 8_000_000f;
     private static readonly HashSet<long> HabShopPaidLocationIds = new();
     /// <summary>Hab-bought (yellow) but not yet granted by an AP item.</summary>
     private static readonly HashSet<object> ShopOwnedPendingGrant = new(ReferenceEqualityComparer.Instance);
@@ -1237,13 +1241,14 @@ internal static class ItemApplicator
                 break;
             case "Credit Pack (Small)":
                 // Pays toward LYNX debt (DebtCurrency.Amount ↑ → displayed debt ↓).
-                TryAddCurrency("Debt", 5_000_000f);
+                // Amounts from slot_data credit_pack_* (YAML credit_pack_value).
+                TryAddCurrency("Debt", _creditPackSmall);
                 break;
             case "Credit Pack (Medium)":
-                TryAddCurrency("Debt", 20_000_000f);
+                TryAddCurrency("Debt", _creditPackMedium);
                 break;
             case "Credit Pack (Large)":
-                TryAddCurrency("Debt", 40_000_000f);
+                TryAddCurrency("Debt", _creditPackLarge);
                 break;
             case "LYNX Token Pack (Small)":
                 TryAddCurrency("LT", 5f);
@@ -1939,6 +1944,15 @@ internal static class ItemApplicator
 
     public static void SetHabShopSanity(bool enabled) => _habShopSanity = enabled;
 
+    public static void SetCreditPackAmounts(float small, float medium, float large)
+    {
+        _creditPackSmall = small > 0f ? small : 1_000_000f;
+        _creditPackMedium = medium > 0f ? medium : 3_000_000f;
+        _creditPackLarge = large > 0f ? large : 8_000_000f;
+        Plugin.Log.LogInfo(
+            $"[HS-AP] Credit packs: Small={_creditPackSmall:N0} Medium={_creditPackMedium:N0} Large={_creditPackLarge:N0}");
+    }
+
     public static bool HabShopSanityEnabled => _habShopSanity;
 
     /// <summary>
@@ -2244,6 +2258,7 @@ internal static class ItemApplicator
             }
 
             // Rebuild from persisted store so a room/slot key switch cannot leave stale IDs.
+            HabShopPaidStore.PurgeNonHabLocationIds();
             HabShopPaidLocationIds.Clear();
             HabShopPaidStore.CopyInto(HabShopPaidLocationIds);
 
