@@ -74,6 +74,7 @@ internal static class GameHooks
         n += PatchTetherHooks(gameAsm);
         n += PatchDataDriveHooks(gameAsm);
         n += PatchBayUseGates(gameAsm);
+        n += PatchThrusterDurability(gameAsm);
         n += PatchShipClaimDiagnostics(gameAsm);
         n += PatchDisplayTrainingShip(gameAsm);
 
@@ -466,10 +467,91 @@ internal static class GameHooks
             new[] { "BBI.Unity.Game.DemoChargeController", "DemoChargeController" },
             "ThrowDemoCharge",
             nameof(GameHookSink.DemoPlacePrefix));
+        count += PatchDemoPrefabIndex(gameAsm);
         // Do NOT gate GrapplingHook.DoPush — vanilla push is often already unlocked;
         // hard-blocking DoPush made grapple push feel broken. AP Charged Push still
         // gates Hab upgrade apply + Progressive Charged Push Force via ItemApplicator.
         return count;
+    }
+
+    private static int PatchThrusterDurability(Assembly gameAsm)
+    {
+        var n = 0;
+        try
+        {
+            var handlerType = gameAsm.GetType("BBI.Unity.Game.ThrusterDurabilityHandler")
+                              ?? gameAsm.GetType("ThrusterDurabilityHandler");
+            var assetType = gameAsm.GetType("BBI.Unity.Game.ToolDurabilityAsset")
+                            ?? gameAsm.GetType("ToolDurabilityAsset");
+            var ctor = handlerType?.GetConstructor(new[] { assetType! });
+            if (ctor != null)
+            {
+                var prefix = new HarmonyMethod(
+                    typeof(GameHookSink).GetMethod(
+                        nameof(GameHookSink.ThrusterDurabilityCtorPrefix),
+                        BindingFlags.Static | BindingFlags.Public));
+                _harmony!.CreateProcessor(ctor).AddPrefix(prefix).Patch();
+                Plugin.Log.LogInfo("[HS-AP] Hooked ThrusterDurabilityHandler.ctor (align stored durability to ranges)");
+                n++;
+            }
+            else
+            {
+                Plugin.Log.LogWarning("[HS-AP] ThrusterDurabilityHandler.ctor not found.");
+            }
+
+            // Private on DurabilityHandler`3; if no band contains the stored value it
+            // returns the still-null CurrentDurabilityRange and Awake NREs.
+            var getRange = handlerType?.BaseType?.GetMethod(
+                "GetDurabilityRangeForValue",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            if (getRange != null)
+            {
+                var postfix = new HarmonyMethod(
+                    typeof(GameHookSink).GetMethod(
+                        nameof(GameHookSink.ThrusterGetDurabilityRangePostfix),
+                        BindingFlags.Static | BindingFlags.Public));
+                _harmony!.CreateProcessor(getRange).AddPostfix(postfix).Patch();
+                Plugin.Log.LogInfo("[HS-AP] Hooked GetDurabilityRangeForValue (fallback when value is outside bands)");
+                n++;
+            }
+            else
+            {
+                Plugin.Log.LogWarning("[HS-AP] GetDurabilityRangeForValue not found.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] ThrusterDurabilityHandler.ctor hook failed: {ex.Message}");
+        }
+
+        return n;
+    }
+
+    private static int PatchDemoPrefabIndex(Assembly gameAsm)
+    {
+        var type = gameAsm.GetType("BBI.Unity.Game.DemoChargeControllerBuffableData");
+        var method = type?.GetMethod(
+            "get_PrimaryPrefabIndex",
+            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        if (method == null)
+        {
+            Plugin.Log.LogWarning("[HS-AP] get_PrimaryPrefabIndex missing.");
+            return 0;
+        }
+
+        try
+        {
+            var postfix = new HarmonyMethod(
+                typeof(GameHookSink).GetMethod(nameof(GameHookSink.DemoPrefabIndexPostfix), BindingFlags.Static | BindingFlags.Public));
+            _harmony!.CreateProcessor(method).AddPostfix(postfix).Patch();
+            Plugin.Log.LogInfo("[HS-AP] Hooked DemoChargeControllerBuffableData.get_PrimaryPrefabIndex (clamp)");
+            return 1;
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] Prefab index hook failed: {ex.Message}");
+            return 0;
+        }
     }
 
     private static int PatchBayGate(Assembly gameAsm, string[] typeNames, string methodName, string prefixName)
@@ -673,7 +755,7 @@ internal static class GameHooks
                 sentSomething |= TryCheck(ArchipelagoClient.BaseId + 111, "First Processor Deposit", source);
                 if (!isFallback && hasPart)
                 {
-                    sentSomething |= TryAluminumCheck(partInfo, source);
+                    sentSomething |= TryProcessorMaterialChecks(partInfo, source);
                     sentSomething |= TryNamedComponentChecks(partInfo, SalvageDestination.Processor, source);
                 }
 
@@ -689,7 +771,9 @@ internal static class GameHooks
                 break;
         }
 
-        if (sentSomething || (hasPart && !isFallback && LooksNotable(partInfo)))
+        // Always log real HandlePositiveSalvage deposits so material matching can be diagnosed.
+        // IsCorrectSalvageOption is noisy (linger debounce) — keep the old filter there.
+        if (!isFallback || sentSomething || (hasPart && LooksNotable(partInfo)))
         {
             Plugin.Log.LogInfo($"[HS-AP] Deposit via {source} dest={dest} part={partInfo}");
         }
@@ -1727,32 +1811,40 @@ internal static class GameHooks
         return sent;
     }
 
-    private static bool TryAluminumCheck(string partInfo, string source)
+    private static bool TryProcessorMaterialChecks(string partInfo, string source)
     {
         var lower = partInfo.ToLowerInvariant();
-        if (lower.Contains("titanium"))
+        var sent = false;
+
+        // Prefer specific material tokens from ObjectInfo / CategoryAsset names.
+        if (lower.Contains("titanium") || lower.Contains("titan_") || lower.Contains("_titan")
+            || lower.Contains("metal_titanium") || lower.Contains("structure_titanium"))
         {
-            return TryCheck(ArchipelagoClient.BaseId + 135, "Process Titanium Structure", source);
+            sent |= TryCheck(ArchipelagoClient.BaseId + 135, "Process Titanium Structure", source);
         }
 
-        if (lower.Contains("nanocarbon") || lower.Contains("nano"))
+        if (lower.Contains("nanocarbon") || lower.Contains("nano_carbon") || lower.Contains("nano-carbon")
+            || lower.Contains("tut_nanocarbon"))
         {
-            return TryCheck(ArchipelagoClient.BaseId + 136, "Process Nanocarbon Panel", source);
+            sent |= TryCheck(ArchipelagoClient.BaseId + 136, "Process Nanocarbon Panel", source);
         }
 
-        if (!(lower.Contains("aluminum") || lower.Contains("aluminium") || lower.Contains("alumin")))
+        if (lower.Contains("aluminum") || lower.Contains("aluminium") || lower.Contains("alumin")
+            || lower.Contains("scrap_alumin") || lower.Contains("metal_aluminum"))
         {
-            return false;
+            sent |= TryCheck(ArchipelagoClient.BaseId + 113, "Process Aluminum Structure", source);
         }
 
-        return TryCheck(ArchipelagoClient.BaseId + 113, "Process Aluminum Structure", source);
+        return sent;
     }
 
     private static bool LooksNotable(string partInfo)
     {
         var lower = partInfo.ToLowerInvariant();
         return lower.Contains("reactor") || lower.Contains("glass") || lower.Contains("fuel")
-               || lower.Contains("power") || lower.Contains("aluminum") || lower.Contains("aluminium");
+               || lower.Contains("power") || lower.Contains("aluminum") || lower.Contains("aluminium")
+               || lower.Contains("alumin") || lower.Contains("titanium") || lower.Contains("nanocarbon")
+               || lower.Contains("titan");
     }
 
     private static SalvageDestination DestinationFromVolume(object? volumeInstance)
@@ -1810,7 +1902,8 @@ internal static class GameHooks
 
     /// <summary>
     /// HandlePositiveSalvage(EntityCommandBuffer, EntityManager, Entity, StructurePart)
-    /// StructurePart is typically args[3].
+    /// StructurePart is typically args[3]. Material labels live on ObjectInfoAsset / Categories,
+    /// not the GameObject name — build a fingerprint for substring matching.
     /// </summary>
     private static string DescribeStructurePart(object[]? args)
     {
@@ -1819,7 +1912,9 @@ internal static class GameHooks
             return "?";
         }
 
-        object? part = args.Length >= 4 ? args[3] : args.LastOrDefault(a => a != null && a.GetType().Name.Contains("StructurePart"));
+        object? part = args.Length >= 4
+            ? args[3]
+            : args.LastOrDefault(a => a != null && a.GetType().Name.Contains("StructurePart"));
         if (part == null)
         {
             return args.Length >= 3 ? $"Entity={args[2]}" : "?";
@@ -1827,36 +1922,113 @@ internal static class GameHooks
 
         try
         {
-            // Common Unity / game name surfaces
-            foreach (var name in new[] { "name", "Name", "DisplayName", "PartName" })
+            var bits = new List<string> { part.GetType().Name };
+
+            void Add(object? v)
             {
-                var p = part.GetType().GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                if (p != null)
+                if (v == null)
                 {
-                    var v = p.GetValue(part);
-                    if (v != null && !string.IsNullOrWhiteSpace(v.ToString()))
-                    {
-                        return $"{part.GetType().Name}:{v}";
-                    }
+                    return;
+                }
+
+                var s = v.ToString();
+                if (!string.IsNullOrWhiteSpace(s) && s != "?" && !bits.Contains(s))
+                {
+                    bits.Add(s);
                 }
             }
 
-            var go = part.GetType().GetProperty("gameObject", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            Add(part.GetType().GetProperty("name", BindingFlags.Instance | BindingFlags.Public)?.GetValue(part));
+            var go = part.GetType()
+                .GetProperty("gameObject", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                 ?.GetValue(part);
             if (go != null)
             {
-                var n = go.GetType().GetProperty("name")?.GetValue(go);
-                if (n != null)
+                Add(go.GetType().GetProperty("name")?.GetValue(go));
+            }
+
+            foreach (var propName in new[] { "Name", "DisplayName", "PartName" })
+            {
+                var p = part.GetType().GetProperty(
+                    propName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (p != null)
                 {
-                    return $"{part.GetType().Name}:{n}";
+                    Add(p.GetValue(part));
                 }
             }
 
-            return part.ToString() ?? part.GetType().Name;
+            var spa = part.GetType()
+                .GetProperty("StructurePartAsset", BindingFlags.Instance | BindingFlags.Public)
+                ?.GetValue(part);
+            if (spa != null)
+            {
+                Add(spa.GetType().GetProperty("name")?.GetValue(spa));
+            }
+
+            AppendObjectInfoFingerprint(part, bits);
+            return string.Join("|", bits);
+        }
+        catch (Exception ex)
+        {
+            return $"{part.GetType().Name}:err={ex.GetType().Name}";
+        }
+    }
+
+    private static void AppendObjectInfoFingerprint(object part, List<string> bits)
+    {
+        void Add(object? v)
+        {
+            if (v == null)
+            {
+                return;
+            }
+
+            var s = v.ToString();
+            if (!string.IsNullOrWhiteSpace(s) && s != "?" && !bits.Contains(s))
+            {
+                bits.Add(s);
+            }
+        }
+
+        try
+        {
+            var oia = part.GetType()
+                .GetProperty("ObjectInfoAsset", BindingFlags.Instance | BindingFlags.Public)
+                ?.GetValue(part);
+            if (oia == null)
+            {
+                return;
+            }
+
+            Add(oia.GetType().GetProperty("name")?.GetValue(oia));
+            var data = oia.GetType()
+                .GetProperty("Data", BindingFlags.Instance | BindingFlags.Public)
+                ?.GetValue(oia);
+            if (data == null)
+            {
+                return;
+            }
+
+            Add(data.GetType().GetProperty("ObjectName")?.GetValue(data));
+            Add(data.GetType().GetProperty("Description")?.GetValue(data));
+
+            if (data.GetType().GetProperty("Categories")?.GetValue(data) is System.Collections.IEnumerable cats)
+            {
+                foreach (var cat in cats)
+                {
+                    if (cat == null)
+                    {
+                        continue;
+                    }
+
+                    Add(cat.GetType().GetProperty("CategoryName")?.GetValue(cat));
+                    Add(cat.GetType().GetProperty("name")?.GetValue(cat));
+                }
+            }
         }
         catch
         {
-            return part.GetType().Name;
+            // best-effort fingerprint
         }
     }
 
@@ -1996,6 +2168,7 @@ public static class GameHookSink
 
     public static void UpgradeScreenEnablePrefix()
     {
+        ItemApplicator.MarkHabShopPurchasedForGrantedEquipment();
         ItemApplicator.EnsureHabShopPaidState();
         ItemApplicator.StripUnpaidShopRowsFromHabOwned();
     }
@@ -2091,6 +2264,67 @@ public static class GameHookSink
 
         GameHooks.LogBayBlockOnce("demo", "Demo Charge blocked — need AP item 'Demo Charge License'.");
         return false;
+    }
+
+    /// <summary>
+    /// Progressive demo upgrades can buff PrimaryPrefabIndex past the prefab list
+    /// (valid indices are 0..Count-1). Out-of-range index makes GetCurrentPrefab null:
+    /// red hull preview and throws that consume ammo without spawning.
+    /// </summary>
+    public static void DemoPrefabIndexPostfix(object __instance, ref int __result)
+    {
+        try
+        {
+            if (__instance.GetType().GetProperty("PrimaryDemoChargePrefabs")?.GetValue(__instance)
+                is not System.Collections.IList list
+                || list.Count == 0)
+            {
+                return;
+            }
+
+            if (__result < 0)
+            {
+                __result = 0;
+            }
+            else if (__result >= list.Count)
+            {
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Clamped demo prefab index {__result} to {list.Count - 1} (list size {list.Count}).");
+                __result = list.Count - 1;
+            }
+        }
+        catch
+        {
+        }
+    }
+
+    /// <summary>
+    /// Stored durability of 100 (vanilla default when the map has no Thrusters entry)
+    /// often does not fall in any <c>ThrusterDurabilityRange</c>. The handler then NREs
+    /// in Awake: full fuel bar, flashing LOW, no thrust.
+    /// </summary>
+    public static void ThrusterDurabilityCtorPrefix(object asset)
+    {
+        ItemApplicator.AlignStoredDurabilityForAsset(asset);
+    }
+
+    /// <summary>
+    /// When stored durability sits outside every band, vanilla returns null and
+    /// <c>DurabilityHandler</c> ctor NREs. Pick a real range instead — never scan
+    /// the asset database from <c>ThrustController.Awake</c> (that froze the game).
+    /// </summary>
+    public static void ThrusterGetDurabilityRangePostfix(object __instance, float durabilityValue, ref object __result)
+    {
+        if (__result != null)
+        {
+            return;
+        }
+
+        var fallback = ItemApplicator.PickDurabilityRange(__instance, durabilityValue);
+        if (fallback != null)
+        {
+            __result = fallback;
+        }
     }
 
     /// <summary>

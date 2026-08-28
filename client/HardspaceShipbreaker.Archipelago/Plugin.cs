@@ -11,7 +11,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PLUGIN_GUID = "hardspace.shipbreaker.archipelago";
     public const string PLUGIN_NAME = "Hardspace Shipbreaker Archipelago";
-    public const string PLUGIN_VERSION = "0.6.6";
+    public const string PLUGIN_VERSION = "0.6.25";
 
     internal static Plugin Instance { get; private set; } = null!;
     internal static ManualLogSource Log { get; private set; } = null!;

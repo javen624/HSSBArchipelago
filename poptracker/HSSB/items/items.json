@@ -1,0 +1,1336 @@
+[
+  {
+    "name": "Location Density",
+    "type": "progressive",
+    "allow_disabled": false,
+    "loop": true,
+    "initial_stage_idx": 1,
+    "stages": [
+      {
+        "name": "Sparse",
+        "img": "images/icon_setting.png",
+        "codes": "setting_density_sparse,setting_density",
+        "inherit_codes": false
+      },
+      {
+        "name": "Standard",
+        "img": "images/icon_setting.png",
+        "codes": "setting_density_standard,setting_density",
+        "inherit_codes": false
+      },
+      {
+        "name": "Full",
+        "img": "images/icon_setting.png",
+        "codes": "setting_density_full,setting_density",
+        "inherit_codes": false
+      }
+    ]
+  },
+  {
+    "name": "Hab Shop Sanity",
+    "type": "toggle",
+    "img": "images/icon_setting.png",
+    "codes": "setting_hab_shop",
+    "initial_active_state": true
+  },
+  {
+    "name": "Death Link",
+    "type": "toggle",
+    "img": "images/icon_setting.png",
+    "codes": "setting_death_link",
+    "initial_active_state": false
+  },
+  {
+    "name": "Goal",
+    "type": "progressive",
+    "allow_disabled": false,
+    "loop": true,
+    "initial_stage_idx": 0,
+    "stages": [
+      {
+        "name": "Debt Payoff",
+        "img": "images/icon_setting.png",
+        "codes": "setting_goal_debt,setting_goal",
+        "inherit_codes": false
+      },
+      {
+        "name": "Atlas Scout",
+        "img": "images/icon_setting.png",
+        "codes": "setting_goal_atlas,setting_goal",
+        "inherit_codes": false
+      },
+      {
+        "name": "Rank 20",
+        "img": "images/icon_setting.png",
+        "codes": "setting_goal_rank20,setting_goal",
+        "inherit_codes": false
+      }
+    ]
+  },
+  {
+    "name": "Tether Module",
+    "type": "toggle",
+    "img": "images/icon_tether.png",
+    "codes": "tether_module"
+  },
+  {
+    "name": "Progressive Grapple Strength",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_strength,progressive_grapple_strength:1",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Strength \u00d71"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_strength:2",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Strength \u00d72"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_strength:3",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Strength \u00d73"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_strength:4",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Strength \u00d74"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_strength:5",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Strength \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Unlock Atlas",
+    "type": "toggle",
+    "img": "images/icon_default.png",
+    "codes": "unlock_atlas"
+  },
+  {
+    "name": "Progressive Tethers",
+    "type": "toggle",
+    "img": "images/icon_tether.png",
+    "codes": "progressive_tethers"
+  },
+  {
+    "name": "Unlock Javelin",
+    "type": "toggle",
+    "img": "images/icon_default.png",
+    "codes": "unlock_javelin"
+  },
+  {
+    "name": "Unlock Gecko",
+    "type": "toggle",
+    "img": "images/icon_default.png",
+    "codes": "unlock_gecko"
+  },
+  {
+    "name": "Demo Charge License",
+    "type": "toggle",
+    "img": "images/icon_demo.png",
+    "codes": "demo_charge_license"
+  },
+  {
+    "name": "Progressive Scanner",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner,progressive_scanner:1",
+        "inherit_codes": true,
+        "name": "Progressive Scanner \u00d71"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner:2",
+        "inherit_codes": true,
+        "name": "Progressive Scanner \u00d72"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Suit Integrity",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_integrity,progressive_suit_integrity:1",
+        "inherit_codes": true,
+        "name": "Progressive Suit Integrity \u00d71"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_integrity:2",
+        "inherit_codes": true,
+        "name": "Progressive Suit Integrity \u00d72"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_integrity:3",
+        "inherit_codes": true,
+        "name": "Progressive Suit Integrity \u00d73"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_integrity:4",
+        "inherit_codes": true,
+        "name": "Progressive Suit Integrity \u00d74"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_integrity:5",
+        "inherit_codes": true,
+        "name": "Progressive Suit Integrity \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Credit Pack (Small)",
+    "type": "toggle",
+    "img": "images/icon_filler.png",
+    "codes": "credit_pack_small"
+  },
+  {
+    "name": "LYNX Token Pack (Small)",
+    "type": "toggle",
+    "img": "images/icon_filler.png",
+    "codes": "lynx_token_pack_small"
+  },
+  {
+    "name": "Credit Pack (Medium)",
+    "type": "toggle",
+    "img": "images/icon_filler.png",
+    "codes": "credit_pack_medium"
+  },
+  {
+    "name": "LYNX Token Pack (Medium)",
+    "type": "toggle",
+    "img": "images/icon_filler.png",
+    "codes": "lynx_token_pack_medium"
+  },
+  {
+    "name": "Progressive Cutter",
+    "type": "toggle",
+    "img": "images/icon_cutter.png",
+    "codes": "progressive_cutter"
+  },
+  {
+    "name": "Progressive Demo Charges",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_charges,progressive_demo_charges:1",
+        "inherit_codes": true,
+        "name": "Progressive Demo Charges \u00d71"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_charges:2",
+        "inherit_codes": true,
+        "name": "Progressive Demo Charges \u00d72"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_charges:3",
+        "inherit_codes": true,
+        "name": "Progressive Demo Charges \u00d73"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_charges:4",
+        "inherit_codes": true,
+        "name": "Progressive Demo Charges \u00d74"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_charges:5",
+        "inherit_codes": true,
+        "name": "Progressive Demo Charges \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Certification Rank",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_progressive_certification_rank.png",
+        "codes": "progressive_certification_rank,progressive_certification_rank:1",
+        "inherit_codes": true,
+        "name": "Progressive Certification Rank \u00d71"
+      },
+      {
+        "img": "images/icon_progressive_certification_rank.png",
+        "codes": "progressive_certification_rank:2",
+        "inherit_codes": true,
+        "name": "Progressive Certification Rank \u00d72"
+      },
+      {
+        "img": "images/icon_progressive_certification_rank.png",
+        "codes": "progressive_certification_rank:3",
+        "inherit_codes": true,
+        "name": "Progressive Certification Rank \u00d73"
+      },
+      {
+        "img": "images/icon_progressive_certification_rank.png",
+        "codes": "progressive_certification_rank:4",
+        "inherit_codes": true,
+        "name": "Progressive Certification Rank \u00d74"
+      }
+    ]
+  },
+  {
+    "name": "Unlock Mackerel",
+    "type": "toggle",
+    "img": "images/icon_unlock_mackerel.png",
+    "codes": "unlock_mackerel"
+  },
+  {
+    "name": "Charged Push",
+    "type": "toggle",
+    "img": "images/icon_charged_push.png",
+    "codes": "charged_push"
+  },
+  {
+    "name": "Progressive Ship Unlock",
+    "type": "toggle",
+    "img": "images/icon_default.png",
+    "codes": "progressive_ship_unlock"
+  },
+  {
+    "name": "Credit Pack (Large)",
+    "type": "toggle",
+    "img": "images/icon_filler.png",
+    "codes": "credit_pack_large"
+  },
+  {
+    "name": "Progressive Tether Amount",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_tether.png",
+        "codes": "progressive_tether_amount,progressive_tether_amount:1",
+        "inherit_codes": true,
+        "name": "Progressive Tether Amount \u00d71"
+      },
+      {
+        "img": "images/icon_tether.png",
+        "codes": "progressive_tether_amount:2",
+        "inherit_codes": true,
+        "name": "Progressive Tether Amount \u00d72"
+      },
+      {
+        "img": "images/icon_tether.png",
+        "codes": "progressive_tether_amount:3",
+        "inherit_codes": true,
+        "name": "Progressive Tether Amount \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Tether Lifetime",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_tether.png",
+        "codes": "progressive_tether_lifetime,progressive_tether_lifetime:1",
+        "inherit_codes": true,
+        "name": "Progressive Tether Lifetime \u00d71"
+      },
+      {
+        "img": "images/icon_tether.png",
+        "codes": "progressive_tether_lifetime:2",
+        "inherit_codes": true,
+        "name": "Progressive Tether Lifetime \u00d72"
+      },
+      {
+        "img": "images/icon_tether.png",
+        "codes": "progressive_tether_lifetime:3",
+        "inherit_codes": true,
+        "name": "Progressive Tether Lifetime \u00d73"
+      },
+      {
+        "img": "images/icon_tether.png",
+        "codes": "progressive_tether_lifetime:4",
+        "inherit_codes": true,
+        "name": "Progressive Tether Lifetime \u00d74"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Scanner Range",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_range,progressive_scanner_range:1",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Range \u00d71"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_range:2",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Range \u00d72"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_range:3",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Range \u00d73"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_range:4",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Range \u00d74"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_range:5",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Range \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Heat Resistance",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_heat_resistance,progressive_heat_resistance:1",
+        "inherit_codes": true,
+        "name": "Progressive Heat Resistance \u00d71"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_heat_resistance:2",
+        "inherit_codes": true,
+        "name": "Progressive Heat Resistance \u00d72"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_heat_resistance:3",
+        "inherit_codes": true,
+        "name": "Progressive Heat Resistance \u00d73"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_heat_resistance:4",
+        "inherit_codes": true,
+        "name": "Progressive Heat Resistance \u00d74"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_heat_resistance:5",
+        "inherit_codes": true,
+        "name": "Progressive Heat Resistance \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Cryo Resistance",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cryo_resistance,progressive_cryo_resistance:1",
+        "inherit_codes": true,
+        "name": "Progressive Cryo Resistance \u00d71"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cryo_resistance:2",
+        "inherit_codes": true,
+        "name": "Progressive Cryo Resistance \u00d72"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cryo_resistance:3",
+        "inherit_codes": true,
+        "name": "Progressive Cryo Resistance \u00d73"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cryo_resistance:4",
+        "inherit_codes": true,
+        "name": "Progressive Cryo Resistance \u00d74"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cryo_resistance:5",
+        "inherit_codes": true,
+        "name": "Progressive Cryo Resistance \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Electrical Resistance",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_electrical_resistance,progressive_electrical_resistance:1",
+        "inherit_codes": true,
+        "name": "Progressive Electrical Resistance \u00d71"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_electrical_resistance:2",
+        "inherit_codes": true,
+        "name": "Progressive Electrical Resistance \u00d72"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_electrical_resistance:3",
+        "inherit_codes": true,
+        "name": "Progressive Electrical Resistance \u00d73"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_electrical_resistance:4",
+        "inherit_codes": true,
+        "name": "Progressive Electrical Resistance \u00d74"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_electrical_resistance:5",
+        "inherit_codes": true,
+        "name": "Progressive Electrical Resistance \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Cutter Heat",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cutter_heat,progressive_cutter_heat:1",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Heat \u00d71"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cutter_heat:2",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Heat \u00d72"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_cutter_heat:3",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Heat \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Cutter Cooldown",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_cooldown,progressive_cutter_cooldown:1",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Cooldown \u00d71"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_cooldown:2",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Cooldown \u00d72"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_cooldown:3",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Cooldown \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Stinger Range",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_stinger_range,progressive_stinger_range:1",
+        "inherit_codes": true,
+        "name": "Progressive Stinger Range \u00d71"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_stinger_range:2",
+        "inherit_codes": true,
+        "name": "Progressive Stinger Range \u00d72"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_stinger_range:3",
+        "inherit_codes": true,
+        "name": "Progressive Stinger Range \u00d73"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_stinger_range:4",
+        "inherit_codes": true,
+        "name": "Progressive Stinger Range \u00d74"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_stinger_range:5",
+        "inherit_codes": true,
+        "name": "Progressive Stinger Range \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Splitsaw Range",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_splitsaw_range,progressive_splitsaw_range:1",
+        "inherit_codes": true,
+        "name": "Progressive Splitsaw Range \u00d71"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_splitsaw_range:2",
+        "inherit_codes": true,
+        "name": "Progressive Splitsaw Range \u00d72"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_splitsaw_range:3",
+        "inherit_codes": true,
+        "name": "Progressive Splitsaw Range \u00d73"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_splitsaw_range:4",
+        "inherit_codes": true,
+        "name": "Progressive Splitsaw Range \u00d74"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_splitsaw_range:5",
+        "inherit_codes": true,
+        "name": "Progressive Splitsaw Range \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Grapple Range",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_range,progressive_grapple_range:1",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Range \u00d71"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_range:2",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Range \u00d72"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_range:3",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Range \u00d73"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_range:4",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Range \u00d74"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_range:5",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Range \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Charged Push Force",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_charged_push.png",
+        "codes": "progressive_charged_push_force,progressive_charged_push_force:1",
+        "inherit_codes": true,
+        "name": "Progressive Charged Push Force \u00d71"
+      },
+      {
+        "img": "images/icon_charged_push.png",
+        "codes": "progressive_charged_push_force:2",
+        "inherit_codes": true,
+        "name": "Progressive Charged Push Force \u00d72"
+      },
+      {
+        "img": "images/icon_charged_push.png",
+        "codes": "progressive_charged_push_force:3",
+        "inherit_codes": true,
+        "name": "Progressive Charged Push Force \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Demo Disarming",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_disarming,progressive_demo_disarming:1",
+        "inherit_codes": true,
+        "name": "Progressive Demo Disarming \u00d71"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_disarming:2",
+        "inherit_codes": true,
+        "name": "Progressive Demo Disarming \u00d72"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_disarming:3",
+        "inherit_codes": true,
+        "name": "Progressive Demo Disarming \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Nothing",
+    "type": "toggle",
+    "img": "images/icon_filler.png",
+    "codes": "nothing"
+  },
+  {
+    "name": "Clone Fee Tax",
+    "type": "toggle",
+    "img": "images/icon_trap.png",
+    "codes": "clone_fee_tax"
+  },
+  {
+    "name": "Progressive Demo Self Cleanup",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_self_cleanup,progressive_demo_self_cleanup:1",
+        "inherit_codes": true,
+        "name": "Progressive Demo Self Cleanup \u00d71"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_self_cleanup:2",
+        "inherit_codes": true,
+        "name": "Progressive Demo Self Cleanup \u00d72"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_self_cleanup:3",
+        "inherit_codes": true,
+        "name": "Progressive Demo Self Cleanup \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Demo Auto-Deploy",
+    "type": "toggle",
+    "img": "images/icon_demo.png",
+    "codes": "demo_auto_deploy"
+  },
+  {
+    "name": "Progressive O2 Capacity",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_capacity,progressive_o2_capacity:1",
+        "inherit_codes": true,
+        "name": "Progressive O2 Capacity \u00d71"
+      },
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_capacity:2",
+        "inherit_codes": true,
+        "name": "Progressive O2 Capacity \u00d72"
+      },
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_capacity:3",
+        "inherit_codes": true,
+        "name": "Progressive O2 Capacity \u00d73"
+      },
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_capacity:4",
+        "inherit_codes": true,
+        "name": "Progressive O2 Capacity \u00d74"
+      },
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_capacity:5",
+        "inherit_codes": true,
+        "name": "Progressive O2 Capacity \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive O2 Recharge",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_recharge,progressive_o2_recharge:1",
+        "inherit_codes": true,
+        "name": "Progressive O2 Recharge \u00d71"
+      },
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_recharge:2",
+        "inherit_codes": true,
+        "name": "Progressive O2 Recharge \u00d72"
+      },
+      {
+        "img": "images/icon_o2.png",
+        "codes": "progressive_o2_recharge:3",
+        "inherit_codes": true,
+        "name": "Progressive O2 Recharge \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Thruster Top Speed",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_top_speed,progressive_thruster_top_speed:1",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Top Speed \u00d71"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_top_speed:2",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Top Speed \u00d72"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_top_speed:3",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Top Speed \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Thruster Braking",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_braking,progressive_thruster_braking:1",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Braking \u00d71"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_braking:2",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Braking \u00d72"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_braking:3",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Braking \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "O2 Recharge Module",
+    "type": "toggle",
+    "img": "images/icon_o2.png",
+    "codes": "o2_recharge_module"
+  },
+  {
+    "name": "Progressive Thruster Fuel",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_fuel,progressive_thruster_fuel:1",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Fuel \u00d71"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_fuel:2",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Fuel \u00d72"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_fuel:3",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Fuel \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Audio Resynth",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_audio_resynth,progressive_audio_resynth:1",
+        "inherit_codes": true,
+        "name": "Progressive Audio Resynth \u00d71"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_audio_resynth:2",
+        "inherit_codes": true,
+        "name": "Progressive Audio Resynth \u00d72"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_audio_resynth:3",
+        "inherit_codes": true,
+        "name": "Progressive Audio Resynth \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Thruster Rental",
+    "type": "toggle",
+    "img": "images/icon_thruster.png",
+    "codes": "thruster_rental"
+  },
+  {
+    "name": "Progressive Thruster Durability",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_durability,progressive_thruster_durability:1",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Durability \u00d71"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_durability:2",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Durability \u00d72"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_durability:3",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Durability \u00d73"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_durability:4",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Durability \u00d74"
+      },
+      {
+        "img": "images/icon_thruster.png",
+        "codes": "progressive_thruster_durability:5",
+        "inherit_codes": true,
+        "name": "Progressive Thruster Durability \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Cutter Rental",
+    "type": "toggle",
+    "img": "images/icon_cutter.png",
+    "codes": "cutter_rental"
+  },
+  {
+    "name": "Progressive Cutter Durability",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_durability,progressive_cutter_durability:1",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Durability \u00d71"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_durability:2",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Durability \u00d72"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_durability:3",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Durability \u00d73"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_durability:4",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Durability \u00d74"
+      },
+      {
+        "img": "images/icon_cutter.png",
+        "codes": "progressive_cutter_durability:5",
+        "inherit_codes": true,
+        "name": "Progressive Cutter Durability \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Grapple Rental",
+    "type": "toggle",
+    "img": "images/icon_grapple.png",
+    "codes": "grapple_rental"
+  },
+  {
+    "name": "Progressive Grapple Durability",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_durability,progressive_grapple_durability:1",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Durability \u00d71"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_durability:2",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Durability \u00d72"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_durability:3",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Durability \u00d73"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_durability:4",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Durability \u00d74"
+      },
+      {
+        "img": "images/icon_grapple.png",
+        "codes": "progressive_grapple_durability:5",
+        "inherit_codes": true,
+        "name": "Progressive Grapple Durability \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Scanner Rental",
+    "type": "toggle",
+    "img": "images/icon_scanner.png",
+    "codes": "scanner_rental"
+  },
+  {
+    "name": "Progressive Scanner Durability",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_durability,progressive_scanner_durability:1",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Durability \u00d71"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_durability:2",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Durability \u00d72"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_durability:3",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Durability \u00d73"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_durability:4",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Durability \u00d74"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_durability:5",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Durability \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Helmet Rental",
+    "type": "toggle",
+    "img": "images/icon_suit.png",
+    "codes": "helmet_rental"
+  },
+  {
+    "name": "Suit Rental",
+    "type": "toggle",
+    "img": "images/icon_suit.png",
+    "codes": "suit_rental"
+  },
+  {
+    "name": "Progressive Suit Durability",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_durability,progressive_suit_durability:1",
+        "inherit_codes": true,
+        "name": "Progressive Suit Durability \u00d71"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_durability:2",
+        "inherit_codes": true,
+        "name": "Progressive Suit Durability \u00d72"
+      },
+      {
+        "img": "images/icon_suit.png",
+        "codes": "progressive_suit_durability:3",
+        "inherit_codes": true,
+        "name": "Progressive Suit Durability \u00d73"
+      }
+    ]
+  },
+  {
+    "name": "Demo Charge Rental",
+    "type": "toggle",
+    "img": "images/icon_demo.png",
+    "codes": "demo_charge_rental"
+  },
+  {
+    "name": "Progressive Demo Durability",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_durability,progressive_demo_durability:1",
+        "inherit_codes": true,
+        "name": "Progressive Demo Durability \u00d71"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_durability:2",
+        "inherit_codes": true,
+        "name": "Progressive Demo Durability \u00d72"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_durability:3",
+        "inherit_codes": true,
+        "name": "Progressive Demo Durability \u00d73"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_durability:4",
+        "inherit_codes": true,
+        "name": "Progressive Demo Durability \u00d74"
+      },
+      {
+        "img": "images/icon_demo.png",
+        "codes": "progressive_demo_durability:5",
+        "inherit_codes": true,
+        "name": "Progressive Demo Durability \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Launcher Range",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_launcher.png",
+        "codes": "progressive_launcher_range,progressive_launcher_range:1",
+        "inherit_codes": true,
+        "name": "Progressive Launcher Range \u00d71"
+      },
+      {
+        "img": "images/icon_launcher.png",
+        "codes": "progressive_launcher_range:2",
+        "inherit_codes": true,
+        "name": "Progressive Launcher Range \u00d72"
+      },
+      {
+        "img": "images/icon_launcher.png",
+        "codes": "progressive_launcher_range:3",
+        "inherit_codes": true,
+        "name": "Progressive Launcher Range \u00d73"
+      },
+      {
+        "img": "images/icon_launcher.png",
+        "codes": "progressive_launcher_range:4",
+        "inherit_codes": true,
+        "name": "Progressive Launcher Range \u00d74"
+      },
+      {
+        "img": "images/icon_launcher.png",
+        "codes": "progressive_launcher_range:5",
+        "inherit_codes": true,
+        "name": "Progressive Launcher Range \u00d75"
+      }
+    ]
+  },
+  {
+    "name": "Unlock Launcher",
+    "type": "toggle",
+    "img": "images/icon_launcher.png",
+    "codes": "unlock_launcher"
+  },
+  {
+    "name": "Launcher Cryo",
+    "type": "toggle",
+    "img": "images/icon_suit.png",
+    "codes": "launcher_cryo"
+  },
+  {
+    "name": "Launcher Explosive",
+    "type": "toggle",
+    "img": "images/icon_launcher.png",
+    "codes": "launcher_explosive"
+  },
+  {
+    "name": "Launcher Magnetic",
+    "type": "toggle",
+    "img": "images/icon_launcher.png",
+    "codes": "launcher_magnetic"
+  },
+  {
+    "name": "Stinger Cut Grade",
+    "type": "toggle",
+    "img": "images/icon_cutter.png",
+    "codes": "stinger_cut_grade"
+  },
+  {
+    "name": "Progressive Scanner Detail",
+    "type": "progressive",
+    "allow_disabled": true,
+    "loop": false,
+    "stages": [
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_detail,progressive_scanner_detail:1",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Detail \u00d71"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_detail:2",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Detail \u00d72"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_detail:3",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Detail \u00d73"
+      },
+      {
+        "img": "images/icon_scanner.png",
+        "codes": "progressive_scanner_detail:4",
+        "inherit_codes": true,
+        "name": "Progressive Scanner Detail \u00d74"
+      }
+    ]
+  },
+  {
+    "name": "Cutter Purchase",
+    "type": "toggle",
+    "img": "images/icon_cutter.png",
+    "codes": "cutter_purchase"
+  }
+]

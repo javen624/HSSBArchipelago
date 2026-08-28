@@ -1,0 +1,709 @@
+[
+  {
+    "name": "Gecko",
+    "chest_unopened_img": "images/chest_closed.png",
+    "chest_opened_img": "images/chest_open.png",
+    "children": [
+      {
+        "name": "Family Tiers",
+        "children": [
+          {
+            "name": "Gecko Salvage Tier 1",
+            "short_name": "Gecko Salvage Tier 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080415"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_family_tiers",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Tier 2",
+            "short_name": "Gecko Salvage Tier 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080416"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_family_tiers",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Tier 3",
+            "short_name": "Gecko Salvage Tier 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080417"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_family_tiers",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Tier 4",
+            "short_name": "Gecko Salvage Tier 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080418"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_family_tiers",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Tier 5",
+            "short_name": "Gecko Salvage Tier 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080419"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_family_tiers",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Station Hopper",
+        "children": [
+          {
+            "name": "Gecko Station Hopper Salvage Tier 1",
+            "short_name": "Gecko Station Hopper Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080510"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_station_hopper",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Station Hopper Salvage Tier 2",
+            "short_name": "Gecko Station Hopper Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080511"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_station_hopper",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Station Hopper Salvage Tier 3",
+            "short_name": "Gecko Station Hopper Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080512"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_station_hopper",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Station Hopper Salvage Tier 4",
+            "short_name": "Gecko Station Hopper Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080513"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_station_hopper",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Gecko Station Hopper Salvage Tier 5",
+            "short_name": "Gecko Station Hopper Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080514"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_station_hopper",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Heavy Cargo",
+        "children": [
+          {
+            "name": "Gecko Heavy Cargo Salvage Tier 1",
+            "short_name": "Gecko Heavy Cargo Salvage Ti",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080515"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_heavy_cargo",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Heavy Cargo Salvage Tier 2",
+            "short_name": "Gecko Heavy Cargo Salvage Ti",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080516"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_heavy_cargo",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Heavy Cargo Salvage Tier 3",
+            "short_name": "Gecko Heavy Cargo Salvage Ti",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080517"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_heavy_cargo",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Heavy Cargo Salvage Tier 4",
+            "short_name": "Gecko Heavy Cargo Salvage Ti",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080518"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_heavy_cargo",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Gecko Heavy Cargo Salvage Tier 5",
+            "short_name": "Gecko Heavy Cargo Salvage Ti",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080519"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_heavy_cargo",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Stargazer",
+        "children": [
+          {
+            "name": "Gecko Stargazer Salvage Tier 1",
+            "short_name": "Gecko Stargazer Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080520"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_stargazer",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Stargazer Salvage Tier 2",
+            "short_name": "Gecko Stargazer Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080521"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_stargazer",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Stargazer Salvage Tier 3",
+            "short_name": "Gecko Stargazer Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080522"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_stargazer",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Stargazer Salvage Tier 4",
+            "short_name": "Gecko Stargazer Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080523"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_stargazer",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Gecko Stargazer Salvage Tier 5",
+            "short_name": "Gecko Stargazer Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080524"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_stargazer",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Salvage Runner",
+        "children": [
+          {
+            "name": "Gecko Salvage Runner Salvage Tier 1",
+            "short_name": "Gecko Salvage Runner Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080525"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_salvage_runner",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Runner Salvage Tier 2",
+            "short_name": "Gecko Salvage Runner Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080526"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_salvage_runner",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Runner Salvage Tier 3",
+            "short_name": "Gecko Salvage Runner Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080527"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_salvage_runner",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Runner Salvage Tier 4",
+            "short_name": "Gecko Salvage Runner Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080528"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_salvage_runner",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Gecko Salvage Runner Salvage Tier 5",
+            "short_name": "Gecko Salvage Runner Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:2",
+              "unlock_gecko",
+              "progressive_ship_unlock:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080529"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "gecko_salvage_runner",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

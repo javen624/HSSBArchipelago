@@ -67,7 +67,9 @@ internal static class ItemApplicator
     private static bool _pendingLauncherMagnetic;
     private static int _certRankProgress;
     private static MethodInfo? _trySetCertification;
+    private static MethodInfo? _tryIncreaseCertification;
     private static MethodInfo? _getCertificationRank;
+    private static bool _inCertCatchUp;
     private static Type? _certificationServiceType;
     private static IReadOnlyList<HabEquipmentCatalog.Entry>? _habEquipment;
 
@@ -93,6 +95,11 @@ internal static class ItemApplicator
     private static bool _suppressTrainingShipUi;
     /// <summary>Skip auto board refresh from TrySetCertification while F10 drives its own full regen.</summary>
     private static bool _suppressCertRankBoardRefresh;
+    /// <summary>
+    /// DebugRefreshAvailableShips ran before CertificationService/profile existed (connect burst).
+    /// Flushed from OnSessionReady / Hab return.
+    /// </summary>
+    private static bool _pendingJobBoardRefresh;
 
     public static void Initialize(Assembly gameAsm)
     {
@@ -116,6 +123,12 @@ internal static class ItemApplicator
             BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
             null,
             new[] { typeof(int), typeof(bool) },
+            null);
+        _tryIncreaseCertification = _certificationServiceType?.GetMethod(
+            "TryIncreaseCertification",
+            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
+            null,
+            new[] { typeof(bool) },
             null);
         _getCertificationRank = _certificationServiceType?.GetMethod(
             "GetCertificationRank",
@@ -172,7 +185,12 @@ internal static class ItemApplicator
     {
         LogUpgradeCatalogOnce();
         FlushPendingCurrency();
+        // Must run before ThrustController.Awake: stored durability outside the
+        // asset's ranges NREs ThrusterDurabilityHandler (full fuel bar, flashing LOW, no thrust).
+        RepairStoredToolDurability();
+        RequestFuelRefill();
         FlushPendingUpgrades();
+        MarkHabShopPurchasedForGrantedEquipment();
         FlushPendingCertificationRank();
         ClampCertificationToCeiling();
         RepairInflatedWorkPermit();
@@ -184,6 +202,7 @@ internal static class ItemApplicator
         AutoCheckFreeStarterHabLocations();
         ReapplyOwnedAbilityUnlocks();
         ReapplyApGrantedUpgrades();
+        FlushPendingJobBoardRefresh();
         // Do not call TryRecoverEmptyJobBoard — nudging RemainingShiftsTillBoardRefresh=0
         // on empty RawLoadedAvailableShips wiped Hab ship select on fresh careers.
     }
@@ -194,8 +213,10 @@ internal static class ItemApplicator
         FlushPendingCertificationRank();
         ClampCertificationToCeiling();
         RepairInflatedWorkPermit();
+        FlushPendingJobBoardRefresh();
         HealStaleJobBoardRefreshCounter();
         RepairNegativeMasteryPoints();
+        MarkHabShopPurchasedForGrantedEquipment();
         EnsureHabShopPaidState();
         StripUnpaidShopRowsFromHabOwned();
         EnsureFreeStarterUpgradesOwned();
@@ -257,7 +278,9 @@ internal static class ItemApplicator
                 return;
             }
 
-            var enumType = _gameAsm.GetType("BBI.Unity.Game.UnlockAbilityID");
+            // UnlockAbilityID is a global enum (FullName "UnlockAbilityID"), not BBI.Unity.Game.*.
+            var enumType = _gameAsm.GetType("BBI.Unity.Game.UnlockAbilityID")
+                ?? _gameAsm.GetType("UnlockAbilityID");
             if (enumType == null)
             {
                 Plugin.Log.LogWarning("[HS-AP] UnlockAbilityID enum missing.");
@@ -280,7 +303,10 @@ internal static class ItemApplicator
                 BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                 null,
                 new[] { enumType },
-                null);
+                null)
+                ?? profile.GetType().GetMethod(
+                    "UnlockAbility",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if (unlock == null)
             {
                 Plugin.Log.LogWarning("[HS-AP] PlayerProfile.UnlockAbility not found.");
@@ -393,6 +419,7 @@ internal static class ItemApplicator
             Plugin.Log.LogInfo(
                 $"[HS-AP] F11 debug: Progressive Certification Rank now ×{_certRankProgress} — MP ceiling={ceiling}");
             ApToastQueue.EnqueueInfo($"PCR ×{_certRankProgress} (ceiling {ceiling})");
+            CatchUpCertificationFromMasteryPoints();
             DebugRefreshAvailableShips();
         }
         catch (Exception ex)
@@ -537,6 +564,16 @@ internal static class ItemApplicator
         }
     }
 
+    private static void FlushPendingJobBoardRefresh()
+    {
+        if (!_pendingJobBoardRefresh)
+        {
+            return;
+        }
+
+        DebugRefreshAvailableShips();
+    }
+
     /// <summary>
     /// Full job-board regen via RefreshJobBoardShipsAsync (all slots for accessible classes).
     /// Do NOT use RefreshJobBoardShipsFromLoadedDataAsync — that clears the preview maps,
@@ -569,13 +606,22 @@ internal static class ItemApplicator
             var csType = _gameAsm?.GetType("BBI.Unity.Game.CertificationService");
             var cs = csType?.GetProperty("Instance", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
                 ?.GetValue(null);
-            csType?.GetMethod(
+            var cacheMethod = csType?.GetMethod(
                     "CacheShipClassUnlocks",
                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                     null,
                     Type.EmptyTypes,
-                    null)
-                ?.Invoke(cs, null);
+                    null);
+            if (cs == null || profile == null)
+            {
+                _pendingJobBoardRefresh = true;
+                Plugin.Log.LogInfo(
+                    "[HS-AP] Job board refresh deferred until CertificationService/profile is ready.");
+                return;
+            }
+
+            _pendingJobBoardRefresh = false;
+            cacheMethod?.Invoke(cs, null);
 
             // Drop stale previews so every slot is null and must regenerate (true full bay).
             ClearBoardPreviewMaps(profile);
@@ -1149,6 +1195,7 @@ internal static class ItemApplicator
                 _demoLicense = true;
                 TryApplyEquipmentTier("Demo Charge License");
                 FlushItemsGatedBy("Demo Charge License");
+                TryUnlockGameAbility("DemoCharge");
                 break;
             case "Charged Push":
                 _chargedPush = true;
@@ -1234,7 +1281,9 @@ internal static class ItemApplicator
                 _certRankProgress++;
                 _loggedCertGate = false;
                 Plugin.Log.LogInfo(
-                    $"[HS-AP] Progressive Certification Rank now ×{_certRankProgress} — MP ceiling={CertificationRankCeiling} (rank not changed; earn MP in Career to advance).");
+                    $"[HS-AP] Progressive Certification Rank now ×{_certRankProgress} — MP ceiling={CertificationRankCeiling}.");
+                CatchUpCertificationFromMasteryPoints();
+                DebugRefreshAvailableShips();
                 break;
             case "Unlock Mackerel":
                 Plugin.Log.LogInfo("[HS-AP] Unlock Mackerel (start / logic).");
@@ -1299,6 +1348,11 @@ internal static class ItemApplicator
         if (count > tiers.Length)
         {
             Plugin.Log.LogInfo($"[HS-AP] {progressiveName} ×{count} exceeds tier list ({tiers.Length}); ignoring extra.");
+            foreach (var tier in tiers)
+            {
+                MarkHabShopPurchasedForItemName(tier);
+            }
+
             return true;
         }
 
@@ -1313,10 +1367,21 @@ internal static class ItemApplicator
         {
             Plugin.Log.LogInfo(
                 $"[HS-AP] {progressiveName} ×{count} held until license '{license}' is owned (tier '{tiers[count - 1]}').");
+            for (var i = 0; i < count && i < tiers.Length; i++)
+            {
+                MarkHabShopPurchasedForItemName(tiers[i]);
+            }
+
             return true;
         }
 
-        return TryApplyEquipmentTier(tiers[count - 1]);
+        var applied = TryApplyEquipmentTier(tiers[count - 1]);
+        for (var i = 0; i < count && i < tiers.Length; i++)
+        {
+            MarkHabShopPurchasedForItemName(tiers[i]);
+        }
+
+        return applied;
     }
 
     /// <summary>
@@ -1475,11 +1540,78 @@ internal static class ItemApplicator
                 _launcherUnlocked = true;
             }
 
+            MarkHabShopPurchasedForItemName(tierItemName);
             TryApplyUpgradeKey($"equip:{tierItemName}", entry.AssetMatch);
             return true;
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Received AP equipment (including collect from finished games) counts as Hab-purchased
+    /// so those rows are yellow and not buyable again.
+    /// </summary>
+    private static void MarkHabShopPurchasedForItemName(string tierItemName)
+    {
+        if (!_habShopSanity || string.IsNullOrEmpty(tierItemName))
+        {
+            return;
+        }
+
+        _habEquipment ??= HabEquipmentCatalog.Build(NameEndsWithTier);
+        foreach (var entry in _habEquipment)
+        {
+            if (!string.Equals(entry.ItemName, tierItemName, StringComparison.Ordinal)
+                || !HabEquipmentCatalog.IsHabShopLocationId(entry.LocationId))
+            {
+                continue;
+            }
+
+            if (HabShopPaidLocationIds.Add(entry.LocationId))
+            {
+                HabShopPaidStore.Remember(entry.LocationId);
+            }
+
+            return;
+        }
+    }
+
+    /// <summary>Mark Hab-yellow for every AP-granted shop row we already own.</summary>
+    public static void MarkHabShopPurchasedForGrantedEquipment()
+    {
+        if (!_habShopSanity)
+        {
+            return;
+        }
+
+        var added = 0;
+        foreach (var asset in ApGrantedUpgrades.ToList())
+        {
+            if (asset == null || !TryMapHabShopLocation(asset, out var id, out _))
+            {
+                continue;
+            }
+
+            if (HabShopPaidLocationIds.Add(id))
+            {
+                HabShopPaidStore.Remember(id);
+                added++;
+            }
+
+            if (!IsInHabOwnedUpgrades(asset))
+            {
+                MarkHabOwnedYellowOnly(asset);
+            }
+        }
+
+        var yellow = RestoreHabPaidYellowRows();
+        if (added > 0 || yellow > 0)
+        {
+            Plugin.Log.LogInfo(
+                $"[HS-AP] Hab shop: marked {HabShopPaidLocationIds.Count} paid row(s) from received equipment " +
+                $"(+{added} new, {yellow} yellow restored).");
+        }
     }
 
     private static bool TryApplyEquipmentItem(string name) => TryApplyEquipmentTier(name);
@@ -1851,17 +1983,43 @@ internal static class ItemApplicator
             }
         }
 
+        var chosen = PickBestMatchingUpgrade(assets, nameMatch);
+        if (chosen != null)
+        {
+            return UnlockAndApply(chosen, DescribeUpgrade(chosen));
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Hab maps both <c>ThrustersDurability1</c> (legacy stub) and
+    /// <c>ThrustersDurabilityDrain1</c> to the same loc. Applying the stub replaces
+    /// <c>ToolDurabilityAsset</c> ranges so stored durability no longer matches —
+    /// <c>DurabilityHandler</c> then NREs in <c>ThrustController.Awake</c>.
+    /// Prefer Drain (and any name containing Drain) when several assets match.
+    /// </summary>
+    private static object? PickBestMatchingUpgrade(IReadOnlyList<object> assets, Func<string, bool> nameMatch)
+    {
+        var matches = new List<object>();
         foreach (var asset in assets)
         {
             var n = GetUpgradeName(asset);
             var unity = GetUnityName(asset);
             if (nameMatch(n) || nameMatch(unity))
             {
-                return UnlockAndApply(asset, DescribeUpgrade(asset));
+                matches.Add(asset);
             }
         }
 
-        return false;
+        if (matches.Count == 0)
+        {
+            return null;
+        }
+
+        var drain = matches.FirstOrDefault(a =>
+            GetUnityName(a).IndexOf("Drain", StringComparison.OrdinalIgnoreCase) >= 0);
+        return drain ?? matches[0];
     }
 
     private static Func<string, bool>? ResolveEquipmentMatch(string itemName)
@@ -1956,8 +2114,8 @@ internal static class ItemApplicator
     public static bool HabShopSanityEnabled => _habShopSanity;
 
     /// <summary>
-    /// Hab shop-sanity: only block re-buy after an actual Hab purchase (yellow),
-    /// not merely because the AP location was checked via release/F9.
+    /// Hab shop-sanity: block re-buy after a Hab purchase or an AP equipment grant
+    /// (collect from finished games included).
     /// </summary>
     public static bool IsUpgradePurchaseBlocked(object? upgradeAsset)
     {
@@ -2165,9 +2323,8 @@ internal static class ItemApplicator
     }
 
     /// <summary>
-    /// No longer marks Hab rows paid from AP checked locations. Release/F9 checks Hab
-    /// locations without a Hab buy — those must stay rank-gated and purchasable.
-    /// Hab-paid state comes from real Hab purchases (Upgrades yellow / HabShopPaidLocationIds).
+    /// Remember server-checked Hab shop IDs. If the local paid store was wiped (empty)
+    /// those checks are the only remaining record of Hab buys and are restored.
     /// </summary>
     public static void SyncHabShopPaidFromChecked(IEnumerable<long> checkedLocationIds)
     {
@@ -2176,18 +2333,39 @@ internal static class ItemApplicator
             return;
         }
 
-        var checkedHab = 0;
+        HabShopPaidStore.EnsureLoaded();
+        if (HabShopPaidLocationIds.Count == 0)
+        {
+            HabShopPaidStore.CopyInto(HabShopPaidLocationIds);
+        }
+
+        var habIds = new List<long>();
         foreach (var id in checkedLocationIds)
         {
             if (HabEquipmentCatalog.IsHabShopLocationId(id))
             {
-                checkedHab++;
+                habIds.Add(id);
             }
         }
 
+        if (habIds.Count > 0 && HabShopPaidLocationIds.Count == 0)
+        {
+            foreach (var id in habIds)
+            {
+                HabShopPaidLocationIds.Add(id);
+            }
+
+            HabShopPaidStore.RememberMany(habIds);
+            var yellow = RestoreHabPaidYellowRows();
+            Plugin.Log.LogInfo(
+                $"[HS-AP] Hab shop: restored {habIds.Count} paid row(s) from server-checked locations " +
+                $"(empty paid store; {yellow} yellow).");
+            return;
+        }
+
         Plugin.Log.LogInfo(
-            $"[HS-AP] Hab shop: {checkedHab} location(s) already checked on server; " +
-            "purchase still follows cert rank / Hab buy (not auto-locked by release).");
+            $"[HS-AP] Hab shop: {habIds.Count} location(s) already checked on server; " +
+            $"paid store={HabShopPaidLocationIds.Count}.");
     }
 
     /// <summary>
@@ -2263,9 +2441,10 @@ internal static class ItemApplicator
             HabShopPaidStore.CopyInto(HabShopPaidLocationIds);
 
             // Only migrate profile→paid when this room already has Hab checks (real progress).
+            var seeded = 0;
             if (habCheckedOnServer > 0 || HabShopPaidLocationIds.Count > 0)
             {
-                var seeded = SeedHabShopPaidFromProfileUpgrades();
+                seeded = SeedHabShopPaidFromProfileUpgrades();
                 if (seeded > 0)
                 {
                     HabShopPaidStore.RememberMany(HabShopPaidLocationIds);
@@ -2273,6 +2452,10 @@ internal static class ItemApplicator
             }
 
             RestoreHabPaidYellowRows();
+            if (HabShopPaidLocationIds.Count == 0)
+            {
+                Plugin.Instance.Client?.RefreshHabShopPaidFromLocalChecks();
+            }
         }
         catch (Exception ex)
         {
@@ -2742,16 +2925,28 @@ internal static class ItemApplicator
             // Apply buffs only — do NOT UnlockUpgrade. That marks Hab-yellow and blocks
             // shop-sanity buys. Bay persistence is via ReapplyApGrantedUpgrades after
             // PlayerProfile.ApplyUpgrades (ClearAppliedUpgrades wipes one-shot Applies).
-            ShopOwnedPendingGrant.Remove(asset);
             ApGrantedUpgrades.Add(asset);
+            if (TryMapHabShopLocation(asset, out var locId, out _))
+            {
+                if (HabShopPaidLocationIds.Add(locId))
+                {
+                    HabShopPaidStore.Remember(locId);
+                }
+
+                MarkHabOwnedYellowOnly(asset);
+            }
+            else
+            {
+                ShopOwnedPendingGrant.Remove(asset);
+                RemoveFromHabOwnedIfUnpaidShopRow(asset);
+            }
+
             _applyUpgrade?.Invoke(asset, null);
             AddToAppliedUpgrades(asset);
-            // Undo any prior UnlockUpgrade (0.5.8) so Hab stays buyable until shop check.
-            RemoveFromHabOwnedIfUnpaidShopRow(asset);
             // UnlockUpgrade also records UpgradePurchasedPAT + Pending*Refill; ApplyUpgrade
             // does not. Without the PAT, bay vending disables tether/demo restock.
             ApplyUnlockSideEffectsWithoutHabOwnership(asset);
-            Plugin.Log.LogInfo($"[HS-AP] Applied upgrade '{displayName}' (AP grant; Hab shop stays buyable)");
+            Plugin.Log.LogInfo($"[HS-AP] Applied upgrade '{displayName}' (AP grant; Hab shop marked purchased)");
             return true;
         }
         catch (Exception ex)
@@ -2791,7 +2986,8 @@ internal static class ItemApplicator
 
                 _applyUpgrade.Invoke(asset, null);
                 AddToAppliedUpgrades(asset);
-                ApplyUnlockSideEffectsWithoutHabOwnership(asset);
+                // PAT only — do not set PendingTether/Demo refill on every bay apply.
+                EnsureUpgradePurchasedPatRecorded(asset);
                 n++;
             }
 
@@ -2814,13 +3010,34 @@ internal static class ItemApplicator
     /// <summary>
     /// Side effects from vanilla <c>UnlockUpgrade</c> / <c>PurchaseUpgrade</c> that we must
     /// keep without adding the asset to Hab <c>PlayerProfile.Upgrades</c> (shop-sanity).
-    /// Bay vending disables tether/demo buys until <c>UpgradePurchasedPAT</c> is in history;
-    /// shift auto-restock uses <c>PendingTetherRefill</c> / <c>PendingDemoChargeRefill</c>.
+    /// Bay vending disables tether/demo buys until <c>UpgradePurchasedPAT</c> is in history.
+    /// <c>PendingTetherRefill</c> / <c>PendingDemoChargeRefill</c> are one-shot: vanilla sets
+    /// them when you first unlock the rack, then the bay kiosk is how you buy more.
     /// </summary>
     private static void ApplyUnlockSideEffectsWithoutHabOwnership(object upgradeAsset)
     {
+        var firstUnlock = !HasUpgradePurchasedPat(upgradeAsset);
         EnsureUpgradePurchasedPatRecorded(upgradeAsset);
-        ApplyConsumableRefillFlags(upgradeAsset);
+        if (firstUnlock && !_reapplyingApGrants)
+        {
+            ApplyConsumableRefillFlags(upgradeAsset);
+        }
+    }
+
+    private static bool HasUpgradePurchasedPat(object upgradeAsset)
+    {
+        try
+        {
+            var pat = upgradeAsset.GetType().GetProperty(
+                    "UpgradePurchasedPAT",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                ?.GetValue(upgradeAsset);
+            return pat != null && IsPatInHistory(pat);
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private static void EnsureUpgradePurchasedPatRecorded(object upgradeAsset)
@@ -2968,6 +3185,8 @@ internal static class ItemApplicator
             SetPending("PendingFuelRefill", "m_RefillFuel");
             SetPending("PendingTetherRefill", "m_RefillTethers");
             SetPending("PendingDemoChargeRefill", "m_RefillDemoCharges");
+            Plugin.Log.LogInfo(
+                $"[HS-AP] One-shot consumable refill flags from '{GetUnityName(upgradeAsset)}'.");
         }
         catch (Exception ex)
         {
@@ -3091,8 +3310,10 @@ internal static class ItemApplicator
     }
 
     /// <summary>
-    /// After DrawUnpurchasedUpgrade: force locked color + cert badge when rank is too low.
-    /// Vanilla only enables m_InvalidCertificationObject when CanPurchase out == InvalidCertification.
+    /// After DrawUnpurchasedUpgrade: purchased (yellow) if we already own the AP item / Hab buy;
+    /// otherwise locked color + cert badge when rank is too low.
+    /// Vanilla paints any failed CanPurchase as locked — including AlreadyHas when the
+    /// asset is not yet in PlayerProfile.Upgrades.
     /// </summary>
     public static void EnsureHabRankLockVisual(object upgradeTreeButton)
     {
@@ -3114,6 +3335,7 @@ internal static class ItemApplicator
 
             if (IsUpgradePurchaseBlocked(upgrade))
             {
+                ApplyHabPurchasedVisual(upgradeTreeButton);
                 return;
             }
 
@@ -3158,6 +3380,32 @@ internal static class ItemApplicator
         }
     }
 
+    private static void ApplyHabPurchasedVisual(object upgradeTreeButton)
+    {
+        var t = upgradeTreeButton.GetType();
+        var bg = t.GetField("m_ButtonBackground", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            ?.GetValue(upgradeTreeButton);
+        var purchasedColor = t.GetField("m_PurchasedColor", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            ?.GetValue(upgradeTreeButton);
+        if (bg != null && purchasedColor != null)
+        {
+            bg.GetType().GetProperty("color")?.SetValue(bg, purchasedColor);
+        }
+
+        var icon = t.GetField("m_UpgradeIcon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            ?.GetValue(upgradeTreeButton);
+        var iconPurchased = t.GetField("m_IconPurchasedColor", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            ?.GetValue(upgradeTreeButton);
+        if (icon != null && iconPurchased != null)
+        {
+            icon.GetType().GetProperty("color")?.SetValue(icon, iconPurchased);
+        }
+
+        var badge = t.GetField("m_InvalidCertificationObject", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            ?.GetValue(upgradeTreeButton) as UnityEngine.GameObject;
+        badge?.SetActive(false);
+    }
+
     private static bool _reapplyingApGrants;
 
     private static void AddToAppliedUpgrades(object asset)
@@ -3186,6 +3434,360 @@ internal static class ItemApplicator
         catch
         {
             // ignore
+        }
+    }
+
+    [ThreadStatic]
+    private static bool _aligningDurability;
+
+    /// <summary>
+    /// Snap stored durability only when it sits outside every band on this asset.
+    /// Vanilla ctor defaults a missing map entry to 100; that NREs if 100 is not in
+    /// a band. Do not scan <c>FindObjectsOfTypeAll</c> here — that froze bay spawn.
+    /// </summary>
+    internal static void AlignStoredDurabilityForAsset(object? asset)
+    {
+        if (asset == null || _aligningDurability)
+        {
+            return;
+        }
+
+        _aligningDurability = true;
+        try
+        {
+            var data = GetMember(asset, "Data");
+            if (data == null)
+            {
+                return;
+            }
+
+            var toolType = GetMember(data, "ToolType");
+            if (toolType == null)
+            {
+                return;
+            }
+
+            var listName = ToolTypeRangeListName(toolType.ToString());
+            if (listName == null)
+            {
+                return;
+            }
+
+            if (GetMember(data, listName) is not IEnumerable ranges)
+            {
+                return;
+            }
+
+            float? healthyMax = null;
+            float? anyMax = null;
+            var inBand = false;
+            var current = TryReadStoredDurability(toolType, out var stored) ? stored : 100f;
+            foreach (var range in ranges)
+            {
+                if (range == null || !TryGetRangeBand(range, out var min, out var max, out var flash))
+                {
+                    continue;
+                }
+
+                if (current >= min && current <= max)
+                {
+                    inBand = true;
+                }
+
+                if (anyMax == null || max > anyMax.Value)
+                {
+                    anyMax = max;
+                }
+
+                if (!flash && (healthyMax == null || max > healthyMax.Value))
+                {
+                    healthyMax = max;
+                }
+            }
+
+            if (inBand)
+            {
+                return;
+            }
+
+            var target = healthyMax ?? anyMax;
+            if (target == null)
+            {
+                Plugin.Log.LogWarning(
+                    $"[HS-AP] {toolType} durability ranges empty on {GetUnityName(asset)}; stored={current:0.##}");
+                return;
+            }
+
+            WriteStoredDurability(toolType, target.Value);
+            Plugin.Log.LogInfo(
+                $"[HS-AP] {toolType} durability {current:0.##} → {target.Value:0.##} (was outside asset bands)");
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] AlignStoredDurabilityForAsset failed: {ex.Message}");
+        }
+        finally
+        {
+            _aligningDurability = false;
+        }
+    }
+
+    /// <summary>
+    /// Fallback when vanilla <c>GetDurabilityRangeForValue</c> finds no band.
+    /// Prefer a non-flashing range so ctor can finish and thrust is not locked.
+    /// </summary>
+    internal static object? PickDurabilityRange(object handler, float durabilityValue)
+    {
+        try
+        {
+            var prop = handler.GetType().GetProperty(
+                "DurabilityRangesToHandle",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (prop?.GetValue(handler) is not IEnumerable ranges)
+            {
+                return null;
+            }
+
+            object? healthy = null;
+            object? any = null;
+            float healthyMax = float.MinValue;
+            foreach (var range in ranges)
+            {
+                if (range == null || !TryGetRangeBand(range, out var min, out var max, out var flash))
+                {
+                    continue;
+                }
+
+                any ??= range;
+                if (!flash && max >= healthyMax)
+                {
+                    healthyMax = max;
+                    healthy = range;
+                }
+
+                if (durabilityValue >= min && durabilityValue <= max)
+                {
+                    return range;
+                }
+            }
+
+            var picked = healthy ?? any;
+            if (picked != null)
+            {
+                Plugin.Log.LogWarning(
+                    $"[HS-AP] Thruster durability {durabilityValue:0.##} matched no band; using fallback range.");
+            }
+
+            return picked;
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] PickDurabilityRange failed: {ex.Message}");
+            return null;
+        }
+    }
+
+    private static void RepairStoredToolDurability()
+    {
+        try
+        {
+            var profile = FindPlayerProfile();
+            if (profile == null || _playerProfileType == null)
+            {
+                return;
+            }
+
+            var map = _playerProfileType.GetProperty(
+                    "StoredDurabilityMap",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                ?.GetValue(profile) as IDictionary;
+            if (map == null)
+            {
+                return;
+            }
+
+            var keys = new List<object>();
+            foreach (DictionaryEntry entry in map)
+            {
+                if (entry.Key != null)
+                {
+                    keys.Add(entry.Key);
+                }
+            }
+
+            foreach (var key in keys)
+            {
+                if (!TryReadStoredDurability(key, out var current))
+                {
+                    continue;
+                }
+
+                if (!float.IsNaN(current) && !float.IsInfinity(current) && current >= 0f && current <= 100f)
+                {
+                    continue;
+                }
+
+                WriteStoredDurability(key, 100f);
+                Plugin.Log.LogInfo($"[HS-AP] Clamped {key} durability {current} → 100");
+            }
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] RepairStoredToolDurability failed: {ex.Message}");
+        }
+    }
+
+    private static string? ToolTypeRangeListName(string? toolType) => toolType switch
+    {
+        "Thrusters" => "ThrusterDurabilityRanges",
+        "Cutter" => "CutterDurabilityRanges",
+        "Grapple" => "GrappleDurabilityRanges",
+        "Scanner" => "ScannerDurabilityRanges",
+        "DemoCharge" => "DemoChargeDurabilityRanges",
+        _ => null
+    };
+
+    private static bool TryGetRangeBand(object range, out float min, out float max, out bool flash)
+    {
+        min = 0f;
+        max = 0f;
+        flash = false;
+        var t = range.GetType();
+        var minObj = t.GetProperty("Min")?.GetValue(range)
+                     ?? t.GetField("m_Min", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(range);
+        var maxObj = t.GetProperty("Max")?.GetValue(range)
+                     ?? t.GetField("m_Max", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(range);
+        if (minObj == null || maxObj == null)
+        {
+            return false;
+        }
+
+        min = Convert.ToSingle(minObj);
+        max = Convert.ToSingle(maxObj);
+        flash = t.GetProperty("FlashWarningUI")?.GetValue(range) is true
+                || t.GetField("m_FlashWarningUI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                    ?.GetValue(range) is true;
+        return true;
+    }
+
+    private static object? GetMember(object? target, string name)
+    {
+        if (target == null)
+        {
+            return null;
+        }
+
+        var t = target.GetType();
+        return t.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(target)
+               ?? t.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(target);
+    }
+
+    private static bool TryReadStoredDurability(object toolType, out float current)
+    {
+        current = 0f;
+        var profile = FindPlayerProfile();
+        if (profile == null || _playerProfileType == null)
+        {
+            return false;
+        }
+
+        var map = _playerProfileType.GetProperty(
+                "StoredDurabilityMap",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            ?.GetValue(profile) as IDictionary;
+        if (map == null || !map.Contains(toolType))
+        {
+            return false;
+        }
+
+        var boxed = map[toolType];
+        var field = boxed?.GetType().GetField("CurrentDurability");
+        if (field == null)
+        {
+            return false;
+        }
+
+        current = Convert.ToSingle(field.GetValue(boxed));
+        return true;
+    }
+
+    private static void WriteStoredDurability(object toolType, float value)
+    {
+        var profile = FindPlayerProfile();
+        if (profile == null || _playerProfileType == null)
+        {
+            return;
+        }
+
+        var map = _playerProfileType.GetProperty(
+                "StoredDurabilityMap",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            ?.GetValue(profile) as IDictionary;
+        if (map == null)
+        {
+            return;
+        }
+
+        object boxed;
+        if (map.Contains(toolType))
+        {
+            boxed = map[toolType]!;
+        }
+        else
+        {
+            var compType = _gameAsm?.GetType("BBI.Unity.Game.DurabilityComponent")
+                           ?? map.GetType().GetGenericArguments().ElementAtOrDefault(1);
+            if (compType == null)
+            {
+                return;
+            }
+
+            boxed = Activator.CreateInstance(compType)!;
+            boxed.GetType().GetField("ToolType")?.SetValue(boxed, toolType);
+        }
+
+        var t = boxed.GetType();
+        t.GetField("CurrentDurability")?.SetValue(boxed, value);
+        t.GetField("MaxDurability")?.SetValue(boxed, value);
+        t.GetField("PreviousDurability")?.SetValue(boxed, value);
+        t.GetField("ToolType")?.SetValue(boxed, toolType);
+        map[toolType] = boxed;
+    }
+
+    /// <summary>
+    /// Fuel-capacity AP grants raise max after the last saved charge. Setting this
+    /// makes <c>ThrustController.Initialize</c> fill to the buffed starting charge
+    /// instead of restoring a stale <c>PlayerProfile.ThrusterCharge</c>.
+    /// </summary>
+    private static void RequestFuelRefill()
+    {
+        try
+        {
+            var profile = FindPlayerProfile();
+            if (profile == null || _playerProfileType == null)
+            {
+                return;
+            }
+
+            var prop = _playerProfileType.GetProperty(
+                "PendingFuelRefill",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (prop == null || !prop.CanWrite)
+            {
+                return;
+            }
+
+            if (prop.GetValue(profile) is true)
+            {
+                return;
+            }
+
+            prop.SetValue(profile, true);
+            Plugin.Log.LogInfo("[HS-AP] Set PendingFuelRefill so bay spawn fills thruster tanks to current max.");
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] RequestFuelRefill failed: {ex.Message}");
         }
     }
 
@@ -3363,23 +3965,115 @@ internal static class ItemApplicator
 
     private static void FlushPendingCertificationRank()
     {
-        // Progressive Certification Rank only raises the MP ceiling (AllowCertificationTarget).
-        // Never auto-sets CurrentCertificationRank.
         if (_certRankProgress > 0)
         {
             _loggedCertGate = false;
         }
+
+        CatchUpCertificationFromMasteryPoints();
     }
 
     /// <summary>
-    /// Progressive Certification Rank raises the MP ceiling only. Does <b>not</b> call
-    /// TrySetCertification — the player must earn Mastery Points in Career to advance.
+    /// After PCR raises the ceiling, apply every vanilla rank CurrentXP already pays for.
+    /// Vanilla only calls TryIncreaseCertification from post-mission when LevelGainedLastShift
+    /// is set; our gate can block that, after which PreviousXP is already past the threshold
+    /// so later shifts never retry.
+    /// </summary>
+    private static void CatchUpCertificationFromMasteryPoints()
+    {
+        if (_inCertCatchUp)
+        {
+            return;
+        }
+
+        _inCertCatchUp = true;
+        try
+        {
+            var service = FindCertificationService();
+            var currentXp = ReadCurrentMasteryXp();
+            var startRank = ReadCurrentCertificationRank();
+            var ceiling = CertificationRankCeiling;
+            if (service == null || _tryIncreaseCertification == null)
+            {
+                return;
+            }
+
+            var steps = 0;
+            while (steps < 20)
+            {
+                var rank = ReadCurrentCertificationRank();
+                if (rank < 1 || rank >= ceiling)
+                {
+                    break;
+                }
+
+                var required = GetCumulativeRequiredXpForRank(rank + 1);
+                if (currentXp + 0.5f < required)
+                {
+                    break;
+                }
+
+                if (_tryIncreaseCertification.Invoke(service, new object[] { false }) is not true)
+                {
+                    Plugin.Log.LogWarning(
+                        $"[HS-AP] Cert catch-up stopped: TryIncreaseCertification failed at rank {rank} (XP={currentXp:0}, need {required:0}).");
+                    break;
+                }
+
+                steps++;
+            }
+
+            var endRank = ReadCurrentCertificationRank();
+            if (steps > 0)
+            {
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Cert catch-up {startRank} → {endRank} ({steps} rank(s); XP={currentXp:0}, ceiling={ceiling}).");
+                ApToastQueue.EnqueueInfo($"Cert rank {startRank} → {endRank}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] Cert catch-up failed: {ex.Message}");
+        }
+        finally
+        {
+            _inCertCatchUp = false;
+        }
+    }
+
+    private static float ReadCurrentMasteryXp()
+    {
+        try
+        {
+            var profile = FindPlayerProfile();
+            var tracker = _playerProfileType
+                ?.GetField("XPTracker", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                ?.GetValue(profile);
+            var currentProp = tracker?.GetType()
+                .GetProperty("CurrentXP", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            if (currentProp != null)
+            {
+                return Convert.ToSingle(currentProp.GetValue(tracker));
+            }
+        }
+        catch
+        {
+            // ignore
+        }
+
+        return 0f;
+    }
+
+    /// <summary>
+    /// Progressive Certification Rank raises the MP ceiling, then catch-up applies ranks
+    /// already paid for by CurrentXP.
     /// </summary>
     private static bool TryApplyCertificationRank(int progressiveCount)
     {
         _loggedCertGate = false;
         Plugin.Log.LogInfo(
-            $"[HS-AP] Progressive Cert Rank ×{progressiveCount}: ceiling={CertificationRankCeiling} (no rank jump).");
+            $"[HS-AP] Progressive Cert Rank ×{progressiveCount}: ceiling={CertificationRankCeiling}.");
+        CatchUpCertificationFromMasteryPoints();
         return true;
     }
 

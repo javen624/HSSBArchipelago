@@ -375,7 +375,8 @@ public sealed class ArchipelagoClient
     {
         var cfg = Plugin.Instance;
         var prevKey = cfg.CurrencyGrantKey.Value ?? "";
-        _currencyKeyIsNew = !string.Equals(prevKey, key, StringComparison.Ordinal);
+        _currencyKeyIsNew = !string.Equals(prevKey, key, StringComparison.Ordinal)
+                            && !HabShopPaidStore.SameSlotAndSeed(prevKey, key);
 
         if (_currencyKeyIsNew)
         {
@@ -386,6 +387,11 @@ public sealed class ArchipelagoClient
         }
         else
         {
+            if (!string.Equals(prevKey, key, StringComparison.Ordinal))
+            {
+                cfg.CurrencyGrantKey.Value = key;
+            }
+
             _currencyGrantBaseline = Math.Max(0, cfg.CurrencyGrantCount.Value);
             Plugin.Log.LogInfo(
                 $"[HS-AP] Currency grant baseline={_currencyGrantBaseline} (skip Credit/LT below this on connect replay).");
@@ -447,21 +453,31 @@ public sealed class ArchipelagoClient
         }
     }
 
+    internal void RefreshHabShopPaidFromLocalChecks()
+    {
+        ItemApplicator.SyncHabShopPaidFromChecked(_checkedLocations);
+    }
+
     private void SyncCheckedLocationsFromServer()
     {
         try
         {
-            var checkedIds = _session!.Locations.AllLocationsChecked;
-            var n = 0;
-            foreach (var id in checkedIds)
+            var checkedIds = _session?.Locations?.AllLocationsChecked;
+            if (checkedIds != null)
             {
-                if (_checkedLocations.Add(id))
+                var n = 0;
+                foreach (var id in checkedIds)
                 {
-                    n++;
+                    if (_checkedLocations.Add(id))
+                    {
+                        n++;
+                    }
                 }
+
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Synced {checkedIds.Count} checked location(s) from server (+{n} new to local set).");
             }
 
-            Plugin.Log.LogInfo($"[HS-AP] Synced {checkedIds.Count} checked location(s) from server (+{n} new to local set).");
             ItemApplicator.SyncHabShopPaidFromChecked(_checkedLocations);
             if (_checkedLocations.Contains(BaseId + 100))
             {
@@ -471,6 +487,14 @@ public sealed class ArchipelagoClient
         catch (Exception ex)
         {
             Plugin.Log.LogWarning($"[HS-AP] SyncCheckedLocationsFromServer failed: {ex.Message}");
+            try
+            {
+                ItemApplicator.SyncHabShopPaidFromChecked(_checkedLocations);
+            }
+            catch
+            {
+                // ignore secondary
+            }
         }
     }
 
@@ -747,7 +771,7 @@ public sealed class ArchipelagoClient
             {
                 ItemApplicator.Apply(job.Name, job.ItemId);
                 _burstApplied++;
-                if (job.Toast && !InBurstQuiet)
+                if (job.Toast && (!InBurstQuiet || IsProgressiveCertRank(job.Name)))
                 {
                     ApToastQueue.EnqueueReceived(job.Name, job.From);
                 }
@@ -821,6 +845,9 @@ public sealed class ArchipelagoClient
             // ignore
         }
     }
+
+    private static bool IsProgressiveCertRank(string name) =>
+        string.Equals(name, "Progressive Certification Rank", StringComparison.Ordinal);
 
     private void EnqueueApply(string name, long itemId, string from, bool toast)
     {

@@ -38,7 +38,28 @@ internal static class HabShopPaidStore
         }
     }
 
-    /// <summary>Switch persistence to host:port|slot|seed; clears paid IDs when the key changes.</summary>
+    /// <summary>
+    /// True when both keys are the same multiworld (slot + seed), ignoring host:port.
+    /// archipelago.gg assigns a new port on reconnect; that is not a new seed.
+    /// </summary>
+    public static bool SameSlotAndSeed(string? left, string? right)
+    {
+        return string.Equals(SlotSeedIdentity(left), SlotSeedIdentity(right), StringComparison.Ordinal);
+    }
+
+    public static string SlotSeedIdentity(string? key)
+    {
+        // Unity 2020 Mono has Split(char[]), not netstandard2.1 Split(char, StringSplitOptions).
+        var parts = (key ?? "").Split(new[] { '|' });
+        if (parts.Length >= 2)
+        {
+            return parts[parts.Length - 2] + "|" + parts[parts.Length - 1];
+        }
+
+        return key ?? "";
+    }
+
+    /// <summary>Switch persistence to host:port|slot|seed; clears paid IDs only for a new slot/seed.</summary>
     public static void SetRoomKey(string key)
     {
         EnsureLoaded();
@@ -50,8 +71,17 @@ internal static class HabShopPaidStore
                 return;
             }
 
+            var sameRoom = SameSlotAndSeed(_activeKey, key);
             _activeKey = key;
             Plugin.Instance.HabShopPaidKey.Value = key;
+            if (sameRoom)
+            {
+                PersistUnlocked();
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Hab shop paid tracking key → '{key}' (same slot/seed; kept {Paid.Count} paid).");
+                return;
+            }
+
             Paid.Clear();
             // Keep CSV only when key matches; new key starts empty (profile seed may refill).
             Plugin.Instance.HabShopPaidLocationIds.Value = "";

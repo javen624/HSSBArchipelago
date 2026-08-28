@@ -1,0 +1,601 @@
+[
+  {
+    "name": "Atlas",
+    "chest_unopened_img": "images/chest_closed.png",
+    "chest_opened_img": "images/chest_open.png",
+    "children": [
+      {
+        "name": "Parts",
+        "children": [
+          {
+            "name": "Salvage Quasar Thruster",
+            "short_name": "Salvage Quasar Thruster",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1,progressive_grapple_strength",
+              "unlock_atlas,progressive_grapple_strength",
+              "progressive_ship_unlock:1,progressive_grapple_strength"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080231"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_parts",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Family Tiers",
+        "children": [
+          {
+            "name": "Atlas Salvage Tier 1",
+            "short_name": "Atlas Salvage Tier 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080405"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_family_tiers",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Salvage Tier 2",
+            "short_name": "Atlas Salvage Tier 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080406"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_family_tiers",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Salvage Tier 3",
+            "short_name": "Atlas Salvage Tier 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080407"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_family_tiers",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Salvage Tier 4",
+            "short_name": "Atlas Salvage Tier 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080408"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_family_tiers",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Atlas Salvage Tier 5",
+            "short_name": "Atlas Salvage Tier 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080409"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_family_tiers",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Scout",
+        "children": [
+          {
+            "name": "Atlas Scout Salvage Tier 1",
+            "short_name": "Atlas Scout Salvage Tier 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080470"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_scout",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Scout Salvage Tier 2",
+            "short_name": "Atlas Scout Salvage Tier 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080471"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_scout",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Scout Salvage Tier 3",
+            "short_name": "Atlas Scout Salvage Tier 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080472"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_scout",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Scout Salvage Tier 4",
+            "short_name": "Atlas Scout Salvage Tier 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080473"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_scout",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Atlas Scout Salvage Tier 5",
+            "short_name": "Atlas Scout Salvage Tier 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080474"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_scout",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Nomad",
+        "children": [
+          {
+            "name": "Atlas Nomad Salvage Tier 1",
+            "short_name": "Atlas Nomad Salvage Tier 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080475"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_nomad",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Nomad Salvage Tier 2",
+            "short_name": "Atlas Nomad Salvage Tier 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080476"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_nomad",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Nomad Salvage Tier 3",
+            "short_name": "Atlas Nomad Salvage Tier 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080477"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_nomad",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Nomad Salvage Tier 4",
+            "short_name": "Atlas Nomad Salvage Tier 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080478"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_nomad",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Atlas Nomad Salvage Tier 5",
+            "short_name": "Atlas Nomad Salvage Tier 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080479"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_nomad",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Roustabout",
+        "children": [
+          {
+            "name": "Atlas Roustabout Salvage Tier 1",
+            "short_name": "Atlas Roustabout Salvage Tie",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080480"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_roustabout",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Roustabout Salvage Tier 2",
+            "short_name": "Atlas Roustabout Salvage Tie",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080481"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_roustabout",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Roustabout Salvage Tier 3",
+            "short_name": "Atlas Roustabout Salvage Tie",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080482"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_roustabout",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Atlas Roustabout Salvage Tier 4",
+            "short_name": "Atlas Roustabout Salvage Tie",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080483"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_roustabout",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Atlas Roustabout Salvage Tier 5",
+            "short_name": "Atlas Roustabout Salvage Tie",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_atlas",
+              "progressive_ship_unlock:1"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080484"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "atlas_roustabout",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,871 @@
+[
+  {
+    "name": "Mackerel",
+    "chest_unopened_img": "images/chest_closed.png",
+    "chest_opened_img": "images/chest_open.png",
+    "children": [
+      {
+        "name": "Parts",
+        "children": [
+          {
+            "name": "Salvage Fuel Tank",
+            "short_name": "Salvage Fuel Tank",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080222"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_parts",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Salvage Power Cell",
+            "short_name": "Salvage Power Cell",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel,progressive_grapple_strength",
+              "progressive_certification_rank,progressive_grapple_strength"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080224"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_parts",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Salvage Coolant Tank",
+            "short_name": "Salvage Coolant Tank",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080233"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_parts",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Salvage Airlock",
+            "short_name": "Salvage Airlock",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080234"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_parts",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Salvage Computer Terminal",
+            "short_name": "Salvage Computer Terminal",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080243"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_parts",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Salvage Communications Array",
+            "short_name": "Salvage Communications Array",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080244"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_parts",
+                "x": 368,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Salvage Airlock Console",
+            "short_name": "Salvage Airlock Console",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080245"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_parts",
+                "x": 28,
+                "y": 72
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Family Tiers",
+        "children": [
+          {
+            "name": "Mackerel Salvage Tier 1",
+            "short_name": "Mackerel Salvage Tier 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080400"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_family_tiers",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Salvage Tier 2",
+            "short_name": "Mackerel Salvage Tier 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080401"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_family_tiers",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Salvage Tier 3",
+            "short_name": "Mackerel Salvage Tier 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080402"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_family_tiers",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Salvage Tier 4",
+            "short_name": "Mackerel Salvage Tier 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080403"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_family_tiers",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Salvage Tier 5",
+            "short_name": "Mackerel Salvage Tier 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080404"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_family_tiers",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Light Cargo",
+        "children": [
+          {
+            "name": "Mackerel Light Cargo Salvage Tier 1",
+            "short_name": "Mackerel Light Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080450"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_light_cargo",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Light Cargo Salvage Tier 2",
+            "short_name": "Mackerel Light Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080451"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_light_cargo",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Light Cargo Salvage Tier 3",
+            "short_name": "Mackerel Light Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080452"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_light_cargo",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Light Cargo Salvage Tier 4",
+            "short_name": "Mackerel Light Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080453"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_light_cargo",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Light Cargo Salvage Tier 5",
+            "short_name": "Mackerel Light Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080454"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_light_cargo",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Station Hopper",
+        "children": [
+          {
+            "name": "Mackerel Station Hopper Salvage Tier 1",
+            "short_name": "Mackerel Station Hopper Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080455"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_station_hopper",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Station Hopper Salvage Tier 2",
+            "short_name": "Mackerel Station Hopper Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080456"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_station_hopper",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Station Hopper Salvage Tier 3",
+            "short_name": "Mackerel Station Hopper Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080457"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_station_hopper",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Station Hopper Salvage Tier 4",
+            "short_name": "Mackerel Station Hopper Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080458"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_station_hopper",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Station Hopper Salvage Tier 5",
+            "short_name": "Mackerel Station Hopper Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080459"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_station_hopper",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exolab",
+        "children": [
+          {
+            "name": "Mackerel Exolab Salvage Tier 1",
+            "short_name": "Mackerel Exolab Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080460"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_exolab",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Exolab Salvage Tier 2",
+            "short_name": "Mackerel Exolab Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080461"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_exolab",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Exolab Salvage Tier 3",
+            "short_name": "Mackerel Exolab Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080462"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_exolab",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Exolab Salvage Tier 4",
+            "short_name": "Mackerel Exolab Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080463"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_exolab",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Exolab Salvage Tier 5",
+            "short_name": "Mackerel Exolab Salvage Tier",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080464"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_exolab",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Heavy Cargo",
+        "children": [
+          {
+            "name": "Mackerel Heavy Cargo Salvage Tier 1",
+            "short_name": "Mackerel Heavy Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080465"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_heavy_cargo",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Heavy Cargo Salvage Tier 2",
+            "short_name": "Mackerel Heavy Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080466"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_heavy_cargo",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Heavy Cargo Salvage Tier 3",
+            "short_name": "Mackerel Heavy Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080467"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_heavy_cargo",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Heavy Cargo Salvage Tier 4",
+            "short_name": "Mackerel Heavy Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080468"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_heavy_cargo",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Mackerel Heavy Cargo Salvage Tier 5",
+            "short_name": "Mackerel Heavy Cargo Salvage",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_mackerel",
+              "progressive_certification_rank"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080469"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "mackerel_heavy_cargo",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

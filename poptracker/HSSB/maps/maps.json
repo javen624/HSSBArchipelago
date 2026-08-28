@@ -1,0 +1,170 @@
+[
+  {
+    "name": "hab_milestones",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/hab_milestones.png"
+  },
+  {
+    "name": "hab_shop",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/hab_shop.png"
+  },
+  {
+    "name": "bay_bay_checks",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/bay_bay_checks.png"
+  },
+  {
+    "name": "mackerel_parts",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/mackerel_parts.png"
+  },
+  {
+    "name": "mackerel_family_tiers",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/mackerel_family_tiers.png"
+  },
+  {
+    "name": "mackerel_light_cargo",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/mackerel_light_cargo.png"
+  },
+  {
+    "name": "mackerel_station_hopper",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/mackerel_station_hopper.png"
+  },
+  {
+    "name": "mackerel_exolab",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/mackerel_exolab.png"
+  },
+  {
+    "name": "mackerel_heavy_cargo",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/mackerel_heavy_cargo.png"
+  },
+  {
+    "name": "reactor_reactor_i",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/reactor_reactor_i.png"
+  },
+  {
+    "name": "reactor_reactor_ii",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/reactor_reactor_ii.png"
+  },
+  {
+    "name": "atlas_parts",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/atlas_parts.png"
+  },
+  {
+    "name": "atlas_family_tiers",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/atlas_family_tiers.png"
+  },
+  {
+    "name": "atlas_scout",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/atlas_scout.png"
+  },
+  {
+    "name": "atlas_nomad",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/atlas_nomad.png"
+  },
+  {
+    "name": "atlas_roustabout",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/atlas_roustabout.png"
+  },
+  {
+    "name": "javelin_family_tiers",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/javelin_family_tiers.png"
+  },
+  {
+    "name": "javelin_small_refueling",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/javelin_small_refueling.png"
+  },
+  {
+    "name": "javelin_small_heavy_cargo",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/javelin_small_heavy_cargo.png"
+  },
+  {
+    "name": "javelin_medium_refueling",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/javelin_medium_refueling.png"
+  },
+  {
+    "name": "javelin_medium_heavy_cargo",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/javelin_medium_heavy_cargo.png"
+  },
+  {
+    "name": "javelin_large_refueling",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/javelin_large_refueling.png"
+  },
+  {
+    "name": "javelin_large_heavy_cargo",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/javelin_large_heavy_cargo.png"
+  },
+  {
+    "name": "gecko_family_tiers",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/gecko_family_tiers.png"
+  },
+  {
+    "name": "gecko_station_hopper",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/gecko_station_hopper.png"
+  },
+  {
+    "name": "gecko_heavy_cargo",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/gecko_heavy_cargo.png"
+  },
+  {
+    "name": "gecko_stargazer",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/gecko_stargazer.png"
+  },
+  {
+    "name": "gecko_salvage_runner",
+    "location_size": 16,
+    "location_border_thickness": 1,
+    "img": "images/maps/gecko_salvage_runner.png"
+  }
+]

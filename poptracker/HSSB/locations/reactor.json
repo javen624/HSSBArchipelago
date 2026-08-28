@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Reactor",
+    "chest_unopened_img": "images/chest_closed.png",
+    "chest_opened_img": "images/chest_open.png",
+    "children": [
+      {
+        "name": "Reactor I",
+        "children": [
+          {
+            "name": "Salvage Class I Reactor",
+            "short_name": "Salvage Class I Reactor",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_grapple_strength"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080225"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "reactor_reactor_i",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Salvage Thruster Class I",
+            "short_name": "Salvage Thruster Class I",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_grapple_strength"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080230"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "reactor_reactor_i",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Reactor II",
+        "children": [
+          {
+            "name": "Salvage ECU",
+            "short_name": "Salvage ECU",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module,progressive_grapple_strength:2",
+              "progressive_tether_amount,progressive_grapple_strength:2",
+              "progressive_tether_lifetime,progressive_grapple_strength:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080232"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "reactor_reactor_ii",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,361 @@
+{
+  "tracker_default": {
+    "type": "container",
+    "background": "#12151c",
+    "content": {
+      "type": "dock",
+      "content": [
+        {
+          "type": "dock",
+          "dock": "left",
+          "content": [
+            {
+              "type": "group",
+              "header": "Items",
+              "dock": "top",
+              "content": {
+                "type": "layout",
+                "key": "items"
+              }
+            },
+            {
+              "type": "group",
+              "header": "Seed Options",
+              "dock": "top",
+              "content": {
+                "type": "layout",
+                "key": "settings"
+              }
+            },
+            {
+              "type": "group",
+              "header": "Filler / Traps",
+              "dock": "top",
+              "content": {
+                "type": "layout",
+                "key": "filler"
+              }
+            }
+          ]
+        },
+        {
+          "type": "tabbed",
+          "tabs": [
+            {
+              "title": "Hab",
+              "content": {
+                "type": "tabbed",
+                "tabs": [
+                  {
+                    "title": "Milestones",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "hab_milestones"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Shop",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "hab_shop"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Bay",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "bay_bay_checks"
+                ]
+              }
+            },
+            {
+              "title": "Mackerel",
+              "content": {
+                "type": "tabbed",
+                "tabs": [
+                  {
+                    "title": "Parts",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "mackerel_parts"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Family Tiers",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "mackerel_family_tiers"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Light Cargo",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "mackerel_light_cargo"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Station Hopper",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "mackerel_station_hopper"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Exolab",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "mackerel_exolab"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Heavy Cargo",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "mackerel_heavy_cargo"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Atlas",
+              "content": {
+                "type": "tabbed",
+                "tabs": [
+                  {
+                    "title": "Parts",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "atlas_parts"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Family Tiers",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "atlas_family_tiers"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Scout",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "atlas_scout"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Nomad",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "atlas_nomad"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Roustabout",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "atlas_roustabout"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Javelin",
+              "content": {
+                "type": "tabbed",
+                "tabs": [
+                  {
+                    "title": "Family Tiers",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "javelin_family_tiers"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Small Refueling",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "javelin_small_refueling"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Small Heavy Cargo",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "javelin_small_heavy_cargo"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Medium Refueling",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "javelin_medium_refueling"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Medium Heavy Cargo",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "javelin_medium_heavy_cargo"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Large Refueling",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "javelin_large_refueling"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Large Heavy Cargo",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "javelin_large_heavy_cargo"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Gecko",
+              "content": {
+                "type": "tabbed",
+                "tabs": [
+                  {
+                    "title": "Family Tiers",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "gecko_family_tiers"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Station Hopper",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "gecko_station_hopper"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Heavy Cargo",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "gecko_heavy_cargo"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Stargazer",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "gecko_stargazer"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Salvage Runner",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "gecko_salvage_runner"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Reactor",
+              "content": {
+                "type": "tabbed",
+                "tabs": [
+                  {
+                    "title": "Reactor I",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "reactor_reactor_i"
+                      ]
+                    }
+                  },
+                  {
+                    "title": "Reactor II",
+                    "content": {
+                      "type": "map",
+                      "maps": [
+                        "reactor_reactor_ii"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "tracker_broadcast": {
+    "type": "container",
+    "background": "#12151c",
+    "content": {
+      "type": "group",
+      "header": "Hardspace Shipbreaker",
+      "content": {
+        "type": "layout",
+        "key": "items"
+      }
+    }
+  }
+}

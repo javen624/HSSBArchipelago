@@ -33,3 +33,7 @@ Build `client/HardspaceShipbreaker.Archipelago` (**0.6.0**) and install by putti
 | F11 | +1 Progressive Cert Cap (debug) |
 
 Live deposits, Hab shop-sanity, currency, upgrades, PCR cert ceiling, debt goal, and Death Link (when enabled) are handled automatically. Ship families unlock through Career certification as you find Progressive Certification Rank items. Offline checks queue locally (and in AP DataStorage) and flush on reconnect; AutoReconnect retries after unexpected drops.
+
+## PopTracker
+
+Copy [`poptracker/HSSB/`](../../../poptracker/HSSB/) into PopTracker’s `packs/` folder (or use `tools\Pack-Poptracker.ps1`), open the pack, and connect with **AP**. Regenerate: `python tools/generate_poptracker.py`.

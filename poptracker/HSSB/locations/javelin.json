@@ -1,0 +1,989 @@
+[
+  {
+    "name": "Javelin",
+    "chest_unopened_img": "images/chest_closed.png",
+    "chest_opened_img": "images/chest_open.png",
+    "children": [
+      {
+        "name": "Family Tiers",
+        "children": [
+          {
+            "name": "Javelin Salvage Tier 1",
+            "short_name": "Javelin Salvage Tier 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080410"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_family_tiers",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Salvage Tier 2",
+            "short_name": "Javelin Salvage Tier 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080411"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_family_tiers",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Salvage Tier 3",
+            "short_name": "Javelin Salvage Tier 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080412"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_family_tiers",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Salvage Tier 4",
+            "short_name": "Javelin Salvage Tier 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080413"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_family_tiers",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Javelin Salvage Tier 5",
+            "short_name": "Javelin Salvage Tier 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080414"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_family_tiers",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Small Refueling",
+        "children": [
+          {
+            "name": "Javelin Small Refueling Salvage Tier 1",
+            "short_name": "Javelin Small Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080485"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_refueling",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Refueling Salvage Tier 2",
+            "short_name": "Javelin Small Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080486"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_refueling",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Refueling Salvage Tier 3",
+            "short_name": "Javelin Small Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080487"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_refueling",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Refueling Salvage Tier 4",
+            "short_name": "Javelin Small Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080488"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_refueling",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Refueling Salvage Tier 5",
+            "short_name": "Javelin Small Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080489"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_refueling",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Small Heavy Cargo",
+        "children": [
+          {
+            "name": "Javelin Small Heavy Cargo Salvage Tier 1",
+            "short_name": "Javelin Small Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080490"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_heavy_cargo",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Heavy Cargo Salvage Tier 2",
+            "short_name": "Javelin Small Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080491"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_heavy_cargo",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Heavy Cargo Salvage Tier 3",
+            "short_name": "Javelin Small Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080492"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_heavy_cargo",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Heavy Cargo Salvage Tier 4",
+            "short_name": "Javelin Small Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080493"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_heavy_cargo",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Javelin Small Heavy Cargo Salvage Tier 5",
+            "short_name": "Javelin Small Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080494"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_small_heavy_cargo",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Medium Refueling",
+        "children": [
+          {
+            "name": "Javelin Medium Refueling Salvage Tier 1",
+            "short_name": "Javelin Medium Refueling Sal",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080495"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_refueling",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Refueling Salvage Tier 2",
+            "short_name": "Javelin Medium Refueling Sal",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080496"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_refueling",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Refueling Salvage Tier 3",
+            "short_name": "Javelin Medium Refueling Sal",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080497"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_refueling",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Refueling Salvage Tier 4",
+            "short_name": "Javelin Medium Refueling Sal",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080498"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_refueling",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Refueling Salvage Tier 5",
+            "short_name": "Javelin Medium Refueling Sal",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080499"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_refueling",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Medium Heavy Cargo",
+        "children": [
+          {
+            "name": "Javelin Medium Heavy Cargo Salvage Tier 1",
+            "short_name": "Javelin Medium Heavy Cargo S",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080500"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_heavy_cargo",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Heavy Cargo Salvage Tier 2",
+            "short_name": "Javelin Medium Heavy Cargo S",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080501"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_heavy_cargo",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Heavy Cargo Salvage Tier 3",
+            "short_name": "Javelin Medium Heavy Cargo S",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080502"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_heavy_cargo",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Heavy Cargo Salvage Tier 4",
+            "short_name": "Javelin Medium Heavy Cargo S",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080503"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_heavy_cargo",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Javelin Medium Heavy Cargo Salvage Tier 5",
+            "short_name": "Javelin Medium Heavy Cargo S",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080504"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_medium_heavy_cargo",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Large Refueling",
+        "children": [
+          {
+            "name": "Javelin Large Refueling Salvage Tier 1",
+            "short_name": "Javelin Large Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080505"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_refueling",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Refueling Salvage Tier 2",
+            "short_name": "Javelin Large Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080506"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_refueling",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Refueling Salvage Tier 3",
+            "short_name": "Javelin Large Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080507"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_refueling",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Refueling Salvage Tier 4",
+            "short_name": "Javelin Large Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080508"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_refueling",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Refueling Salvage Tier 5",
+            "short_name": "Javelin Large Refueling Salv",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080509"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_refueling",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Large Heavy Cargo",
+        "children": [
+          {
+            "name": "Javelin Large Heavy Cargo Salvage Tier 1",
+            "short_name": "Javelin Large Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080555"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_heavy_cargo",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Heavy Cargo Salvage Tier 2",
+            "short_name": "Javelin Large Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080556"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_heavy_cargo",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Heavy Cargo Salvage Tier 3",
+            "short_name": "Javelin Large Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080557"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_heavy_cargo",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Heavy Cargo Salvage Tier 4",
+            "short_name": "Javelin Large Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080558"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_heavy_cargo",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Javelin Large Heavy Cargo Salvage Tier 5",
+            "short_name": "Javelin Large Heavy Cargo Sa",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:1",
+              "unlock_javelin",
+              "progressive_ship_unlock:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080559"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "javelin_large_heavy_cargo",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

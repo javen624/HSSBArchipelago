@@ -1,0 +1,3814 @@
+[
+  {
+    "name": "Hab",
+    "chest_unopened_img": "images/chest_closed.png",
+    "chest_opened_img": "images/chest_open.png",
+    "children": [
+      {
+        "name": "Milestones",
+        "children": [
+          {
+            "name": "Finish Basic Training",
+            "short_name": "Finish Basic Training",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080200"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Reach Certification Rank 5",
+            "short_name": "Reach Certification Rank 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080239"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Reach Certification Rank 10",
+            "short_name": "Reach Certification Rank 10",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_grapple_strength:2",
+              "progressive_certification_rank:2"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080240"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Recover First Data Drive",
+            "short_name": "Recover First Data Drive",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080241"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Reach Certification Rank 15",
+            "short_name": "Reach Certification Rank 15",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080246"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Reach Certification Rank 20",
+            "short_name": "Reach Certification Rank 20",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_certification_rank:4"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080247"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 368,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Recover 3 Data Drives",
+            "short_name": "Recover 3 Data Drives",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080248"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 28,
+                "y": 72
+              }
+            ]
+          },
+          {
+            "name": "Recover 5 Data Drives",
+            "short_name": "Recover 5 Data Drives",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080249"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 198,
+                "y": 72
+              }
+            ]
+          },
+          {
+            "name": "Survive First Clone",
+            "short_name": "Survive First Clone",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080252"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_milestones",
+                "x": 368,
+                "y": 72
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Shop",
+        "children": [
+          {
+            "name": "Unlock Tethers",
+            "short_name": "Unlock Tethers",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080300"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Grapple Strength 1",
+            "short_name": "Grapple Strength 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080301"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Grapple Strength 2",
+            "short_name": "Grapple Strength 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080302"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 28
+              }
+            ]
+          },
+          {
+            "name": "Grapple Strength 3",
+            "short_name": "Grapple Strength 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080303"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Grapple Strength 4",
+            "short_name": "Grapple Strength 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080304"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Grapple Strength 5",
+            "short_name": "Grapple Strength 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080305"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "name": "Tethers Amount 1",
+            "short_name": "Tethers Amount 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module",
+              "progressive_tether_amount",
+              "progressive_tether_lifetime"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080306"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 72
+              }
+            ]
+          },
+          {
+            "name": "Tethers Amount 2",
+            "short_name": "Tethers Amount 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module",
+              "progressive_tether_amount",
+              "progressive_tether_lifetime"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080307"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 72
+              }
+            ]
+          },
+          {
+            "name": "Tethers Amount 3",
+            "short_name": "Tethers Amount 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module",
+              "progressive_tether_amount",
+              "progressive_tether_lifetime"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080308"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 72
+              }
+            ]
+          },
+          {
+            "name": "Tethers Lifetime 1",
+            "short_name": "Tethers Lifetime 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module",
+              "progressive_tether_amount",
+              "progressive_tether_lifetime"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080309"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 94
+              }
+            ]
+          },
+          {
+            "name": "Tethers Lifetime 2",
+            "short_name": "Tethers Lifetime 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module",
+              "progressive_tether_amount",
+              "progressive_tether_lifetime"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080310"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 94
+              }
+            ]
+          },
+          {
+            "name": "Unlock Demo Charge",
+            "short_name": "Unlock Demo Charge",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080311"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 94
+              }
+            ]
+          },
+          {
+            "name": "Purchase First Equipment Upgrade",
+            "short_name": "Purchase First Equipment Upg",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080312"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 116
+              }
+            ]
+          },
+          {
+            "name": "Scanner Objects",
+            "short_name": "Scanner Objects",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080313"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 116
+              }
+            ]
+          },
+          {
+            "name": "Scanner Systems",
+            "short_name": "Scanner Systems",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_scanner"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080314"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 116
+              }
+            ]
+          },
+          {
+            "name": "Suit Integrity 1",
+            "short_name": "Suit Integrity 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080315"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 138
+              }
+            ]
+          },
+          {
+            "name": "Suit Integrity 2",
+            "short_name": "Suit Integrity 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080316"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 138
+              }
+            ]
+          },
+          {
+            "name": "Cutter Heat 1",
+            "short_name": "Cutter Heat 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080317"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 138
+              }
+            ]
+          },
+          {
+            "name": "Demo Charges Capacity 1",
+            "short_name": "Demo Charges Capacity 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080318"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "name": "Tethers Lifetime 3",
+            "short_name": "Tethers Lifetime 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module",
+              "progressive_tether_amount",
+              "progressive_tether_lifetime"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080319"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "name": "Tethers Lifetime 4",
+            "short_name": "Tethers Lifetime 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "tether_module",
+              "progressive_tether_amount",
+              "progressive_tether_lifetime"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080320"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "name": "Charged Push",
+            "short_name": "Charged Push",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080321"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 182
+              }
+            ]
+          },
+          {
+            "name": "Scanner Range 1",
+            "short_name": "Scanner Range 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080322"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 182
+              }
+            ]
+          },
+          {
+            "name": "Scanner Range 2",
+            "short_name": "Scanner Range 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080323"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 182
+              }
+            ]
+          },
+          {
+            "name": "Scanner Range 3",
+            "short_name": "Scanner Range 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080324"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 204
+              }
+            ]
+          },
+          {
+            "name": "Scanner Range 4",
+            "short_name": "Scanner Range 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080325"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 204
+              }
+            ]
+          },
+          {
+            "name": "Scanner Range 5",
+            "short_name": "Scanner Range 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080326"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 204
+              }
+            ]
+          },
+          {
+            "name": "Suit Integrity 3",
+            "short_name": "Suit Integrity 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080327"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 226
+              }
+            ]
+          },
+          {
+            "name": "Suit Integrity 4",
+            "short_name": "Suit Integrity 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080328"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 226
+              }
+            ]
+          },
+          {
+            "name": "Suit Integrity 5",
+            "short_name": "Suit Integrity 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080329"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 226
+              }
+            ]
+          },
+          {
+            "name": "Heat Resistance 1",
+            "short_name": "Heat Resistance 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080330"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 248
+              }
+            ]
+          },
+          {
+            "name": "Heat Resistance 2",
+            "short_name": "Heat Resistance 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080331"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 248
+              }
+            ]
+          },
+          {
+            "name": "Heat Resistance 3",
+            "short_name": "Heat Resistance 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080332"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 248
+              }
+            ]
+          },
+          {
+            "name": "Heat Resistance 4",
+            "short_name": "Heat Resistance 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080333"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 270
+              }
+            ]
+          },
+          {
+            "name": "Heat Resistance 5",
+            "short_name": "Heat Resistance 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080334"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 270
+              }
+            ]
+          },
+          {
+            "name": "Cryo Resistance 1",
+            "short_name": "Cryo Resistance 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080335"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 270
+              }
+            ]
+          },
+          {
+            "name": "Cryo Resistance 2",
+            "short_name": "Cryo Resistance 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080336"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 292
+              }
+            ]
+          },
+          {
+            "name": "Cryo Resistance 3",
+            "short_name": "Cryo Resistance 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080337"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 292
+              }
+            ]
+          },
+          {
+            "name": "Cryo Resistance 4",
+            "short_name": "Cryo Resistance 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080338"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 292
+              }
+            ]
+          },
+          {
+            "name": "Cryo Resistance 5",
+            "short_name": "Cryo Resistance 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080339"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 314
+              }
+            ]
+          },
+          {
+            "name": "Electrical Resistance 1",
+            "short_name": "Electrical Resistance 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080340"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 314
+              }
+            ]
+          },
+          {
+            "name": "Electrical Resistance 2",
+            "short_name": "Electrical Resistance 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080341"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 314
+              }
+            ]
+          },
+          {
+            "name": "Electrical Resistance 3",
+            "short_name": "Electrical Resistance 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080342"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 336
+              }
+            ]
+          },
+          {
+            "name": "Electrical Resistance 4",
+            "short_name": "Electrical Resistance 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080343"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 336
+              }
+            ]
+          },
+          {
+            "name": "Electrical Resistance 5",
+            "short_name": "Electrical Resistance 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080344"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 336
+              }
+            ]
+          },
+          {
+            "name": "Cutter Heat Capacity 2",
+            "short_name": "Cutter Heat Capacity 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080345"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 358
+              }
+            ]
+          },
+          {
+            "name": "Cutter Heat Capacity 3",
+            "short_name": "Cutter Heat Capacity 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080346"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 358
+              }
+            ]
+          },
+          {
+            "name": "Cutter Cooldown 1",
+            "short_name": "Cutter Cooldown 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080347"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 358
+              }
+            ]
+          },
+          {
+            "name": "Cutter Cooldown 2",
+            "short_name": "Cutter Cooldown 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080348"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 380
+              }
+            ]
+          },
+          {
+            "name": "Cutter Cooldown 3",
+            "short_name": "Cutter Cooldown 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080349"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 380
+              }
+            ]
+          },
+          {
+            "name": "Stinger Range 1",
+            "short_name": "Stinger Range 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080350"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 380
+              }
+            ]
+          },
+          {
+            "name": "Stinger Range 2",
+            "short_name": "Stinger Range 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080351"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 402
+              }
+            ]
+          },
+          {
+            "name": "Stinger Range 3",
+            "short_name": "Stinger Range 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080352"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 402
+              }
+            ]
+          },
+          {
+            "name": "Stinger Range 4",
+            "short_name": "Stinger Range 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080353"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 402
+              }
+            ]
+          },
+          {
+            "name": "Stinger Range 5",
+            "short_name": "Stinger Range 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080354"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 424
+              }
+            ]
+          },
+          {
+            "name": "Splitsaw Range 1",
+            "short_name": "Splitsaw Range 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080355"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 424
+              }
+            ]
+          },
+          {
+            "name": "Splitsaw Range 2",
+            "short_name": "Splitsaw Range 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080356"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 424
+              }
+            ]
+          },
+          {
+            "name": "Splitsaw Range 3",
+            "short_name": "Splitsaw Range 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080357"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 446
+              }
+            ]
+          },
+          {
+            "name": "Splitsaw Range 4",
+            "short_name": "Splitsaw Range 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080358"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 446
+              }
+            ]
+          },
+          {
+            "name": "Splitsaw Range 5",
+            "short_name": "Splitsaw Range 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080359"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 446
+              }
+            ]
+          },
+          {
+            "name": "Grapple Range 1",
+            "short_name": "Grapple Range 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080360"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 468
+              }
+            ]
+          },
+          {
+            "name": "Grapple Range 2",
+            "short_name": "Grapple Range 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080361"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 468
+              }
+            ]
+          },
+          {
+            "name": "Grapple Range 3",
+            "short_name": "Grapple Range 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080362"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 468
+              }
+            ]
+          },
+          {
+            "name": "Grapple Range 4",
+            "short_name": "Grapple Range 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080363"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 490
+              }
+            ]
+          },
+          {
+            "name": "Grapple Range 5",
+            "short_name": "Grapple Range 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080364"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 490
+              }
+            ]
+          },
+          {
+            "name": "Charged Push Force 1",
+            "short_name": "Charged Push Force 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "charged_push",
+              "progressive_charged_push_force"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080365"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 490
+              }
+            ]
+          },
+          {
+            "name": "Charged Push Force 2",
+            "short_name": "Charged Push Force 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "charged_push",
+              "progressive_charged_push_force"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080366"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 512
+              }
+            ]
+          },
+          {
+            "name": "Charged Push Force 3",
+            "short_name": "Charged Push Force 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "charged_push",
+              "progressive_charged_push_force"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080367"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 512
+              }
+            ]
+          },
+          {
+            "name": "Demo Charges Capacity 2",
+            "short_name": "Demo Charges Capacity 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080368"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 512
+              }
+            ]
+          },
+          {
+            "name": "Demo Charges Capacity 3",
+            "short_name": "Demo Charges Capacity 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080369"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 534
+              }
+            ]
+          },
+          {
+            "name": "Demo Charges Capacity 4",
+            "short_name": "Demo Charges Capacity 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080370"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 534
+              }
+            ]
+          },
+          {
+            "name": "Demo Charges Capacity 5",
+            "short_name": "Demo Charges Capacity 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080371"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 534
+              }
+            ]
+          },
+          {
+            "name": "Demo Disarming 1",
+            "short_name": "Demo Disarming 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080372"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 556
+              }
+            ]
+          },
+          {
+            "name": "Demo Disarming 2",
+            "short_name": "Demo Disarming 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080373"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 556
+              }
+            ]
+          },
+          {
+            "name": "Demo Disarming 3",
+            "short_name": "Demo Disarming 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080374"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 556
+              }
+            ]
+          },
+          {
+            "name": "Demo Self Cleanup 1",
+            "short_name": "Demo Self Cleanup 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080375"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 578
+              }
+            ]
+          },
+          {
+            "name": "Demo Self Cleanup 2",
+            "short_name": "Demo Self Cleanup 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080376"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 578
+              }
+            ]
+          },
+          {
+            "name": "Demo Self Cleanup 3",
+            "short_name": "Demo Self Cleanup 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080377"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 578
+              }
+            ]
+          },
+          {
+            "name": "Demo Auto-Deploy",
+            "short_name": "Demo Auto-Deploy",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080378"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 600
+              }
+            ]
+          },
+          {
+            "name": "O2 Capacity 1",
+            "short_name": "O2 Capacity 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080379"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 600
+              }
+            ]
+          },
+          {
+            "name": "O2 Capacity 2",
+            "short_name": "O2 Capacity 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080380"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 600
+              }
+            ]
+          },
+          {
+            "name": "O2 Capacity 3",
+            "short_name": "O2 Capacity 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080381"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 622
+              }
+            ]
+          },
+          {
+            "name": "O2 Capacity 4",
+            "short_name": "O2 Capacity 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080382"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 622
+              }
+            ]
+          },
+          {
+            "name": "O2 Capacity 5",
+            "short_name": "O2 Capacity 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080383"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 622
+              }
+            ]
+          },
+          {
+            "name": "O2 Recharge Module",
+            "short_name": "O2 Recharge Module",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080384"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 644
+              }
+            ]
+          },
+          {
+            "name": "O2 Recharge 1",
+            "short_name": "O2 Recharge 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "o2_recharge_module"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080385"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 644
+              }
+            ]
+          },
+          {
+            "name": "O2 Recharge 2",
+            "short_name": "O2 Recharge 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "o2_recharge_module"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080386"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 644
+              }
+            ]
+          },
+          {
+            "name": "O2 Recharge 3",
+            "short_name": "O2 Recharge 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "o2_recharge_module"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080387"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 666
+              }
+            ]
+          },
+          {
+            "name": "Thruster Top Speed 1",
+            "short_name": "Thruster Top Speed 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080388"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 666
+              }
+            ]
+          },
+          {
+            "name": "Thruster Top Speed 2",
+            "short_name": "Thruster Top Speed 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080389"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 666
+              }
+            ]
+          },
+          {
+            "name": "Thruster Top Speed 3",
+            "short_name": "Thruster Top Speed 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080390"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 688
+              }
+            ]
+          },
+          {
+            "name": "Thruster Braking 1",
+            "short_name": "Thruster Braking 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080391"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 688
+              }
+            ]
+          },
+          {
+            "name": "Thruster Braking 2",
+            "short_name": "Thruster Braking 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080392"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 688
+              }
+            ]
+          },
+          {
+            "name": "Thruster Braking 3",
+            "short_name": "Thruster Braking 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080393"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 710
+              }
+            ]
+          },
+          {
+            "name": "Thruster Fuel Capacity 1",
+            "short_name": "Thruster Fuel Capacity 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080394"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 710
+              }
+            ]
+          },
+          {
+            "name": "Thruster Fuel Capacity 2",
+            "short_name": "Thruster Fuel Capacity 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080395"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 710
+              }
+            ]
+          },
+          {
+            "name": "Thruster Fuel Capacity 3",
+            "short_name": "Thruster Fuel Capacity 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080396"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 732
+              }
+            ]
+          },
+          {
+            "name": "Audio Resynth 1",
+            "short_name": "Audio Resynth 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080397"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 732
+              }
+            ]
+          },
+          {
+            "name": "Audio Resynth 2",
+            "short_name": "Audio Resynth 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080398"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 732
+              }
+            ]
+          },
+          {
+            "name": "Audio Resynth 3",
+            "short_name": "Audio Resynth 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080399"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 754
+              }
+            ]
+          },
+          {
+            "name": "Thruster Rental",
+            "short_name": "Thruster Rental",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080420"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 754
+              }
+            ]
+          },
+          {
+            "name": "Thruster Durability 1",
+            "short_name": "Thruster Durability 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080421"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 754
+              }
+            ]
+          },
+          {
+            "name": "Thruster Durability 2",
+            "short_name": "Thruster Durability 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080422"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 776
+              }
+            ]
+          },
+          {
+            "name": "Thruster Durability 3",
+            "short_name": "Thruster Durability 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080423"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 776
+              }
+            ]
+          },
+          {
+            "name": "Thruster Durability 4",
+            "short_name": "Thruster Durability 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080424"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 776
+              }
+            ]
+          },
+          {
+            "name": "Thruster Durability 5",
+            "short_name": "Thruster Durability 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080425"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 798
+              }
+            ]
+          },
+          {
+            "name": "Cutter Rental",
+            "short_name": "Cutter Rental",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080426"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 798
+              }
+            ]
+          },
+          {
+            "name": "Cutter Durability 1",
+            "short_name": "Cutter Durability 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080427"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 798
+              }
+            ]
+          },
+          {
+            "name": "Cutter Durability 2",
+            "short_name": "Cutter Durability 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080428"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 820
+              }
+            ]
+          },
+          {
+            "name": "Cutter Durability 3",
+            "short_name": "Cutter Durability 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080429"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 820
+              }
+            ]
+          },
+          {
+            "name": "Cutter Durability 4",
+            "short_name": "Cutter Durability 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080430"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 820
+              }
+            ]
+          },
+          {
+            "name": "Cutter Durability 5",
+            "short_name": "Cutter Durability 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080431"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 842
+              }
+            ]
+          },
+          {
+            "name": "Grapple Rental",
+            "short_name": "Grapple Rental",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080432"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 842
+              }
+            ]
+          },
+          {
+            "name": "Grapple Durability 1",
+            "short_name": "Grapple Durability 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080433"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 842
+              }
+            ]
+          },
+          {
+            "name": "Grapple Durability 2",
+            "short_name": "Grapple Durability 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080434"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 864
+              }
+            ]
+          },
+          {
+            "name": "Grapple Durability 3",
+            "short_name": "Grapple Durability 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080435"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 864
+              }
+            ]
+          },
+          {
+            "name": "Grapple Durability 4",
+            "short_name": "Grapple Durability 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080436"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 864
+              }
+            ]
+          },
+          {
+            "name": "Grapple Durability 5",
+            "short_name": "Grapple Durability 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080437"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 886
+              }
+            ]
+          },
+          {
+            "name": "Scanner Rental",
+            "short_name": "Scanner Rental",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080438"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 886
+              }
+            ]
+          },
+          {
+            "name": "Scanner Durability 1",
+            "short_name": "Scanner Durability 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080439"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 886
+              }
+            ]
+          },
+          {
+            "name": "Scanner Durability 2",
+            "short_name": "Scanner Durability 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080440"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 908
+              }
+            ]
+          },
+          {
+            "name": "Scanner Durability 3",
+            "short_name": "Scanner Durability 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080441"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 908
+              }
+            ]
+          },
+          {
+            "name": "Scanner Durability 4",
+            "short_name": "Scanner Durability 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080442"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 908
+              }
+            ]
+          },
+          {
+            "name": "Scanner Durability 5",
+            "short_name": "Scanner Durability 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080443"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 930
+              }
+            ]
+          },
+          {
+            "name": "Helmet Rental",
+            "short_name": "Helmet Rental",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080444"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 930
+              }
+            ]
+          },
+          {
+            "name": "Suit Rental",
+            "short_name": "Suit Rental",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080445"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 930
+              }
+            ]
+          },
+          {
+            "name": "Suit Durability 1",
+            "short_name": "Suit Durability 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080446"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 952
+              }
+            ]
+          },
+          {
+            "name": "Suit Durability 2",
+            "short_name": "Suit Durability 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080447"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 952
+              }
+            ]
+          },
+          {
+            "name": "Suit Durability 3",
+            "short_name": "Suit Durability 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080448"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 952
+              }
+            ]
+          },
+          {
+            "name": "Demo Charge Rental",
+            "short_name": "Demo Charge Rental",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080449"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 974
+              }
+            ]
+          },
+          {
+            "name": "Stinger Cut Grade",
+            "short_name": "Stinger Cut Grade",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080530"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 974
+              }
+            ]
+          },
+          {
+            "name": "Unlock Launcher",
+            "short_name": "Unlock Launcher",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080531"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 974
+              }
+            ]
+          },
+          {
+            "name": "Launcher Range 1",
+            "short_name": "Launcher Range 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080532"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 996
+              }
+            ]
+          },
+          {
+            "name": "Launcher Range 2",
+            "short_name": "Launcher Range 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080533"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 996
+              }
+            ]
+          },
+          {
+            "name": "Launcher Range 3",
+            "short_name": "Launcher Range 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080534"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 996
+              }
+            ]
+          },
+          {
+            "name": "Launcher Range 4",
+            "short_name": "Launcher Range 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080535"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 1018
+              }
+            ]
+          },
+          {
+            "name": "Launcher Range 5",
+            "short_name": "Launcher Range 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080536"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 1018
+              }
+            ]
+          },
+          {
+            "name": "Launcher Cryo",
+            "short_name": "Launcher Cryo",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080537"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 1018
+              }
+            ]
+          },
+          {
+            "name": "Launcher Explosive",
+            "short_name": "Launcher Explosive",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080538"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 1040
+              }
+            ]
+          },
+          {
+            "name": "Launcher Magnetic",
+            "short_name": "Launcher Magnetic",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "unlock_launcher",
+              "progressive_launcher_range"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080539"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 1040
+              }
+            ]
+          },
+          {
+            "name": "Scanner Detail Category",
+            "short_name": "Scanner Detail Category",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_scanner"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080540"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 1040
+              }
+            ]
+          },
+          {
+            "name": "Scanner Detail Condition",
+            "short_name": "Scanner Detail Condition",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_scanner"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080541"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 1062
+              }
+            ]
+          },
+          {
+            "name": "Scanner Detail Hazards",
+            "short_name": "Scanner Detail Hazards",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_scanner"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080542"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 1062
+              }
+            ]
+          },
+          {
+            "name": "Scanner Detail Materials",
+            "short_name": "Scanner Detail Materials",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "progressive_scanner"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080543"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 1062
+              }
+            ]
+          },
+          {
+            "name": "Demo Durability 1",
+            "short_name": "Demo Durability 1",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080544"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 1084
+              }
+            ]
+          },
+          {
+            "name": "Demo Durability 2",
+            "short_name": "Demo Durability 2",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080545"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 1084
+              }
+            ]
+          },
+          {
+            "name": "Demo Durability 3",
+            "short_name": "Demo Durability 3",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080546"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 1084
+              }
+            ]
+          },
+          {
+            "name": "Demo Durability 4",
+            "short_name": "Demo Durability 4",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080547"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 28,
+                "y": 1106
+              }
+            ]
+          },
+          {
+            "name": "Demo Durability 5",
+            "short_name": "Demo Durability 5",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [
+              "demo_charge_license",
+              "progressive_demo_charges"
+            ],
+            "visibility_rules": [
+              "$loc_visible|2026080548"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 198,
+                "y": 1106
+              }
+            ]
+          },
+          {
+            "name": "Cutter Purchase",
+            "short_name": "Cutter Purchase",
+            "chest_unopened_img": "images/chest_closed.png",
+            "chest_opened_img": "images/chest_open.png",
+            "access_rules": [],
+            "visibility_rules": [
+              "$loc_visible|2026080549"
+            ],
+            "sections": [
+              {
+                "name": "Check",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "hab_shop",
+                "x": 368,
+                "y": 1106
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
