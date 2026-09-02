@@ -11,7 +11,7 @@ public class Plugin : BaseUnityPlugin
 {
     public const string PLUGIN_GUID = "hardspace.shipbreaker.archipelago";
     public const string PLUGIN_NAME = "Hardspace Shipbreaker Archipelago";
-    public const string PLUGIN_VERSION = "0.6.25";
+    public const string PLUGIN_VERSION = "0.6.26";
 
     internal static Plugin Instance { get; private set; } = null!;
     internal static ManualLogSource Log { get; private set; } = null!;
@@ -103,11 +103,6 @@ public class Plugin : BaseUnityPlugin
         if (AutoConnect.Value)
         {
             _client.Connect(Server.Value, Port.Value, Slot.Value, Password.Value);
-            if (!_client.IsConnected)
-            {
-                _connectionDialog.Visible = true;
-                _connectionDialog.SetStatus(_client.LastConnectError ?? "Auto-connect failed — will retry if AutoReconnect is on.");
-            }
         }
         else
         {

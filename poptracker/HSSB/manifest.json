@@ -2,7 +2,7 @@
   "name": "Hardspace Shipbreaker - Archipelago",
   "game_name": "Hardspace Shipbreaker",
   "package_uid": "hardspace-shipbreaker-ap",
-  "package_version": "0.2.0",
+  "package_version": "0.6.26",
   "author": "HSSBArchipelago",
   "min_poptracker_version": "0.26.0",
   "target_poptracker_version": "0.32.1",

@@ -123,13 +123,17 @@ internal sealed class ConnectionDialog
         }
 
         y += 36;
-        var status = !string.IsNullOrEmpty(_status)
-            ? _status
+        var status = connecting
+            ? (client?.ConnectionStatusLabel ?? "Connecting…")
             : connected
                 ? $"Connected as '{client?.SlotName}'. F6 = progress."
-                : client is { IsReconnecting: true }
-                    ? "Reconnecting… (AutoReconnect)"
-                    : "Not connected. F6 progress · F7 this dialog.";
+                : !string.IsNullOrEmpty(client?.LastConnectError)
+                    ? client!.LastConnectError
+                    : client is { IsReconnecting: true }
+                        ? "Reconnecting… (AutoReconnect)"
+                        : !string.IsNullOrEmpty(_status)
+                            ? _status
+                            : "Not connected. F6 progress · F7 this dialog.";
         GUI.Label(new Rect(pad, y, _windowRect.width - pad * 2, 48), status);
 
         GUI.DragWindow(new Rect(0, 0, _windowRect.width, 24));
@@ -161,15 +165,6 @@ internal sealed class ConnectionDialog
         try
         {
             _plugin.Client?.Connect(server, port, slot, _password ?? "");
-            if (_plugin.Client is { IsConnected: true })
-            {
-                _status = $"Connected as '{_plugin.Client.SlotName}'.";
-                Visible = false;
-            }
-            else
-            {
-                _status = _plugin.Client?.LastConnectError ?? "Connection failed — see BepInEx log.";
-            }
         }
         catch (Exception ex)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
@@ -114,6 +115,8 @@ public sealed class ArchipelagoClient
     private const float ReconnectBackoffMax = 60f;
     private bool _wasConnected;
     private string? _reconnectStatus;
+    private readonly object _mainGate = new();
+    private readonly Queue<Action> _mainActions = new();
 
     public bool IsConnected => _session?.Socket.Connected == true;
     public bool IsConnecting => _connecting;
@@ -180,23 +183,29 @@ public sealed class ArchipelagoClient
         SlotName = slot;
         _connectSyncActive = true;
         _receiveOrdinal = 0;
+        TeardownSession();
+        _connectSyncActive = true;
+        _receiveOrdinal = 0;
+        Plugin.Log.LogInfo($"[HS-AP] Connecting to {server}:{port} as '{slot}'...");
+        // TryConnectAndLogin blocks until TCP/login timeout. Doing that on the Unity
+        // thread froze the game (Windows AppHang) after a pause dropped the socket.
+        ThreadPool.QueueUserWorkItem(_ => ConnectWorker(server, port, slot, password ?? ""));
+    }
+
+    private void ConnectWorker(string server, int port, string slot, string password)
+    {
         try
         {
-            TeardownSession();
-            _connectSyncActive = true;
-            _receiveOrdinal = 0;
-            _session = ArchipelagoSessionFactory.CreateSession(server, port);
-            _session.MessageLog.OnMessageReceived += OnMessage;
-            _session.Items.ItemReceived += OnItemReceived;
-            _session.Socket.SocketClosed += OnSocketClosed;
-            _session.Socket.ErrorReceived += OnSocketError;
+            var session = ArchipelagoSessionFactory.CreateSession(server, port);
+            session.MessageLog.OnMessageReceived += OnMessage;
+            session.Items.ItemReceived += OnItemReceived;
+            session.Socket.SocketClosed += OnSocketClosed;
+            session.Socket.ErrorReceived += OnSocketError;
 
-            Plugin.Log.LogInfo($"[HS-AP] Connecting to {server}:{port} as '{slot}'...");
             LoginResult result;
             try
             {
-                // MultiClient.Net 6.0.1 has no client compression toggle; AP server negotiates transport.
-                result = _session.TryConnectAndLogin(
+                result = session.TryConnectAndLogin(
                     "Hardspace Shipbreaker",
                     slot,
                     ItemsHandlingFlags.AllItems,
@@ -210,27 +219,43 @@ public sealed class ArchipelagoClient
                 result = new LoginFailure(e.GetBaseException().Message);
             }
 
+            RunOnMain(() => FinishConnectOnMain(session, result, server, port, slot));
+        }
+        catch (Exception ex)
+        {
+            RunOnMain(() => FinishConnectFailedOnMain(ex.Message));
+        }
+    }
+
+    private void FinishConnectOnMain(ArchipelagoSession session, LoginResult result, string server, int port, string slot)
+    {
+        try
+        {
+            if (_userDisconnect || !_wantConnected)
+            {
+                DiscardSession(session);
+                return;
+            }
+
             if (!result.Successful)
             {
                 var fail = (LoginFailure)result;
                 LastConnectError = string.Join("; ", fail.Errors);
                 Plugin.Log.LogError($"[HS-AP] Login failed: {LastConnectError}");
-                TeardownSession();
+                DiscardSession(session);
                 ScheduleReconnect("Login failed");
                 return;
             }
 
             var success = (LoginSuccessful)result;
+            _session = session;
             Plugin.Log.LogInfo($"[HS-AP] Connected. Slot={success.Slot} Team={success.Team}");
             _wasConnected = true;
             _reconnectBackoff = 2f;
             _reconnectAt = -1f;
             _reconnectStatus = null;
             ParseSlotData(success.SlotData);
-            // Scope progress persistence to AP seed so a fresh multiworld on the same
-            // host/port/slot does not inherit Hab-yellow / currency watermarks.
             var seed = ResolveRoomSeed();
-            // Always use a 3-part key (host:port|slot|seed). Legacy 2-part keys are cleared.
             var roomKey = $"{server}:{port}|{slot}|{(string.IsNullOrEmpty(seed) ? "unknown" : seed)}";
             Plugin.Log.LogInfo($"[HS-AP] v{Plugin.PLUGIN_VERSION} roomKey='{roomKey}' seed='{seed}'");
             BeginCurrencyGrantTracking(roomKey);
@@ -238,7 +263,6 @@ public sealed class ArchipelagoClient
             HabShopPaidStore.SetRoomKey(roomKey);
 
             SyncCheckedLocationsFromServer();
-            // Fresh AP rooms have no Hab checks — drop any ghost paid/yellow from prior seeds.
             ItemApplicator.EnsureHabShopPaidState(CountCheckedHabShopLocations());
             PullAndMergeDataStorageOfflineChecks();
             FlushOfflineCheckQueue();
@@ -266,12 +290,81 @@ public sealed class ArchipelagoClient
         {
             LastConnectError = ex.Message;
             Plugin.Log.LogError($"[HS-AP] Connect exception: {ex}");
-            TeardownSession();
+            DiscardSession(session);
+            if (_session == session)
+            {
+                _session = null;
+            }
+
             ScheduleReconnect("Connect error");
         }
         finally
         {
             _connecting = false;
+        }
+    }
+
+    private void FinishConnectFailedOnMain(string message)
+    {
+        LastConnectError = message;
+        Plugin.Log.LogError($"[HS-AP] Connect exception: {message}");
+        _connecting = false;
+        if (_wantConnected && !_userDisconnect)
+        {
+            ScheduleReconnect("Connect error");
+        }
+    }
+
+    private void DiscardSession(ArchipelagoSession session)
+    {
+        try
+        {
+            session.MessageLog.OnMessageReceived -= OnMessage;
+            session.Items.ItemReceived -= OnItemReceived;
+            session.Socket.SocketClosed -= OnSocketClosed;
+            session.Socket.ErrorReceived -= OnSocketError;
+            if (session.Socket.Connected)
+            {
+                session.Socket.DisconnectAsync();
+            }
+        }
+        catch
+        {
+            // ignore
+        }
+    }
+
+    private void RunOnMain(Action action)
+    {
+        lock (_mainGate)
+        {
+            _mainActions.Enqueue(action);
+        }
+    }
+
+    private void DrainMainActions()
+    {
+        while (true)
+        {
+            Action action;
+            lock (_mainGate)
+            {
+                if (_mainActions.Count == 0)
+                {
+                    return;
+                }
+
+                action = _mainActions.Dequeue();
+            }
+
+            try
+            {
+                action();
+            }
+            catch (Exception ex)
+            {
+                Plugin.Log.LogWarning($"[HS-AP] Main-thread connect callback failed: {ex.Message}");
+            }
         }
     }
 
@@ -317,7 +410,17 @@ public sealed class ArchipelagoClient
 
     private void OnSocketClosed(string reason)
     {
+        RunOnMain(() => HandleSocketClosedOnMain(reason));
+    }
+
+    private void HandleSocketClosedOnMain(string reason)
+    {
         Plugin.Log.LogWarning($"[HS-AP] Socket closed: {reason}");
+        if (_connecting && _session == null)
+        {
+            return;
+        }
+
         _session = null;
         _connectSyncActive = true;
         _receiveOrdinal = 0;
@@ -701,6 +804,7 @@ public sealed class ArchipelagoClient
 
     public void Tick()
     {
+        DrainMainActions();
         PumpReconnect();
         PumpApplyQueue();
         FlushConfigSaveIfDue();
