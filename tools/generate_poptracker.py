@@ -273,6 +273,8 @@ def access_rule_for(
         return [grapple]
     if name == "Clear a Ghost Ship":
         return [f"{pcr}:3"]
+    if name == "Reach Certification Rank 5":
+        return [f"{pcr}:1"]
     if name == "Reach Certification Rank 10":
         return [f"{grapple}:2", f"{pcr}:2"]
     if name == "Reach Certification Rank 15":
@@ -280,21 +282,32 @@ def access_rule_for(
     if name == "Reach Certification Rank 20":
         return [f"{pcr}:4"]
 
-    if name in equipment.HAB_LICENSE_GATES:
-        lic = equipment.HAB_LICENSE_GATES[name]
-        if lic == "Tether Module":
-            return tether_rules
-        if lic == "Demo Charge License":
-            return demo_rules
-        if lic == "Charged Push":
-            return [slug("Charged Push"), slug("Progressive Charged Push Force")]
-        if lic == "Unlock Launcher":
-            return [slug("Unlock Launcher"), slug("Progressive Launcher Range")]
-        if lic == "O2 Recharge Module":
-            return [slug("O2 Recharge Module")]
-        if lic == "Progressive Scanner":
-            return [slug("Progressive Scanner")]
-        return [slug(lic)]
+    shop_names = set(equipment.all_hab_equipment_location_names())
+    if name in shop_names:
+        rules: list[str] = []
+        if name in equipment.HAB_LICENSE_GATES:
+            lic = equipment.HAB_LICENSE_GATES[name]
+            if lic == "Tether Module":
+                rules = tether_rules
+            elif lic == "Demo Charge License":
+                rules = demo_rules
+            elif lic == "Charged Push":
+                rules = [slug("Charged Push"), slug("Progressive Charged Push Force")]
+            elif lic == "Unlock Launcher":
+                rules = [slug("Unlock Launcher"), slug("Progressive Launcher Range")]
+            elif lic == "O2 Recharge Module":
+                rules = [slug("O2 Recharge Module")]
+            elif lic == "Progressive Scanner":
+                rules = [slug("Progressive Scanner")]
+            else:
+                rules = [slug(lic)]
+        pcr_n = equipment.pcr_copies_for_cert_rank(equipment.hab_shop_required_rank(name))
+        if pcr_n <= 0:
+            return rules
+        pcr_code = pcr if pcr_n == 1 else f"{pcr}:{pcr_n}"
+        if not rules:
+            return [pcr_code]
+        return [f"{rule},{pcr_code}" for rule in rules]
 
     # Region / salvage family gates
     if region == "Mackerel" or name.startswith("Mackerel "):

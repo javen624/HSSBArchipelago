@@ -35,7 +35,9 @@
             "short_name": "Reach Certification Rank 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:1"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080239"
             ],
@@ -254,7 +256,9 @@
             "short_name": "Grapple Strength 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080301"
             ],
@@ -277,7 +281,9 @@
             "short_name": "Grapple Strength 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080302"
             ],
@@ -300,7 +306,9 @@
             "short_name": "Grapple Strength 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080303"
             ],
@@ -323,7 +331,9 @@
             "short_name": "Grapple Strength 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080304"
             ],
@@ -346,7 +356,9 @@
             "short_name": "Grapple Strength 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080305"
             ],
@@ -370,9 +382,9 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "tether_module",
-              "progressive_tether_amount",
-              "progressive_tether_lifetime"
+              "tether_module,progressive_certification_rank",
+              "progressive_tether_amount,progressive_certification_rank",
+              "progressive_tether_lifetime,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080306"
@@ -397,9 +409,9 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "tether_module",
-              "progressive_tether_amount",
-              "progressive_tether_lifetime"
+              "tether_module,progressive_certification_rank",
+              "progressive_tether_amount,progressive_certification_rank",
+              "progressive_tether_lifetime,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080307"
@@ -424,9 +436,9 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "tether_module",
-              "progressive_tether_amount",
-              "progressive_tether_lifetime"
+              "tether_module,progressive_certification_rank:2",
+              "progressive_tether_amount,progressive_certification_rank:2",
+              "progressive_tether_lifetime,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080308"
@@ -451,9 +463,9 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "tether_module",
-              "progressive_tether_amount",
-              "progressive_tether_lifetime"
+              "tether_module,progressive_certification_rank",
+              "progressive_tether_amount,progressive_certification_rank",
+              "progressive_tether_lifetime,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080309"
@@ -478,9 +490,9 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "tether_module",
-              "progressive_tether_amount",
-              "progressive_tether_lifetime"
+              "tether_module,progressive_certification_rank:2",
+              "progressive_tether_amount,progressive_certification_rank:2",
+              "progressive_tether_lifetime,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080310"
@@ -504,7 +516,9 @@
             "short_name": "Unlock Demo Charge",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080311"
             ],
@@ -550,7 +564,9 @@
             "short_name": "Scanner Objects",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080313"
             ],
@@ -574,7 +590,7 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "progressive_scanner"
+              "progressive_scanner,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080314"
@@ -598,7 +614,9 @@
             "short_name": "Suit Integrity 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080315"
             ],
@@ -621,7 +639,9 @@
             "short_name": "Suit Integrity 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080316"
             ],
@@ -644,7 +664,9 @@
             "short_name": "Cutter Heat 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080317"
             ],
@@ -668,8 +690,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:2",
+              "progressive_demo_charges,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080318"
@@ -694,9 +716,9 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "tether_module",
-              "progressive_tether_amount",
-              "progressive_tether_lifetime"
+              "tether_module,progressive_certification_rank:2",
+              "progressive_tether_amount,progressive_certification_rank:2",
+              "progressive_tether_lifetime,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080319"
@@ -721,9 +743,9 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "tether_module",
-              "progressive_tether_amount",
-              "progressive_tether_lifetime"
+              "tether_module,progressive_certification_rank:3",
+              "progressive_tether_amount,progressive_certification_rank:3",
+              "progressive_tether_lifetime,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080320"
@@ -747,7 +769,9 @@
             "short_name": "Charged Push",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080321"
             ],
@@ -770,7 +794,9 @@
             "short_name": "Scanner Range 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080322"
             ],
@@ -793,7 +819,9 @@
             "short_name": "Scanner Range 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080323"
             ],
@@ -816,7 +844,9 @@
             "short_name": "Scanner Range 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080324"
             ],
@@ -839,7 +869,9 @@
             "short_name": "Scanner Range 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080325"
             ],
@@ -862,7 +894,9 @@
             "short_name": "Scanner Range 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080326"
             ],
@@ -885,7 +919,9 @@
             "short_name": "Suit Integrity 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080327"
             ],
@@ -908,7 +944,9 @@
             "short_name": "Suit Integrity 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080328"
             ],
@@ -931,7 +969,9 @@
             "short_name": "Suit Integrity 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:4"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080329"
             ],
@@ -954,7 +994,9 @@
             "short_name": "Heat Resistance 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080330"
             ],
@@ -977,7 +1019,9 @@
             "short_name": "Heat Resistance 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080331"
             ],
@@ -1000,7 +1044,9 @@
             "short_name": "Heat Resistance 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080332"
             ],
@@ -1023,7 +1069,9 @@
             "short_name": "Heat Resistance 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080333"
             ],
@@ -1046,7 +1094,9 @@
             "short_name": "Heat Resistance 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080334"
             ],
@@ -1069,7 +1119,9 @@
             "short_name": "Cryo Resistance 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080335"
             ],
@@ -1092,7 +1144,9 @@
             "short_name": "Cryo Resistance 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080336"
             ],
@@ -1115,7 +1169,9 @@
             "short_name": "Cryo Resistance 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080337"
             ],
@@ -1138,7 +1194,9 @@
             "short_name": "Cryo Resistance 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080338"
             ],
@@ -1161,7 +1219,9 @@
             "short_name": "Cryo Resistance 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080339"
             ],
@@ -1184,7 +1244,9 @@
             "short_name": "Electrical Resistance 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080340"
             ],
@@ -1207,7 +1269,9 @@
             "short_name": "Electrical Resistance 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080341"
             ],
@@ -1230,7 +1294,9 @@
             "short_name": "Electrical Resistance 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080342"
             ],
@@ -1253,7 +1319,9 @@
             "short_name": "Electrical Resistance 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080343"
             ],
@@ -1276,7 +1344,9 @@
             "short_name": "Electrical Resistance 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080344"
             ],
@@ -1299,7 +1369,9 @@
             "short_name": "Cutter Heat Capacity 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080345"
             ],
@@ -1322,7 +1394,9 @@
             "short_name": "Cutter Heat Capacity 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080346"
             ],
@@ -1345,7 +1419,9 @@
             "short_name": "Cutter Cooldown 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080347"
             ],
@@ -1368,7 +1444,9 @@
             "short_name": "Cutter Cooldown 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080348"
             ],
@@ -1391,7 +1469,9 @@
             "short_name": "Cutter Cooldown 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080349"
             ],
@@ -1414,7 +1494,9 @@
             "short_name": "Stinger Range 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080350"
             ],
@@ -1437,7 +1519,9 @@
             "short_name": "Stinger Range 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080351"
             ],
@@ -1460,7 +1544,9 @@
             "short_name": "Stinger Range 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080352"
             ],
@@ -1483,7 +1569,9 @@
             "short_name": "Stinger Range 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080353"
             ],
@@ -1506,7 +1594,9 @@
             "short_name": "Stinger Range 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080354"
             ],
@@ -1529,7 +1619,9 @@
             "short_name": "Splitsaw Range 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080355"
             ],
@@ -1552,7 +1644,9 @@
             "short_name": "Splitsaw Range 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080356"
             ],
@@ -1575,7 +1669,9 @@
             "short_name": "Splitsaw Range 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080357"
             ],
@@ -1598,7 +1694,9 @@
             "short_name": "Splitsaw Range 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080358"
             ],
@@ -1621,7 +1719,9 @@
             "short_name": "Splitsaw Range 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080359"
             ],
@@ -1644,7 +1744,9 @@
             "short_name": "Grapple Range 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080360"
             ],
@@ -1667,7 +1769,9 @@
             "short_name": "Grapple Range 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080361"
             ],
@@ -1690,7 +1794,9 @@
             "short_name": "Grapple Range 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080362"
             ],
@@ -1713,7 +1819,9 @@
             "short_name": "Grapple Range 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080363"
             ],
@@ -1736,7 +1844,9 @@
             "short_name": "Grapple Range 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080364"
             ],
@@ -1760,8 +1870,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "charged_push",
-              "progressive_charged_push_force"
+              "charged_push,progressive_certification_rank:2",
+              "progressive_charged_push_force,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080365"
@@ -1786,8 +1896,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "charged_push",
-              "progressive_charged_push_force"
+              "charged_push,progressive_certification_rank:2",
+              "progressive_charged_push_force,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080366"
@@ -1812,8 +1922,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "charged_push",
-              "progressive_charged_push_force"
+              "charged_push,progressive_certification_rank:3",
+              "progressive_charged_push_force,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080367"
@@ -1838,8 +1948,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:2",
+              "progressive_demo_charges,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080368"
@@ -1864,8 +1974,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080369"
@@ -1890,8 +2000,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080370"
@@ -1916,8 +2026,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:4",
+              "progressive_demo_charges,progressive_certification_rank:4"
             ],
             "visibility_rules": [
               "$loc_visible|2026080371"
@@ -1942,8 +2052,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:2",
+              "progressive_demo_charges,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080372"
@@ -1968,8 +2078,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:2",
+              "progressive_demo_charges,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080373"
@@ -1994,8 +2104,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080374"
@@ -2020,8 +2130,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:2",
+              "progressive_demo_charges,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080375"
@@ -2046,8 +2156,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080376"
@@ -2072,8 +2182,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080377"
@@ -2098,8 +2208,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080378"
@@ -2123,7 +2233,9 @@
             "short_name": "O2 Capacity 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080379"
             ],
@@ -2146,7 +2258,9 @@
             "short_name": "O2 Capacity 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080380"
             ],
@@ -2169,7 +2283,9 @@
             "short_name": "O2 Capacity 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080381"
             ],
@@ -2192,7 +2308,9 @@
             "short_name": "O2 Capacity 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080382"
             ],
@@ -2215,7 +2333,9 @@
             "short_name": "O2 Capacity 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080383"
             ],
@@ -2238,7 +2358,9 @@
             "short_name": "O2 Recharge Module",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080384"
             ],
@@ -2262,7 +2384,7 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "o2_recharge_module"
+              "o2_recharge_module,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080385"
@@ -2287,7 +2409,7 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "o2_recharge_module"
+              "o2_recharge_module,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080386"
@@ -2312,7 +2434,7 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "o2_recharge_module"
+              "o2_recharge_module,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080387"
@@ -2336,7 +2458,9 @@
             "short_name": "Thruster Top Speed 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080388"
             ],
@@ -2359,7 +2483,9 @@
             "short_name": "Thruster Top Speed 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080389"
             ],
@@ -2382,7 +2508,9 @@
             "short_name": "Thruster Top Speed 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080390"
             ],
@@ -2405,7 +2533,9 @@
             "short_name": "Thruster Braking 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080391"
             ],
@@ -2428,7 +2558,9 @@
             "short_name": "Thruster Braking 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080392"
             ],
@@ -2451,7 +2583,9 @@
             "short_name": "Thruster Braking 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080393"
             ],
@@ -2474,7 +2608,9 @@
             "short_name": "Thruster Fuel Capacity 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080394"
             ],
@@ -2497,7 +2633,9 @@
             "short_name": "Thruster Fuel Capacity 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080395"
             ],
@@ -2520,7 +2658,9 @@
             "short_name": "Thruster Fuel Capacity 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080396"
             ],
@@ -2543,7 +2683,9 @@
             "short_name": "Audio Resynth 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080397"
             ],
@@ -2566,7 +2708,9 @@
             "short_name": "Audio Resynth 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080398"
             ],
@@ -2589,7 +2733,9 @@
             "short_name": "Audio Resynth 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080399"
             ],
@@ -2612,7 +2758,9 @@
             "short_name": "Thruster Rental",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080420"
             ],
@@ -2635,7 +2783,9 @@
             "short_name": "Thruster Durability 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080421"
             ],
@@ -2658,7 +2808,9 @@
             "short_name": "Thruster Durability 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080422"
             ],
@@ -2681,7 +2833,9 @@
             "short_name": "Thruster Durability 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080423"
             ],
@@ -2704,7 +2858,9 @@
             "short_name": "Thruster Durability 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080424"
             ],
@@ -2727,7 +2883,9 @@
             "short_name": "Thruster Durability 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080425"
             ],
@@ -2773,7 +2931,9 @@
             "short_name": "Cutter Durability 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080427"
             ],
@@ -2796,7 +2956,9 @@
             "short_name": "Cutter Durability 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080428"
             ],
@@ -2819,7 +2981,9 @@
             "short_name": "Cutter Durability 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080429"
             ],
@@ -2842,7 +3006,9 @@
             "short_name": "Cutter Durability 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080430"
             ],
@@ -2865,7 +3031,9 @@
             "short_name": "Cutter Durability 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080431"
             ],
@@ -2911,7 +3079,9 @@
             "short_name": "Grapple Durability 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080433"
             ],
@@ -2934,7 +3104,9 @@
             "short_name": "Grapple Durability 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080434"
             ],
@@ -2957,7 +3129,9 @@
             "short_name": "Grapple Durability 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080435"
             ],
@@ -2980,7 +3154,9 @@
             "short_name": "Grapple Durability 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080436"
             ],
@@ -3003,7 +3179,9 @@
             "short_name": "Grapple Durability 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080437"
             ],
@@ -3026,7 +3204,9 @@
             "short_name": "Scanner Rental",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:4"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080438"
             ],
@@ -3049,7 +3229,9 @@
             "short_name": "Scanner Durability 1",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080439"
             ],
@@ -3072,7 +3254,9 @@
             "short_name": "Scanner Durability 2",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080440"
             ],
@@ -3095,7 +3279,9 @@
             "short_name": "Scanner Durability 3",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:2"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080441"
             ],
@@ -3118,7 +3304,9 @@
             "short_name": "Scanner Durability 4",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080442"
             ],
@@ -3141,7 +3329,9 @@
             "short_name": "Scanner Durability 5",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:4"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080443"
             ],
@@ -3164,7 +3354,9 @@
             "short_name": "Helmet Rental",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080444"
             ],
@@ -3187,7 +3379,9 @@
             "short_name": "Suit Rental",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:3"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080445"
             ],
@@ -3280,8 +3474,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:4",
+              "progressive_demo_charges,progressive_certification_rank:4"
             ],
             "visibility_rules": [
               "$loc_visible|2026080449"
@@ -3305,7 +3499,9 @@
             "short_name": "Stinger Cut Grade",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080530"
             ],
@@ -3328,7 +3524,9 @@
             "short_name": "Unlock Launcher",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080531"
             ],
@@ -3352,8 +3550,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank",
+              "progressive_launcher_range,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080532"
@@ -3378,8 +3576,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank:2",
+              "progressive_launcher_range,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080533"
@@ -3404,8 +3602,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank:2",
+              "progressive_launcher_range,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080534"
@@ -3430,8 +3628,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank:2",
+              "progressive_launcher_range,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080535"
@@ -3456,8 +3654,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank:3",
+              "progressive_launcher_range,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080536"
@@ -3482,8 +3680,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank:2",
+              "progressive_launcher_range,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080537"
@@ -3508,8 +3706,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank:2",
+              "progressive_launcher_range,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080538"
@@ -3534,8 +3732,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "unlock_launcher",
-              "progressive_launcher_range"
+              "unlock_launcher,progressive_certification_rank:2",
+              "progressive_launcher_range,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080539"
@@ -3610,7 +3808,7 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "progressive_scanner"
+              "progressive_scanner,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080542"
@@ -3635,7 +3833,7 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "progressive_scanner"
+              "progressive_scanner,progressive_certification_rank"
             ],
             "visibility_rules": [
               "$loc_visible|2026080543"
@@ -3660,8 +3858,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:2",
+              "progressive_demo_charges,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080544"
@@ -3686,8 +3884,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:2",
+              "progressive_demo_charges,progressive_certification_rank:2"
             ],
             "visibility_rules": [
               "$loc_visible|2026080545"
@@ -3712,8 +3910,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080546"
@@ -3738,8 +3936,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:3",
+              "progressive_demo_charges,progressive_certification_rank:3"
             ],
             "visibility_rules": [
               "$loc_visible|2026080547"
@@ -3764,8 +3962,8 @@
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
             "access_rules": [
-              "demo_charge_license",
-              "progressive_demo_charges"
+              "demo_charge_license,progressive_certification_rank:4",
+              "progressive_demo_charges,progressive_certification_rank:4"
             ],
             "visibility_rules": [
               "$loc_visible|2026080548"
@@ -3789,7 +3987,9 @@
             "short_name": "Cutter Purchase",
             "chest_unopened_img": "images/chest_closed.png",
             "chest_opened_img": "images/chest_open.png",
-            "access_rules": [],
+            "access_rules": [
+              "progressive_certification_rank:4"
+            ],
             "visibility_rules": [
               "$loc_visible|2026080549"
             ],

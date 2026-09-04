@@ -124,6 +124,12 @@ def set_all_rules(world: HardspaceShipbreakerWorld) -> None:
         lambda state: state.has("Progressive Certification Rank", player, 3),
     )
 
+    # Starting PCR ceiling is rank 4; Rank 5 is the first PCR milestone.
+    _set(
+        world,
+        "Reach Certification Rank 5",
+        lambda state: state.has("Progressive Certification Rank", player, 1),
+    )
     _set(
         world,
         "Reach Certification Rank 10",
@@ -145,10 +151,23 @@ def set_all_rules(world: HardspaceShipbreakerWorld) -> None:
 
     for shop in equipment.all_hab_equipment_location_names():
         license_item = equipment.HAB_LICENSE_GATES.get(shop)
+        pcr_needed = equipment.pcr_copies_for_cert_rank(equipment.hab_shop_required_rank(shop))
+        previous = equipment.hab_shop_previous_location(shop)
 
-        def _shop_rule(state, p=player, lic=license_item):
-            # Equipment shop is always available in Hab (Unlock Equipment Shop location removed).
-            return _has_license_item(state, p, lic)
+        def _shop_rule(
+            state,
+            p=player,
+            lic=license_item,
+            pcr=pcr_needed,
+            prev=previous,
+        ):
+            if not _has_license_item(state, p, lic):
+                return False
+            if pcr and not state.has("Progressive Certification Rank", p, pcr):
+                return False
+            if prev and _has_loc(world, prev) and not state.can_reach(prev, "Location", p):
+                return False
+            return True
 
         _set(world, shop, _shop_rule)
 

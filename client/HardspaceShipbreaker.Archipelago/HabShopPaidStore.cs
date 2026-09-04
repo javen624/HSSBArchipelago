@@ -166,6 +166,35 @@ internal static class HabShopPaidStore
     /// Drop persisted IDs that are not Hab shop locations (e.g. old Demo Durability
     /// +350–354 that collided with salvage tiers).
     /// </summary>
+    /// <summary>
+    /// Drop paid IDs that were never a Hab shop check (AP grants used to write these).
+    /// </summary>
+    public static int RetainOnly(IEnumerable<long> keepIds)
+    {
+        EnsureLoaded();
+        lock (Gate)
+        {
+            var keep = new HashSet<long>();
+            foreach (var id in keepIds)
+            {
+                if (id > 0 && HabEquipmentCatalog.IsHabShopLocationId(id))
+                {
+                    keep.Add(id);
+                }
+            }
+
+            var removed = Paid.RemoveWhere(id => !keep.Contains(id));
+            if (removed > 0)
+            {
+                PersistUnlocked();
+                Plugin.Log.LogInfo(
+                    $"[HS-AP] Dropped {removed} Hab paid ID(s) that were never shop-checked (AP grant leftovers).");
+            }
+
+            return removed;
+        }
+    }
+
     public static int PurgeNonHabLocationIds()
     {
         EnsureLoaded();

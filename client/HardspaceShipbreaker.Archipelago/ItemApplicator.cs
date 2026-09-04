@@ -181,6 +181,35 @@ internal static class ItemApplicator
         }
     }
 
+    /// <summary>
+    /// Drop in-memory grants / progressive counts from a previous AP login so a new
+    /// slot, seed, or item replay cannot paint Hab-yellow or re-apply old equipment.
+    /// </summary>
+    public static void ResetReceivedItemState()
+    {
+        ProgressiveCounts.Clear();
+        ApGrantedUpgrades.Clear();
+        ShopOwnedPendingGrant.Clear();
+        HabShopPaidLocationIds.Clear();
+        PendingCurrency.Clear();
+        PendingUpgradeKeys.Clear();
+        _grappleStrengthCount = 0;
+        _certRankProgress = 0;
+        _tetherModule = false;
+        _demoLicense = false;
+        _chargedPush = false;
+        _o2RechargeModule = false;
+        _launcherUnlocked = false;
+        _pendingDemoAutoDeploy = false;
+        _pendingDemoRental = false;
+        _pendingLauncherCryo = false;
+        _pendingLauncherExplosive = false;
+        _pendingLauncherMagnetic = false;
+        _firstEquipmentPurchaseChecked = false;
+        _suppressTrainingShipUi = false;
+        Plugin.Log.LogInfo("[HS-AP] Reset received-item / Hab-grant state for AP login.");
+    }
+
     public static void OnSessionReady()
     {
         LogUpgradeCatalogOnce();
@@ -1348,11 +1377,6 @@ internal static class ItemApplicator
         if (count > tiers.Length)
         {
             Plugin.Log.LogInfo($"[HS-AP] {progressiveName} ×{count} exceeds tier list ({tiers.Length}); ignoring extra.");
-            foreach (var tier in tiers)
-            {
-                MarkHabShopPurchasedForItemName(tier);
-            }
-
             return true;
         }
 
@@ -1367,21 +1391,10 @@ internal static class ItemApplicator
         {
             Plugin.Log.LogInfo(
                 $"[HS-AP] {progressiveName} ×{count} held until license '{license}' is owned (tier '{tiers[count - 1]}').");
-            for (var i = 0; i < count && i < tiers.Length; i++)
-            {
-                MarkHabShopPurchasedForItemName(tiers[i]);
-            }
-
             return true;
         }
 
-        var applied = TryApplyEquipmentTier(tiers[count - 1]);
-        for (var i = 0; i < count && i < tiers.Length; i++)
-        {
-            MarkHabShopPurchasedForItemName(tiers[i]);
-        }
-
-        return applied;
+        return TryApplyEquipmentTier(tiers[count - 1]);
     }
 
     /// <summary>
@@ -1540,7 +1553,6 @@ internal static class ItemApplicator
                 _launcherUnlocked = true;
             }
 
-            MarkHabShopPurchasedForItemName(tierItemName);
             TryApplyUpgradeKey($"equip:{tierItemName}", entry.AssetMatch);
             return true;
         }
@@ -1549,35 +1561,8 @@ internal static class ItemApplicator
     }
 
     /// <summary>
-    /// Received AP equipment (including collect from finished games) counts as Hab-purchased
-    /// so those rows are yellow and not buyable again.
+    /// Restore Hab-yellow only for rows actually bought in Hab. AP grants never paint shop rows.
     /// </summary>
-    private static void MarkHabShopPurchasedForItemName(string tierItemName)
-    {
-        if (!_habShopSanity || string.IsNullOrEmpty(tierItemName))
-        {
-            return;
-        }
-
-        _habEquipment ??= HabEquipmentCatalog.Build(NameEndsWithTier);
-        foreach (var entry in _habEquipment)
-        {
-            if (!string.Equals(entry.ItemName, tierItemName, StringComparison.Ordinal)
-                || !HabEquipmentCatalog.IsHabShopLocationId(entry.LocationId))
-            {
-                continue;
-            }
-
-            if (HabShopPaidLocationIds.Add(entry.LocationId))
-            {
-                HabShopPaidStore.Remember(entry.LocationId);
-            }
-
-            return;
-        }
-    }
-
-    /// <summary>Mark Hab-yellow for every AP-granted shop row we already own.</summary>
     public static void MarkHabShopPurchasedForGrantedEquipment()
     {
         if (!_habShopSanity)
@@ -1585,33 +1570,8 @@ internal static class ItemApplicator
             return;
         }
 
-        var added = 0;
-        foreach (var asset in ApGrantedUpgrades.ToList())
-        {
-            if (asset == null || !TryMapHabShopLocation(asset, out var id, out _))
-            {
-                continue;
-            }
-
-            if (HabShopPaidLocationIds.Add(id))
-            {
-                HabShopPaidStore.Remember(id);
-                added++;
-            }
-
-            if (!IsInHabOwnedUpgrades(asset))
-            {
-                MarkHabOwnedYellowOnly(asset);
-            }
-        }
-
-        var yellow = RestoreHabPaidYellowRows();
-        if (added > 0 || yellow > 0)
-        {
-            Plugin.Log.LogInfo(
-                $"[HS-AP] Hab shop: marked {HabShopPaidLocationIds.Count} paid row(s) from received equipment " +
-                $"(+{added} new, {yellow} yellow restored).");
-        }
+        RestoreHabPaidYellowRows();
+        StripUnpaidShopRowsFromHabOwned();
     }
 
     private static bool TryApplyEquipmentItem(string name) => TryApplyEquipmentTier(name);
@@ -2114,8 +2074,8 @@ internal static class ItemApplicator
     public static bool HabShopSanityEnabled => _habShopSanity;
 
     /// <summary>
-    /// Hab shop-sanity: block re-buy after a Hab purchase or an AP equipment grant
-    /// (collect from finished games included).
+    /// Hab shop-sanity: block re-buy only after a real Hab purchase.
+    /// AP grants apply effects but never consume the shop row.
     /// </summary>
     public static bool IsUpgradePurchaseBlocked(object? upgradeAsset)
     {
@@ -2129,13 +2089,17 @@ internal static class ItemApplicator
             return false;
         }
 
-        // Explicit Hab buy this session / prior MarkHabOwnedYellow.
         if (HabShopPaidLocationIds.Contains(id) || ShopOwnedPendingGrant.Contains(upgradeAsset))
         {
             return true;
         }
 
-        // Persisted Hab yellow in profile (bought earlier, saved).
+        // Yellow leftover from an AP grant must stay buyable.
+        if (ApGrantedUpgrades.Contains(upgradeAsset))
+        {
+            return false;
+        }
+
         return IsInHabOwnedUpgrades(upgradeAsset);
     }
 
@@ -2224,13 +2188,18 @@ internal static class ItemApplicator
             return true;
         }
 
-        // Hab yellow, AP grant, or prior Hab shop check/purchase all count as unlocking the chain.
-        if (IsInHabOwnedUpgrades(prev) || ApGrantedUpgrades.Contains(prev) || ShopOwnedPendingGrant.Contains(prev))
+        // Shop chain is Hab-buy only — receiving the previous AP item does not unlock the next row.
+        if (ShopOwnedPendingGrant.Contains(prev))
         {
             return true;
         }
 
-        return TryMapHabShopLocation(prev, out var prevId, out _) && HabShopPaidLocationIds.Contains(prevId);
+        if (TryMapHabShopLocation(prev, out var prevId, out _) && HabShopPaidLocationIds.Contains(prevId))
+        {
+            return true;
+        }
+
+        return IsInHabOwnedUpgrades(prev) && !ApGrantedUpgrades.Contains(prev);
     }
 
     private static bool IsInHabOwnedUpgrades(object upgradeAsset)
@@ -2323,8 +2292,8 @@ internal static class ItemApplicator
     }
 
     /// <summary>
-    /// Remember server-checked Hab shop IDs. If the local paid store was wiped (empty)
-    /// those checks are the only remaining record of Hab buys and are restored.
+    /// Paid Hab rows are shop checks only. Drop IDs that were written when an AP grant
+    /// used to paint the shop yellow.
     /// </summary>
     public static void SyncHabShopPaidFromChecked(IEnumerable<long> checkedLocationIds)
     {
@@ -2334,38 +2303,33 @@ internal static class ItemApplicator
         }
 
         HabShopPaidStore.EnsureLoaded();
-        if (HabShopPaidLocationIds.Count == 0)
-        {
-            HabShopPaidStore.CopyInto(HabShopPaidLocationIds);
-        }
 
-        var habIds = new List<long>();
+        var keep = new HashSet<long>();
         foreach (var id in checkedLocationIds)
         {
             if (HabEquipmentCatalog.IsHabShopLocationId(id))
             {
-                habIds.Add(id);
+                keep.Add(id);
             }
         }
 
-        if (habIds.Count > 0 && HabShopPaidLocationIds.Count == 0)
+        foreach (var id in OfflineCheckStore.Snapshot())
         {
-            foreach (var id in habIds)
+            if (HabEquipmentCatalog.IsHabShopLocationId(id))
             {
-                HabShopPaidLocationIds.Add(id);
+                keep.Add(id);
             }
-
-            HabShopPaidStore.RememberMany(habIds);
-            var yellow = RestoreHabPaidYellowRows();
-            Plugin.Log.LogInfo(
-                $"[HS-AP] Hab shop: restored {habIds.Count} paid row(s) from server-checked locations " +
-                $"(empty paid store; {yellow} yellow).");
-            return;
         }
 
+        HabShopPaidStore.RetainOnly(keep);
+        HabShopPaidStore.RememberMany(keep);
+        HabShopPaidLocationIds.Clear();
+        HabShopPaidStore.CopyInto(HabShopPaidLocationIds);
+
+        var yellow = RestoreHabPaidYellowRows();
+        StripUnpaidShopRowsFromHabOwned();
         Plugin.Log.LogInfo(
-            $"[HS-AP] Hab shop: {habIds.Count} location(s) already checked on server; " +
-            $"paid store={HabShopPaidLocationIds.Count}.");
+            $"[HS-AP] Hab shop: {keep.Count} paid row(s) from shop checks ({yellow} yellow).");
     }
 
     /// <summary>
@@ -2435,70 +2399,23 @@ internal static class ItemApplicator
                 return;
             }
 
-            // Rebuild from persisted store so a room/slot key switch cannot leave stale IDs.
             HabShopPaidStore.PurgeNonHabLocationIds();
+            var client = Plugin.Instance.Client;
+            if (client != null && (client.IsConnected || client.LocalCheckedCount > 0))
+            {
+                client.RefreshHabShopPaidFromLocalChecks();
+                return;
+            }
+
             HabShopPaidLocationIds.Clear();
             HabShopPaidStore.CopyInto(HabShopPaidLocationIds);
-
-            // Only migrate profile→paid when this room already has Hab checks (real progress).
-            var seeded = 0;
-            if (habCheckedOnServer > 0 || HabShopPaidLocationIds.Count > 0)
-            {
-                seeded = SeedHabShopPaidFromProfileUpgrades();
-                if (seeded > 0)
-                {
-                    HabShopPaidStore.RememberMany(HabShopPaidLocationIds);
-                }
-            }
-
             RestoreHabPaidYellowRows();
-            if (HabShopPaidLocationIds.Count == 0)
-            {
-                Plugin.Instance.Client?.RefreshHabShopPaidFromLocalChecks();
-            }
+            StripUnpaidShopRowsFromHabOwned();
         }
         catch (Exception ex)
         {
             Plugin.Log.LogWarning($"[HS-AP] EnsureHabShopPaidState failed: {ex.Message}");
         }
-    }
-
-    private static int SeedHabShopPaidFromProfileUpgrades()
-    {
-        var profile = FindPlayerProfile();
-        if (profile == null || _playerProfileType == null)
-        {
-            return 0;
-        }
-
-        var upgradesProp = _playerProfileType.GetProperty(
-            "Upgrades",
-            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-        if (upgradesProp?.GetValue(profile) is not IEnumerable enumerable)
-        {
-            return 0;
-        }
-
-        var added = 0;
-        foreach (var entry in enumerable)
-        {
-            if (entry == null || IsFreeStarterUpgrade(entry))
-            {
-                continue;
-            }
-
-            if (!TryMapHabShopLocation(entry, out var id, out _))
-            {
-                continue;
-            }
-
-            if (HabShopPaidLocationIds.Add(id))
-            {
-                added++;
-            }
-        }
-
-        return added;
     }
 
     /// <summary>
@@ -2926,18 +2843,10 @@ internal static class ItemApplicator
             // shop-sanity buys. Bay persistence is via ReapplyApGrantedUpgrades after
             // PlayerProfile.ApplyUpgrades (ClearAppliedUpgrades wipes one-shot Applies).
             ApGrantedUpgrades.Add(asset);
-            if (TryMapHabShopLocation(asset, out var locId, out _))
+            ShopOwnedPendingGrant.Remove(asset);
+            if (TryMapHabShopLocation(asset, out var locId, out _)
+                && !HabShopPaidLocationIds.Contains(locId))
             {
-                if (HabShopPaidLocationIds.Add(locId))
-                {
-                    HabShopPaidStore.Remember(locId);
-                }
-
-                MarkHabOwnedYellowOnly(asset);
-            }
-            else
-            {
-                ShopOwnedPendingGrant.Remove(asset);
                 RemoveFromHabOwnedIfUnpaidShopRow(asset);
             }
 
@@ -2946,7 +2855,7 @@ internal static class ItemApplicator
             // UnlockUpgrade also records UpgradePurchasedPAT + Pending*Refill; ApplyUpgrade
             // does not. Without the PAT, bay vending disables tether/demo restock.
             ApplyUnlockSideEffectsWithoutHabOwnership(asset);
-            Plugin.Log.LogInfo($"[HS-AP] Applied upgrade '{displayName}' (AP grant; Hab shop marked purchased)");
+            Plugin.Log.LogInfo($"[HS-AP] Applied upgrade '{displayName}' (AP grant; Hab shop unchanged)");
             return true;
         }
         catch (Exception ex)

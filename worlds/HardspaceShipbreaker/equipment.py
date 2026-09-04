@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 from BaseClasses import ItemClassification
 
 BASE_ID = 2_026_080_100
@@ -300,6 +302,114 @@ LICENSE_HAB_LOCATIONS = {
     "Hab: Scanner Objects",
     "Hab: Unlock Launcher",
 }
+
+# Vanilla UpgradeAsset.RequiredTier (cert rank) per Hab shop row.
+# Client PCR ceilings: ×0→4, ×1→9, ×2→14, ×3→19, ×4→20.
+# Values from in-game asset dumps; unlisted shops default to rank 5 (need PCR ×1).
+def _tiers(prefix: str, ranks: list[int]) -> dict[str, int]:
+    return {f"{prefix} {i}": rank for i, rank in enumerate(ranks, start=1)}
+
+
+HAB_SHOP_REQUIRED_RANK: dict[str, int] = {
+    "Hab: Purchase First Equipment Upgrade": 1,
+    "Hab: Unlock Tethers": 4,
+    "Hab: Unlock Demo Charge": 11,
+    "Hab: Charged Push": 6,
+    "Hab: Scanner Objects": 7,
+    "Hab: Scanner Systems": 8,
+    "Hab: O2 Recharge Module": 8,
+    "Hab: Unlock Launcher": 8,
+    "Hab: Demo Auto-Deploy": 16,
+    "Hab: Cutter Heat 1": 7,
+    "Hab: Cutter Heat Capacity 2": 9,
+    "Hab: Cutter Heat Capacity 3": 11,
+    "Hab: Cutter Rental": 1,
+    "Hab: Cutter Purchase": 20,
+    "Hab: Thruster Rental": 18,
+    "Hab: Grapple Rental": 1,
+    "Hab: Scanner Rental": 20,
+    "Hab: Helmet Rental": 19,
+    "Hab: Suit Rental": 19,
+    "Hab: Demo Charge Rental": 20,
+    "Hab: Stinger Cut Grade": 8,
+    "Hab: Launcher Cryo": 12,
+    "Hab: Launcher Explosive": 12,
+    "Hab: Launcher Magnetic": 12,
+    "Hab: Scanner Detail Category": 1,
+    "Hab: Scanner Detail Condition": 1,
+    "Hab: Scanner Detail Hazards": 5,
+    "Hab: Scanner Detail Materials": 8,
+    **_tiers("Hab: Grapple Strength", [6, 8, 10, 12, 14]),
+    **_tiers("Hab: Tethers Amount", [5, 8, 11]),
+    **_tiers("Hab: Tethers Lifetime", [7, 10, 14, 17]),
+    **_tiers("Hab: Suit Integrity", [5, 9, 13, 17, 20]),
+    **_tiers("Hab: Scanner Range", [7, 9, 11, 13, 15]),
+    **_tiers("Hab: Heat Resistance", [6, 8, 10, 12, 14]),
+    **_tiers("Hab: Cryo Resistance", [11, 13, 15, 17, 19]),
+    **_tiers("Hab: Electrical Resistance", [6, 9, 12, 15, 18]),
+    **_tiers("Hab: Cutter Cooldown", [7, 10, 13]),
+    **_tiers("Hab: Stinger Range", [5, 7, 9, 11, 13]),
+    **_tiers("Hab: Splitsaw Range", [6, 9, 12, 15, 18]),
+    **_tiers("Hab: Grapple Range", [5, 7, 9, 11, 13]),
+    **_tiers("Hab: Charged Push Force", [10, 14, 18]),
+    **_tiers("Hab: Demo Charges Capacity", [12, 14, 16, 18, 20]),
+    **_tiers("Hab: Demo Disarming", [12, 14, 16]),
+    **_tiers("Hab: Demo Self Cleanup", [12, 15, 18]),
+    **_tiers("Hab: O2 Capacity", [5, 8, 11, 14, 17]),
+    **_tiers("Hab: O2 Recharge", [8, 11, 14]),
+    **_tiers("Hab: Thruster Top Speed", [5, 7, 9]),
+    **_tiers("Hab: Thruster Braking", [6, 8, 10]),
+    **_tiers("Hab: Thruster Fuel Capacity", [7, 9, 13]),
+    **_tiers("Hab: Audio Resynth", [5, 8, 11]),
+    **_tiers("Hab: Thruster Durability", [6, 9, 12, 15, 18]),
+    **_tiers("Hab: Cutter Durability", [6, 9, 12, 15, 18]),
+    **_tiers("Hab: Grapple Durability", [5, 8, 11, 14, 17]),
+    **_tiers("Hab: Scanner Durability", [8, 11, 14, 17, 20]),
+    **_tiers("Hab: Suit Durability", [1, 1, 1]),
+    **_tiers("Hab: Demo Durability", [12, 14, 16, 18, 20]),
+    **_tiers("Hab: Launcher Range", [8, 10, 12, 14, 16]),
+}
+
+# Shop-tree previous row (vanilla PreviousUpgrade). Cutter Heat names are inconsistent.
+_HAB_SHOP_PREVIOUS_SPECIAL: dict[str, str] = {
+    "Hab: Cutter Heat Capacity 2": "Hab: Cutter Heat 1",
+    "Hab: Cutter Heat Capacity 3": "Hab: Cutter Heat Capacity 2",
+    "Hab: Scanner Systems": "Hab: Scanner Objects",
+    "Hab: Scanner Detail Condition": "Hab: Scanner Detail Category",
+    "Hab: Scanner Detail Hazards": "Hab: Scanner Detail Condition",
+    "Hab: Scanner Detail Materials": "Hab: Scanner Detail Hazards",
+}
+
+_TRAILING_SHOP_TIER = re.compile(r"^(.*) (\d+)$")
+
+
+def hab_shop_required_rank(name: str) -> int:
+    return HAB_SHOP_REQUIRED_RANK.get(name, 5)
+
+
+def pcr_copies_for_cert_rank(rank: int) -> int:
+    if rank <= 4:
+        return 0
+    if rank <= 9:
+        return 1
+    if rank <= 14:
+        return 2
+    if rank <= 19:
+        return 3
+    return 4
+
+
+def hab_shop_previous_location(name: str) -> str | None:
+    special = _HAB_SHOP_PREVIOUS_SPECIAL.get(name)
+    if special:
+        return special
+    match = _TRAILING_SHOP_TIER.match(name)
+    if not match:
+        return None
+    tier = int(match.group(2))
+    if tier <= 1:
+        return None
+    return f"{match.group(1)} {tier - 1}"
 
 # Legacy alias kept in ID map for old seeds (not placed in new pools).
 LEGACY_PROGRESSIVE_ALIASES = {

@@ -2168,8 +2168,8 @@ public static class GameHookSink
 
     public static void UpgradeScreenEnablePrefix()
     {
-        ItemApplicator.MarkHabShopPurchasedForGrantedEquipment();
         ItemApplicator.EnsureHabShopPaidState();
+        ItemApplicator.MarkHabShopPurchasedForGrantedEquipment();
         ItemApplicator.StripUnpaidShopRowsFromHabOwned();
     }
 

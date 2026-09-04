@@ -183,6 +183,11 @@ public sealed class ArchipelagoClient
         SlotName = slot;
         _connectSyncActive = true;
         _receiveOrdinal = 0;
+        lock (_applyGate)
+        {
+            _applyQueue.Clear();
+        }
+
         TeardownSession();
         _connectSyncActive = true;
         _receiveOrdinal = 0;
@@ -260,6 +265,7 @@ public sealed class ArchipelagoClient
             Plugin.Log.LogInfo($"[HS-AP] v{Plugin.PLUGIN_VERSION} roomKey='{roomKey}' seed='{seed}'");
             BeginCurrencyGrantTracking(roomKey);
             FinishCurrencyGrantTrackingAfterLogin();
+            ResetRuntimeStateForLogin(roomKey);
             HabShopPaidStore.SetRoomKey(roomKey);
 
             SyncCheckedLocationsFromServer();
@@ -561,24 +567,38 @@ public sealed class ArchipelagoClient
         ItemApplicator.SyncHabShopPaidFromChecked(_checkedLocations);
     }
 
+    /// <summary>
+    /// Drop previous-slot checks/items before this login's server sync + item replay.
+    /// Same slot+seed keeps Hab paid rows in config; memory grants are rebuilt from received items.
+    /// </summary>
+    private void ResetRuntimeStateForLogin(string roomKey)
+    {
+        var prevKey = Plugin.Instance.HabShopPaidKey.Value ?? "";
+        var newMultiworld = !HabShopPaidStore.SameSlotAndSeed(prevKey, roomKey);
+        _checkedLocations.Clear();
+        _goalSent = false;
+        ItemApplicator.ResetReceivedItemState();
+        Plugin.Log.LogInfo(
+            newMultiworld
+                ? $"[HS-AP] Cleared checks/grants for new slot/seed (was '{prevKey}')."
+                : "[HS-AP] Reset in-memory checks/grants for login replay.");
+    }
+
     private void SyncCheckedLocationsFromServer()
     {
         try
         {
             var checkedIds = _session?.Locations?.AllLocationsChecked;
+            _checkedLocations.Clear();
             if (checkedIds != null)
             {
-                var n = 0;
                 foreach (var id in checkedIds)
                 {
-                    if (_checkedLocations.Add(id))
-                    {
-                        n++;
-                    }
+                    _checkedLocations.Add(id);
                 }
 
                 Plugin.Log.LogInfo(
-                    $"[HS-AP] Synced {checkedIds.Count} checked location(s) from server (+{n} new to local set).");
+                    $"[HS-AP] Synced {_checkedLocations.Count} checked location(s) from server.");
             }
 
             ItemApplicator.SyncHabShopPaidFromChecked(_checkedLocations);
@@ -800,7 +820,55 @@ public sealed class ArchipelagoClient
         ItemApplicator.SetCreditPackAmounts(creditSmall, creditMedium, creditLarge);
     }
 
-    private void OnMessage(LogMessage message) => Plugin.Log.LogInfo($"[HS-AP] {message}");
+    private void OnMessage(LogMessage message)
+    {
+        Plugin.Log.LogInfo($"[HS-AP] {message}");
+        try
+        {
+            TryToastOutgoingItemSend(message);
+        }
+        catch (Exception ex)
+        {
+            Plugin.Log.LogWarning($"[HS-AP] Item-send toast failed: {ex.Message}");
+        }
+    }
+
+    private void TryToastOutgoingItemSend(LogMessage message)
+    {
+        if (message is HintItemSendLogMessage || message is not ItemSendLogMessage send)
+        {
+            return;
+        }
+
+        if (!send.IsSenderTheActivePlayer || InBurstQuiet || _connectSyncActive)
+        {
+            return;
+        }
+
+        var item = send.Item?.ItemName;
+        if (string.IsNullOrWhiteSpace(item))
+        {
+            return;
+        }
+
+        var to = send.IsReceiverTheActivePlayer ? "you" : PlayerDisplayName(send.Receiver);
+        ApToastQueue.EnqueueSent(item, to);
+    }
+
+    private static string PlayerDisplayName(PlayerInfo? player)
+    {
+        if (!string.IsNullOrWhiteSpace(player?.Alias))
+        {
+            return player!.Alias;
+        }
+
+        if (!string.IsNullOrWhiteSpace(player?.Name))
+        {
+            return player!.Name;
+        }
+
+        return "?";
+    }
 
     public void Tick()
     {
@@ -858,6 +926,11 @@ public sealed class ArchipelagoClient
 
     private void PumpApplyQueue()
     {
+        if (_connecting)
+        {
+            return;
+        }
+
         for (var i = 0; i < AppliesPerFrame; i++)
         {
             (string Name, long ItemId, string From, bool Toast) job;
@@ -1032,7 +1105,6 @@ public sealed class ArchipelagoClient
             return;
         }
 
-        ApToastQueue.EnqueueChecked(locLabel);
         MaybeFireGoalForLocation(locationId);
     }
 

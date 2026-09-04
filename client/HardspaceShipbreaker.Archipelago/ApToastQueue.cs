@@ -5,7 +5,7 @@ using UnityEngine;
 namespace HardspaceShipbreaker.Archipelago;
 
 /// <summary>
-/// Always-on IMGUI toast stack for AP receive / location-check feedback.
+/// Always-on IMGUI toast stack for AP receive / send / location-check feedback.
 /// </summary>
 internal static class ApToastQueue
 {
@@ -44,6 +44,12 @@ internal static class ApToastQueue
     public static void EnqueueChecked(string locationName)
     {
         Enqueue(Kind.Checked, $"Checked: {locationName}");
+    }
+
+    public static void EnqueueSent(string itemName, string toPlayer)
+    {
+        var to = string.IsNullOrWhiteSpace(toPlayer) ? "?" : toPlayer;
+        Enqueue(Kind.Checked, $"Sent {itemName} to {to}");
     }
 
     public static void EnqueueInfo(string message)
